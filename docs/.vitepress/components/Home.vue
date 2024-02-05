@@ -14,7 +14,7 @@
   <div class="page-border"/>
 
   <!-- Example Handwriting -->
-  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg)">Hold tight - we're still building this thing!</h2>
+  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw; line-height: 1.5">Hold tight - we're still building this thing!</h2>
 
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
@@ -62,6 +62,15 @@
   border: 4px solid white;
   pointer-events: none;
   user-select: none;
+
+  @media (max-width: 768px) {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+  }
 }
 
 .logo {
@@ -70,6 +79,10 @@
   left: 40px;
   width: 115px;
   user-select: none;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 
@@ -94,6 +107,14 @@
 
   h1 {
     max-width: 260px;
+  }
+
+  @media (max-width: 768px) {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    width: calc(100vw - 40px);
+    padding: 20px 20px 0;
   }
 }
 
@@ -123,6 +144,12 @@
       opacity: 1;
     }
   }
+
+  @media (max-width: 768px) {
+    margin-left: -20px;
+    margin-right: -20px;
+    padding: 15px 20px;
+  }
 }
 
 ul.nav-links {
@@ -132,6 +159,11 @@ ul.nav-links {
   display: flex;
   flex-direction: column;
   gap: 25px;
+
+  @media (max-width: 768px) {
+    bottom: 40px;
+    left: 40px;
+  }
 
   li {
     transition: transform 0.2s ease-in-out;
@@ -164,6 +196,10 @@ ul.nav-links {
   position: absolute;
   bottom: 80px;
   right: 80px;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 
 </style>
