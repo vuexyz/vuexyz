@@ -67,7 +67,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/marchantweb' }
+      { icon: 'github', link: 'https://github.com/marchantweb/vuexyz' }
     ]
   }
 })

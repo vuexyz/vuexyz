@@ -40,7 +40,7 @@
       <a href="#"><i class="fa-brands fa-discord"></i> Discord</a>
     </li>
     <li>
-      <a href="#"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://github.com/marchantweb/vuexyz" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
     </li>
   </ul>
 
