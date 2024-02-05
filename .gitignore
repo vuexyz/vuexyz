@@ -1,0 +1,6 @@
+/.idea/
+/sonarlint/
+/node_modules/
+/lib/
+/dist/
+/docs/.vitepress/cache

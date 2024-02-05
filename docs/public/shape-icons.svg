@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="183" height="23" viewBox="0 0 183 23">
+  <g id="Group_11" data-name="Group 11" transform="translate(-1659 -1044)">
+    <g id="Rectangle_9" data-name="Rectangle 9" transform="translate(1659 1044)" fill="none" stroke="#fff" stroke-width="1" opacity="0.6">
+      <rect width="23" height="23" stroke="none"/>
+      <rect x="0.5" y="0.5" width="22" height="22" fill="none"/>
+    </g>
+    <g id="Polygon_4" data-name="Polygon 4" transform="translate(1698 1044)" fill="none" opacity="0.6">
+      <path d="M13.5,0,27,23H0Z" stroke="none"/>
+      <path d="M 13.5 1.975507736206055 L 1.746494293212891 22 L 25.25350570678711 22 L 13.5 1.975507736206055 M 13.5 0 L 27 23 L 0 23 L 13.5 0 Z" stroke="none" fill="#fff"/>
+    </g>
+    <g id="Ellipse_6" data-name="Ellipse 6" transform="translate(1740 1044)" fill="none" stroke="#fff" stroke-width="1" opacity="0.6">
+      <circle cx="11.5" cy="11.5" r="11.5" stroke="none"/>
+      <circle cx="11.5" cy="11.5" r="11" fill="none"/>
+    </g>
+    <g id="Polygon_5" data-name="Polygon 5" transform="translate(1779 1044)" fill="none" opacity="0.6">
+      <path d="M11.5,0,23,11.5,11.5,23,0,11.5Z" stroke="none"/>
+      <path d="M 11.5 1.414220809936523 L 1.414220809936523 11.5 L 11.5 21.58577919006348 L 21.58577919006348 11.5 L 11.5 1.414220809936523 M 11.5 0 L 23 11.5 L 11.5 23 L 0 11.5 L 11.5 0 Z" stroke="none" fill="#fff"/>
+    </g>
+    <g id="Polygon_6" data-name="Polygon 6" transform="translate(1817 1044)" fill="none" opacity="0.6">
+      <path d="M12.5,0,25,8.785,20.225,23H4.775L0,8.785Z" stroke="none"/>
+      <path d="M 12.5 1.22227668762207 L 1.185573577880859 9.17425537109375 L 5.49359130859375 22 L 19.50640869140625 22 L 23.81442642211914 9.17425537109375 L 12.5 1.22227668762207 M 12.5 0 L 25 8.785220146179199 L 20.22541999816895 23 L 4.774580001831055 23 L 0 8.785220146179199 L 12.5 0 Z" stroke="none" fill="#fff"/>
+    </g>
+  </g>
+</svg>
