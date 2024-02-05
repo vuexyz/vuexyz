@@ -5,10 +5,10 @@
 <template>
 
   <!-- Background Grid (Circle) -->
-  <img src="../../grid-circle.svg" class="grid-circle" alt="A grid background">
+  <img src="/grid-circle.svg" class="grid-circle" alt="A grid background">
 
   <!-- Logo -->
-  <img src="../../logo.png" alt="VueXYZ logo" class="logo">
+  <img src="/logo.png" alt="VueXYZ logo" class="logo">
 
   <!-- White Page Border -->
   <div class="page-border"/>
@@ -26,7 +26,7 @@
   </div>
 
 <!-- Shape Icons -->
-  <img src="../../shape-icons.svg" alt="Icons of various shape functions" class="shape-icons">
+  <img src="/shape-icons.svg" alt="Icons of various shape functions" class="shape-icons">
 
   <!-- Nav Links -->
   <ul class="nav-links">
