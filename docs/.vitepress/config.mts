@@ -59,9 +59,11 @@ export default defineConfig({
       {
         text: 'Demos',
         items: [
-          { text: 'Circles', link: '/' },
-          { text: 'Triangles', link: '/' },
-          { text: 'Squares', link: '/' }
+          { text: 'Circle', link: '/primitives/circle' },
+          { text: 'Polygon', link: '/primitives/polygon' },
+          { text: 'Rectangle', link: '/primitives/rectangle' },
+          { text: 'Rhombus', link: '/primitives/rhombus' },
+          { text: 'Triangle', link: '/primitives/triangle' },
         ]
       }
     ],

@@ -31,10 +31,10 @@
   <!-- Nav Links -->
   <ul class="nav-links">
     <li>
-      <a href="/getting-started.html"><i class="fa-sharp fa-solid fa-shapes"></i> Demos</a>
+      <a href="#"><i class="fa-sharp fa-solid fa-shapes"></i> Demos</a>
     </li>
     <li>
-      <a href="/getting-started.html"><i class="fa-sharp fa-solid fa-books"></i> Documentation</a>
+      <a href="/getting-started"><i class="fa-sharp fa-solid fa-books"></i> Documentation</a>
     </li>
     <li>
       <a href="#"><i class="fa-brands fa-discord"></i> Discord</a>

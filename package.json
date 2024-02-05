@@ -1,19 +1,24 @@
 {
   "name": "vuexyz",
-  "version": "0.2.137",
+  "version": "0.2.138",
   "description": "Creative coding composables for Vue 3",
   "license": "MIT",
   "author": "Simon Le Marchant<https://github.com/marchantweb>",
+  "homepage": "https://vuexyz.org/",
   "sideEffects": false,
+  "main": "src/index.ts",
   "devDependencies": {
     "vitepress": "1.0.0-rc.41"
   },
   "scripts": {
     "docs:dev": "vitepress dev docs --host --open",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "test": "vitest"
   },
   "dependencies": {
+    "@vueuse/shared": "^10.7.2",
+    "vitest": "^1.2.2",
     "vue": "^3.4.15"
   },
   "keywords": [
