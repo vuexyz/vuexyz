@@ -1,6 +1,6 @@
 {
   "name": "@vuexyz/core",
-  "version": "0.2.133",
+  "version": "0.2.134",
   "description": "Creative coding composables for Vue 3",
   "license": "MIT",
   "author": "Simon Le Marchant<https://github.com/marchantweb>",
@@ -14,7 +14,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "dependencies": {
-    "vue": "^3.3"
+    "vue": "^3.4.15"
   },
   "keywords": [
     "vue",
