@@ -11,15 +11,15 @@ _For example:_ instead of rendering a triangle when you call `useTriangle`, VueX
 ::: code-group
 
 ```bash [pnpm]
-pnpm add @vuexyz/core
+pnpm add vuexyz
 ```
 
 ```bash [npm]
-npm install @vuexyz/core
+npm install vuexyz
 ```
 
 ```bash [yarn]
-yarn add @vuexyz/core
+yarn add vuexyz
 ```
 
 :::

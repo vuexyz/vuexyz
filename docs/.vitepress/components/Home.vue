@@ -14,13 +14,13 @@
   <div class="page-border"/>
 
   <!-- Example Handwriting -->
-  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg)">useCircle ( radius: 100 )</h2>
+  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg)">Hold tight - we're still building this thing!</h2>
 
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
     <h1>Creative Coding Composables for Vue 3</h1>
     <div class="install-box">
-      <h1>npm install @vuexyz/core</h1>
+      <h1>npm install vuexyz</h1>
       <i class="copy-icon fa-sharp fa-solid fa-copy"></i>
     </div>
   </div>
@@ -42,6 +42,7 @@
     <li>
       <a href="https://github.com/marchantweb/vuexyz" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
     </li>
+
   </ul>
 
 </template>

@@ -1,6 +1,6 @@
 .landing {
     background: radial-gradient(circle at 30% 30%, #197EF2, #0067DC);
-    background: url('./background.jpg');
+    background: url('/background.jpg');
     background-size: cover;
     background-position: center;
     width: 100svw;
