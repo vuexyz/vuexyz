@@ -1,15 +1,16 @@
 import { toValue } from '@vueuse/shared'
 import { computed } from 'vue'
-import type { ShapeConfig } from './types'
+import type { PrimitiveConfig } from './types'
 
-export function useShapeBase(config?: ShapeConfig) {
+export function usePrimitive(config?: PrimitiveConfig) {
   const center = config?.center ?? {
     x: 0,
     y: 0,
+    z: 0
   }
   const rotation = config?.rotation ?? 0
 
-  const rotatePoint = (x: number, y: number) => {
+  const rotatePoint = (x: number = 0, y: number = 0, z: number = 0) => {
     const dx = x - +(toValue(center).x)
     const dy = y - +(toValue(center).y)
     return {

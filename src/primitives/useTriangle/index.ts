@@ -1,10 +1,10 @@
 import type { MaybeRefOrGetter } from '@vueuse/shared'
 import { computed, toValue } from 'vue'
 import type { ComputedRef } from 'vue'
-import type { Edge, ShapeConfig, Vertex } from '../types'
-import { useShapeBase } from '../useShapeBase'
+import type { Edge, PrimitiveConfig, Vertex } from '../types'
+import { usePrimitive } from '../usePrimitive'
 
-interface TriangleConfig extends ShapeConfig {
+interface TriangleConfig extends PrimitiveConfig {
   base?: MaybeRefOrGetter<number>
   height?: MaybeRefOrGetter<number>
 }
@@ -16,7 +16,7 @@ interface Triangle {
 }
 
 export function useTriangle(config?: TriangleConfig): Triangle {
-  const { center, rotatePoint } = useShapeBase(config)
+  const { center, rotatePoint } = usePrimitive(config)
   const base = config?.base ?? 0
   const height = config?.height ?? 0
 

@@ -2,14 +2,20 @@ import { toValue } from '@vueuse/shared'
 import type { MaybeRefOrGetter } from '@vueuse/shared'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
-import type { Edge, ShapeConfig, Vertex } from '../types'
-import { useShapeBase } from '../useShapeBase'
+import type { Edge, PrimitiveConfig, Vertex } from '../types'
+import { usePrimitive } from '../usePrimitive'
 
-interface PolygonConfig extends ShapeConfig {
+/**
+ * Configuration options for polygons.
+ */
+interface PolygonConfig extends PrimitiveConfig {
   sides?: MaybeRefOrGetter<number>
   sideLength?: MaybeRefOrGetter<number>
 }
 
+/**
+ * A polygon in 2D space.
+ */
 interface Polygon {
   getPosition: (percentage: MaybeRefOrGetter<number>) => { x: number; y: number }
   vertices: ComputedRef<Vertex[]>
@@ -20,7 +26,7 @@ export function usePolygon(config?: PolygonConfig): Polygon {
   const {
     center,
     rotatePoint,
-  } = useShapeBase(config)
+  } = usePrimitive(config)
   const sideLength = config?.sideLength ?? 0
   const sides = config?.sides ?? 3
 

@@ -2,10 +2,10 @@ import { toValue } from '@vueuse/shared'
 import type { MaybeRefOrGetter } from '@vueuse/shared'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
-import type { Edge, ShapeConfig, Vertex } from '../types'
-import { useShapeBase } from '../useShapeBase'
+import type { Edge, PrimitiveConfig, Vertex } from '../types'
+import { usePrimitive } from '../usePrimitive'
 
-interface RhombusConfig extends ShapeConfig {
+interface RhombusConfig extends PrimitiveConfig {
   d1?: MaybeRefOrGetter<number> // length of the first diagonal
   d2?: MaybeRefOrGetter<number> // length of the second diagonal
 }
@@ -17,7 +17,7 @@ interface Rhombus {
 }
 
 export function useRhombus(config?: RhombusConfig): Rhombus {
-  const { center, rotatePoint } = useShapeBase(config)
+  const { center, rotatePoint } = usePrimitive(config)
   const d1 = config?.d1 ?? 0
   const d2 = config?.d2 ?? 0
 

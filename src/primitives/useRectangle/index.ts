@@ -2,10 +2,10 @@ import { toValue } from '@vueuse/shared'
 import type { MaybeRefOrGetter } from '@vueuse/shared'
 import type { ComputedRef } from 'vue'
 import { computed } from 'vue'
-import type { Edge, ShapeConfig, Vertex } from '../types'
-import { useShapeBase } from '../useShapeBase'
+import type { Edge, PrimitiveConfig, Vertex } from '../types'
+import { usePrimitive } from '../usePrimitive'
 
-interface RectangleConfig extends ShapeConfig {
+interface RectangleConfig extends PrimitiveConfig {
   width?: MaybeRefOrGetter<number>
   height?: MaybeRefOrGetter<number>
 }
@@ -21,7 +21,7 @@ export function useRectangle(config?: RectangleConfig): Rectangle {
   const {
     center,
     rotatePoint,
-  } = useShapeBase(config)
+  } = usePrimitive(config)
   const width = config?.width ?? 0
   const height = config?.height ?? 0
   const halfWidth = computed(() => +(toValue(width)) / 2)
