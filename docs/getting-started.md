@@ -2,9 +2,9 @@
 
 ### What is VueXYZ?
 
-**VueXYZ is a collection of Vue composables for creative coding.** Unlike other creative coding libraries that simplify and abstract canvas rendering, VueXYZ doesn't render anything for you. Instead, the composables return data and methods that you can use to render your own elements as you see fit.
+**VueXYZ is a collection of Vue composables for creative coding.** Unlike other creative coding libraries that simplify rendering to a canvas, VueXYZ doesn't render anything for you. Instead, the composables return data/methods that you can use as you see fit.
 
-_For example:_ instead of rendering a triangle when you call `useTriangle`, VueXYZ returns the vertices, edges, and faces of the triangle as `refs`. You can then use this data to render the triangle using the canvas API, WebGL, or any other rendering library. Or you could plug those values into any other JS logic you want with full reactivity.
+_For example:_ instead of `useTriangle` rendering a triangle, it returns the vertices, edges, and faces of the triangle as `refs` _(along with a bunch of other data)_. You can then use this data to render the triangle yourself _(canvas, SVG, WebGL, image mask, etc.)_, to position DOM elements with CSS, or in many other creative ways.
 
 ## Installation
 
