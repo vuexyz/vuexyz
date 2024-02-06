@@ -9,7 +9,7 @@ describe('useCircle', () => {
 
   it('should accept numbers', () => {
     const circle = useCircle({ radius: 50 })
-    expect(circle.getPosition(0.25)).toStrictEqual({
+    expect(circle.getPosition(0.25).value).toStrictEqual({
       x: 0,
       y: 50,
     })
@@ -18,7 +18,7 @@ describe('useCircle', () => {
   it('should accept refs', () => {
     const radius = ref(50)
     const circle = useCircle({ radius })
-    expect(circle.getPosition(0.25)).toStrictEqual({
+    expect(circle.getPosition(0.25).value).toStrictEqual({
       x: 0,
       y: 50,
     })
@@ -27,7 +27,7 @@ describe('useCircle', () => {
   it('should accept refs in position method', () => {
     const position = ref(0.25)
     const circle = useCircle({ radius: 50 })
-    expect(circle.getPosition(position)).toStrictEqual({
+    expect(circle.getPosition(position).value).toStrictEqual({
       x: 0,
       y: 50,
     })
@@ -35,7 +35,7 @@ describe('useCircle', () => {
 
   it('should accept zero arg', () => {
     const circle = useCircle()
-    expect(circle.getPosition(0.25)).toStrictEqual({
+    expect(circle.getPosition(0.25).value).toStrictEqual({
       x: 0,
       y: 0,
     })
