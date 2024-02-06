@@ -13,6 +13,7 @@ interface Triangle {
   getPosition: (percentage: MaybeRefOrGetter<number>) => { x: number; y: number }
   vertices: ComputedRef<Vertex[]>
   edges: ComputedRef<Edge[]>
+  getSVGPath: ComputedRef<string>
 }
 
 export function useTriangle(config?: TriangleConfig): Triangle {
@@ -58,8 +59,16 @@ export function useTriangle(config?: TriangleConfig): Triangle {
     }
   }
 
+  /**
+   * Returns the SVG path for the triangle.
+   */
+  const getSVGPath: ComputedRef<string> = computed(() =>{
+    return `M ${toValue(vertices.value[0].x)} ${toValue(vertices.value[0].y)} L ${toValue(vertices.value[1].x)} ${toValue(vertices.value[1].y)} L ${toValue(vertices.value[2].x)} ${toValue(vertices.value[2].y)} Z`
+  })
+
   return {
     getPosition,
+    getSVGPath,
     vertices,
     edges,
   }
