@@ -8,13 +8,14 @@
   <img src="/grid-circle.svg" class="grid-circle" alt="A grid background">
 
   <!-- Logo -->
-  <img src="/logo.png" alt="VueXYZ logo" class="logo">
+  <img src="/logo.svg" alt="VueXYZ logo" class="logo">
 
   <!-- White Page Border -->
   <div class="page-border"/>
 
   <!-- Example Handwriting -->
-  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw; line-height: 1.5">Hold tight - we're still building this thing!</h2>
+  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw; line-height: 1.5">
+    Hold tight - we're still building this thing!</h2>
 
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
@@ -25,7 +26,7 @@
     </div>
   </div>
 
-<!-- Shape Icons -->
+  <!-- Shape Icons -->
   <img src="/shape-icons.svg" alt="Icons of various shape functions" class="shape-icons">
 
   <!-- Nav Links -->
@@ -77,7 +78,7 @@
   position: absolute;
   top: 40px;
   left: 40px;
-  width: 115px;
+  height: 87px;
   user-select: none;
 
   @media (max-width: 768px) {
@@ -192,7 +193,7 @@ ul.nav-links {
   }
 }
 
-.shape-icons{
+.shape-icons {
   position: absolute;
   bottom: 80px;
   right: 80px;
