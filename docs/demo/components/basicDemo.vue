@@ -1,16 +1,22 @@
 <script setup lang="ts">
-import {useCircle} from '../../../src'
-import {ref, Ref} from "vue";
+import {useCircle, useTriangle} from '../../../src'
+import {computed, ref, Ref} from "vue";
 import gsap from "gsap";
 
 // Define a ref() for the center of the circle
 const center: Ref<{ x: number, y: number }> = ref({x: 60, y: 60})
 
+// Define a rotation amount
+const pointRotation = ref(0);
+const triangleRotation = computed(() => pointRotation.value  * -360)
+
 // Create a circle using the useCircle() composable
-const {getSVGPath, getPosition} = useCircle({radius: 60, center: center.value})
+const {getSVGPath: getCircleSVGPath, getPosition} = useCircle({radius: 60, center: center.value})
+
+// We're also creating a triangle using the useTriangle() composable
+const {getSVGPath: getTriangleSVGPath} = useTriangle({center: center.value, base: 330, height: 200, rotation: triangleRotation})
 
 // Get the position of a point on the circle's edge
-const pointRotation = ref(0);
 const pointOnEdge = getPosition(pointRotation)
 
 // Animate the center of the circle left and right
@@ -51,7 +57,10 @@ gsap.to(pointRotation, {
       </text>
 
       <!-- Circle -->
-      <path :d="getSVGPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="4"/>
+      <path :d="getCircleSVGPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="4"/>
+
+      <!-- Triangle -->
+      <path :d="getTriangleSVGPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="4"/>
 
       <!-- Point on Edge -->
       <circle :cx="pointOnEdge.x" :cy="pointOnEdge.y" r="6" fill="white"/>
