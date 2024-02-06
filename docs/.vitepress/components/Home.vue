@@ -38,7 +38,7 @@
       <a href="/getting-started"><i class="fa-sharp fa-solid fa-books"></i> Documentation</a>
     </li>
     <li>
-      <a href="#"><i class="fa-brands fa-discord"></i> Discord</a>
+      <a href="https://discord.gg/hKyfDAddsK" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
     </li>
     <li>
       <a href="https://github.com/marchantweb/vuexyz" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
@@ -71,18 +71,6 @@
     bottom: 20px;
     width: calc(100vw - 40px);
     height: calc(100vh - 40px);
-  }
-}
-
-.logo {
-  position: absolute;
-  top: 40px;
-  left: 40px;
-  height: 87px;
-  user-select: none;
-
-  @media (max-width: 768px) {
-    display: none;
   }
 }
 

@@ -38,4 +38,16 @@
         cursor: default;
         user-select: none;
     }
+
+    .logo {
+        position: absolute;
+        top: 40px;
+        left: 40px;
+        height: 87px;
+        user-select: none;
+
+        @media (max-width: 768px) {
+            display: none;
+        }
+    }
 }

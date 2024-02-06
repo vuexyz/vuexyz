@@ -24,4 +24,4 @@ yarn add vuexyz
 
 :::
 
-The `@vuexyz/core` package is the only package you need to install to get started with VueXYZ. It contains the core composables and utilities that you can use to build your creative coding projects.
+The `vuexyz` package is the only package you need to install to get started with VueXYZ. It contains the core composables and utilities that you can use to build your creative coding projects.
