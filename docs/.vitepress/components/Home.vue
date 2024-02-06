@@ -1,5 +1,6 @@
 <script setup>
 
+import BasicDemo from "../../demo/components/basicDemo.vue";
 </script>
 
 <template>
@@ -15,7 +16,7 @@
 
   <!-- Example Handwriting -->
   <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw; line-height: 1.5">
-    Hold tight - we're still building this thing!</h2>
+    useCircle ( {radius: 50 })</h2>
 
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
@@ -32,7 +33,7 @@
   <!-- Nav Links -->
   <ul class="nav-links">
     <li>
-      <a href="#"><i class="fa-sharp fa-solid fa-shapes"></i> Demos</a>
+      <a href="/demo/basic-primitives"><i class="fa-sharp fa-solid fa-shapes"></i> Demos</a>
     </li>
     <li>
       <a href="/getting-started"><i class="fa-sharp fa-solid fa-books"></i> Documentation</a>
@@ -43,12 +44,32 @@
     <li>
       <a href="https://github.com/marchantweb/vuexyz" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
     </li>
-
   </ul>
+
+  <div class="landing-demo">
+    <BasicDemo />
+  </div>
 
 </template>
 
 <style>
+
+.landing-demo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  z-index: 1;
+  width: 1000px;
+  max-width: 100%;
+  height: auto;
+  user-select: none;
+
+  .demo-container {
+    background: none !important;
+    box-shadow: none !important;
+  }
+}
 
 .page-border {
   display: block;

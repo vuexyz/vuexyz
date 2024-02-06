@@ -1,14 +1,13 @@
 .landing {
     background: radial-gradient(circle at 30% 30%, #197EF2, #0067DC);
-    background: url('/background.jpg');
-    background-size: cover;
-    background-position: center;
     width: 100svw;
     height: 100svh;
     overflow: hidden;
     position: relative;
 
     .VPHome {
+        background: url('/background.jpg') center;
+        background-size: cover;
         padding: 0 !important;
         width: 100vw !important;
         height: 100vh !important;

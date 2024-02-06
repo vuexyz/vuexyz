@@ -50,7 +50,7 @@ export default defineConfig({
     theme: {
       light: 'vitesse-light',
       dark: 'vitesse-dark',
-    },
+    }
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -74,6 +74,12 @@ export default defineConfig({
       },
       {
         text: 'Demos',
+        items: [
+          { text: 'Basic Primitives', link: '/demo/basic-primitives' },
+        ]
+      },
+      {
+        text: 'Reference',
         items: [
           { text: 'Circle', link: '/primitives/circle' },
           { text: 'Polygon', link: '/primitives/polygon' },

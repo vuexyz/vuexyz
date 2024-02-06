@@ -8,6 +8,9 @@ dependencies:
   '@vueuse/shared':
     specifier: ^10.7.2
     version: 10.7.2(vue@3.4.15)
+  gsap:
+    specifier: ^3.12.5
+    version: 3.12.5
   vitest:
     specifier: ^1.2.2
     version: 1.2.2
@@ -935,6 +938,10 @@ packages:
   /get-stream@8.0.1:
     resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
     engines: {node: '>=16'}
+    dev: false
+
+  /gsap@3.12.5:
+    resolution: {integrity: sha512-srBfnk4n+Oe/ZnMIOXt3gT605BX9x5+rh/prT2F1SsNJsU1XuMiP0E2aptW481OnonOGACZWBqseH5Z7csHxhQ==}
     dev: false
 
   /hookable@5.5.3:
