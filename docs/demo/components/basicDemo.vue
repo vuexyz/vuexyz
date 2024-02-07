@@ -11,13 +11,14 @@ const pointRotation = ref(0);
 const triangleRotation = computed(() => pointRotation.value  * -360)
 
 // Create a circle using the useCircle() composable
-const {getSVGPath: getCircleSVGPath, getPosition} = useCircle({radius: 60, center: center.value})
+const {getSVGPath: getCircleSVGPath, getPosition: getCirclePosition} = useCircle({radius: 60, center: center.value})
 
 // We're also creating a triangle using the useTriangle() composable
-const {getSVGPath: getTriangleSVGPath} = useTriangle({center: center.value, base: 330, height: 200, rotation: triangleRotation})
+const {getSVGPath: getTriangleSVGPath, getPosition: getTrianglePosition} = useTriangle({center: center.value, base: 330, height: 200, rotation: triangleRotation})
 
-// Get the position of a point on the circle's edge
-const pointOnEdge = getPosition(pointRotation)
+// Get the position of a point on the circle and triangle's edge
+const pointOnCircleEdge = getCirclePosition(pointRotation)
+const pointOnTriangleEdge = getTrianglePosition(pointRotation)
 
 // Animate the center of the circle left and right
 gsap.to(center.value, {
@@ -62,8 +63,11 @@ gsap.to(pointRotation, {
       <!-- Triangle -->
       <path :d="getTriangleSVGPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="4"/>
 
-      <!-- Point on Edge -->
-      <circle :cx="pointOnEdge.x" :cy="pointOnEdge.y" r="6" fill="white"/>
+      <!-- Point on Circle Edge -->
+      <circle :cx="pointOnCircleEdge.x" :cy="pointOnCircleEdge.y" r="6" fill="white"/>
+
+      <!-- Point on Triangle Edge -->
+      <circle :cx="pointOnTriangleEdge.x" :cy="pointOnTriangleEdge.y" r="6" fill="white"/>
 
     </svg>
   </div>

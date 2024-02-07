@@ -1,5 +1,5 @@
 import type { MaybeRefOrGetter } from '@vueuse/shared'
-import { computed, toValue } from 'vue'
+import {computed, ref, Ref, toValue, watchEffect} from 'vue'
 import type { ComputedRef } from 'vue'
 import type { Edge, PrimitiveConfig, Vertex } from '../types'
 import { usePrimitive } from '../usePrimitive'
@@ -16,7 +16,12 @@ interface Triangle {
   getSVGPath: ComputedRef<string>
 }
 
-export function useTriangle(config?: TriangleConfig): Triangle {
+export function useTriangle(config?: TriangleConfig): {
+  getPosition: (percentage?: MaybeRefOrGetter<number>) => Ref<{ x: number; y: number }>;
+  vertices: ComputedRef<any[]>;
+  edges: ComputedRef<any[]>;
+  getSVGPath: ComputedRef<string>
+} {
   const { center, rotatePoint } = usePrimitive(config)
   const base = config?.base ?? 0
   const height = config?.height ?? 0
@@ -46,17 +51,23 @@ export function useTriangle(config?: TriangleConfig): Triangle {
    * Get the position of a point on the triangle's edge
    * @param percentage
    */
-  function getPosition(percentage: MaybeRefOrGetter<number> = 0): { x: number; y: number } {
-    const side = Math.floor((toValue(percentage) * 3))
-    const localPercentage = (toValue(percentage) * 3) - side
-    const startVertex = vertices.value[side]
-    const endVertex = vertices.value[(side + 1) % vertices.value.length]
-    const x = startVertex.x + localPercentage * (endVertex.x - startVertex.x)
-    const y = startVertex.y + localPercentage * (endVertex.y - startVertex.y)
-    return {
-      x: +(x).toFixed(10),
-      y: +(y).toFixed(10),
-    }
+  function getPosition(percentage: MaybeRefOrGetter<number> = 0): Ref<{ x: number; y: number }> {
+    const position = ref({ x: 0, y: 0 })
+
+    watchEffect(() => {
+      const side = Math.floor((toValue(percentage) * 3))
+      const localPercentage = (toValue(percentage) * 3) - side
+      const startVertex = vertices.value[side]
+      const endVertex = vertices.value[(side + 1) % vertices.value.length]
+      const x = startVertex.x + localPercentage * (endVertex.x - startVertex.x)
+      const y = startVertex.y + localPercentage * (endVertex.y - startVertex.y)
+      position.value = {
+        x: +(x).toFixed(10),
+        y: +(y).toFixed(10),
+      }
+    })
+
+    return position
   }
 
   /**

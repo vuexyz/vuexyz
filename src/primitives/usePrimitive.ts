@@ -2,6 +2,10 @@ import { toValue } from '@vueuse/shared'
 import { computed } from 'vue'
 import type { PrimitiveConfig } from './types'
 
+/**
+ * The core functionality of a primitive, used by all shapes.
+ * @param config
+ */
 export function usePrimitive(config?: PrimitiveConfig) {
   const center = config?.center ?? {
     x: 0,
