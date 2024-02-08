@@ -11,14 +11,11 @@ const pointRotation = ref(0);
 const triangleRotation = computed(() => pointRotation.value  * -360)
 
 // Create a circle using the useCircle() composable
-const {getSVGPath: getCircleSVGPath, getPosition: getCirclePosition} = useCircle({radius: 60, center: center.value})
+const {svgPath: circleSvgPath} = useCircle({radius: 60, center})
 
 // We're also creating a triangle using the useTriangle() composable
-const {getSVGPath: getTriangleSVGPath, getPosition: getTrianglePosition} = useTriangle({center: center.value, base: 330, height: 200, rotation: triangleRotation})
+const { svgPath: triangleSvgPath } = useTriangle({base: 40, height: 30, rotation: triangleRotation, center})
 
-// Get the position of a point on the circle and triangle's edge
-const pointOnCircleEdge = getCirclePosition(pointRotation)
-const pointOnTriangleEdge = getTrianglePosition(pointRotation)
 
 // Animate the center of the circle left and right
 gsap.to(center.value, {
@@ -54,20 +51,20 @@ gsap.to(pointRotation, {
 
       <!-- Label -->
       <text :x="center.x" :y="center.y" text-anchor="middle" dominant-baseline="middle" class="demo-label">
-        X. {{ Math.floor(center.x) }}
+        X. {{ Math.round(center.x) }} / Y. {{ Math.round(center.y) }}
       </text>
 
       <!-- Circle -->
-      <path :d="getCircleSVGPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="4"/>
+      <path :d="circleSvgPath" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="3"/>
 
       <!-- Triangle -->
-      <path :d="getTriangleSVGPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="4"/>
+      <path :d="triangleSvgPath" fill="none" stroke="rgba(255, 255, 255, 0.1)" stroke-width="3"/>
 
       <!-- Point on Circle Edge -->
-      <circle :cx="pointOnCircleEdge.x" :cy="pointOnCircleEdge.y" r="6" fill="white"/>
+<!--      <circle :cx="pointOnCircleEdge.x" :cy="pointOnCircleEdge.y" r="6" fill="white"/>-->
 
       <!-- Point on Triangle Edge -->
-      <circle :cx="pointOnTriangleEdge.x" :cy="pointOnTriangleEdge.y" r="6" fill="white"/>
+<!--      <circle :cx="pointOnTriangleEdge.x" :cy="pointOnTriangleEdge.y" r="6" fill="white"/>-->
 
     </svg>
   </div>

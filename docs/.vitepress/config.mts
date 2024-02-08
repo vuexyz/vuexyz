@@ -82,9 +82,6 @@ export default defineConfig({
         text: 'Reference',
         items: [
           { text: 'Circle', link: '/primitives/circle' },
-          { text: 'Polygon', link: '/primitives/polygon' },
-          { text: 'Rectangle', link: '/primitives/rectangle' },
-          { text: 'Rhombus', link: '/primitives/rhombus' },
           { text: 'Triangle', link: '/primitives/triangle' },
         ]
       }

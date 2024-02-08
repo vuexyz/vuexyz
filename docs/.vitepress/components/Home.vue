@@ -47,7 +47,7 @@ import BasicDemo from "../../demo/components/basicDemo.vue";
   </ul>
 
   <div class="landing-demo">
-    <BasicDemo />
+    <BasicDemo/>
   </div>
 
 </template>
@@ -68,6 +68,7 @@ import BasicDemo from "../../demo/components/basicDemo.vue";
   .demo-container {
     background: none !important;
     box-shadow: none !important;
+    overflow: visible !important;
   }
 }
 

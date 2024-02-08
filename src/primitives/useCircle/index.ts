@@ -1,15 +1,11 @@
-import { toValue } from '@vueuse/shared'
-import type { MaybeRefOrGetter } from '@vueuse/shared'
-import {computed, ComputedRef, ref, Ref, watchEffect} from 'vue'
+import type {MaybeRefOrGetter} from '@vueuse/shared'
+import {computed, ComputedRef, toValue} from 'vue'
+import {Primitive, PrimitiveConfig, usePrimitive} from "../usePrimitive";
+import {CurveSegment, Edge, Face, Vertex} from "../types";
 
-interface CircleConfig {
-  radius?: MaybeRefOrGetter<number>
-  center?: MaybeRefOrGetter<{ x: number; y: number }>
-}
-
-interface Circle {
-  getPosition: (percentage: MaybeRefOrGetter<number>) => { x: number; y: number }
-  getSVGPath: () => ComputedRef<string>
+interface CircleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
+    radius?: MaybeRefOrGetter<number>
+    center?: MaybeRefOrGetter<{ x: number; y: number }>
 }
 
 /**
@@ -18,40 +14,57 @@ interface Circle {
  * @see https://vuexyz.org/primitives/circle
  * @param config - Configuration object for the circle
  */
-export function useCircle(config?: CircleConfig): {
-  getPosition: (percentage?: MaybeRefOrGetter<number>) => Ref<{ x: number; y: number }>;
-  getSVGPath: ComputedRef<string>
-} {
-  const radius = config?.radius ?? 0
-  const center = config?.center ?? { x: 0, y: 0 }
+interface CircleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
+    radius?: MaybeRefOrGetter<number>
+}
 
-  /**
-   * Returns the position of a point on the circle's perimeter.
-   * Pass in a percentage to get the position of a point on the perimeter (0-1).
-   * @param percentage
-   */
-  function getPosition(percentage: MaybeRefOrGetter<number> = 0): Ref<{ x: number; y: number }> {
-    const position = ref({ x: 0, y: 0 })
+export function useCircle(config?: CircleConfig): Primitive {
 
-    watchEffect(() => {
-      position.value = {
-        x: +(toValue(center).x + (Math.cos((360 * toValue(percentage)) * (Math.PI / 180)) * toValue(radius))).toFixed(10),
-        y: +(toValue(center).y + (Math.sin((360 * toValue(percentage)) * (Math.PI / 180)) * toValue(radius))).toFixed(10),
-      }
-    })
+    // Set default values
+    const radius = config?.radius ?? 100;
 
-    return position
-  }
+    const getPointOnCircle = (angle: number) => ({
+        x: toValue(radius) * Math.cos(angle),
+        y: toValue(radius) * Math.sin(angle),
+    });
 
-  /**
-   * Returns the SVG path for the circle.
-   */
-  const getSVGPath: ComputedRef<string> = computed(() =>{
-    return `M ${toValue(center).x} ${toValue(center).y} m -${toValue(radius)}, 0 a ${toValue(radius)},${toValue(radius)} 0 1,0 ${toValue(radius) * 2},0 a ${toValue(radius)},${toValue(radius)} 0 1,0 -${toValue(radius) * 2},0`
-  })
+    // Define vertices
+    const vertices: ComputedRef<Vertex[]> = computed(() => [])
 
-  return {
-    getPosition,
-    getSVGPath,
-  }
+    // Define edges
+    const edges: ComputedRef<Edge[]> = computed(() => {
+        const segments: CurveSegment[] = [];
+        const angles = [0, Math.PI / 2, Math.PI, 3 * Math.PI / 2];
+        const controlDistance = toValue(radius) * (4 * (Math.sqrt(2) - 1) / 3);
+        for (let i = 0; i < angles.length; i++) {
+            const startAngle = angles[i];
+            const endAngle = angles[(i + 1) % angles.length];
+            const start = getPointOnCircle(startAngle);
+            const end = getPointOnCircle(endAngle);
+            const c1 = {
+                x: start.x - controlDistance * Math.sin(startAngle),
+                y: start.y + controlDistance * Math.cos(startAngle),
+            };
+            const c2 = {
+                x: end.x + controlDistance * Math.sin(endAngle),
+                y: end.y - controlDistance * Math.cos(endAngle),
+            };
+            segments.push({
+                type: 'curve',
+                start,
+                c1,
+                c2,
+                end,
+            } as CurveSegment);
+        }
+        return [segments];
+    });
+
+    // Define faces
+    const faces: ComputedRef<Face[]> = computed(() => [])
+
+    // Return destructed primitive (plus any additional properties, if applicable)
+    return {
+        ...usePrimitive({...config, vertices, edges, faces})
+    }
 }
