@@ -11,7 +11,7 @@ interface CircleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'fac
 /**
  * Composable for working with circles.
  *
- * @see https://vuexyz.org/primitives/circle
+ * @see https://vuexyz.org/primitives/usecircle
  * @param config - Configuration object for the circle
  */
 interface CircleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {

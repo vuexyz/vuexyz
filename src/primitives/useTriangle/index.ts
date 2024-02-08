@@ -12,7 +12,7 @@ interface TriangleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'f
 /**
  * Composable for working with a triangle.
  *
- * @see https://vuexyz.org/primitives/triangle
+ * @see https://vuexyz.org/primitives/usetriangle
  */
 export function useTriangle(config?: TriangleConfig): Primitive {
 

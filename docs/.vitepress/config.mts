@@ -79,10 +79,10 @@ export default defineConfig({
         ]
       },
       {
-        text: 'Reference',
+        text: 'Primitives',
         items: [
-          { text: 'Circle', link: '/primitives/circle' },
-          { text: 'Triangle', link: '/primitives/triangle' },
+          { text: 'useCircle', link: '/primitives/usecircle' },
+          { text: 'useTriangle', link: '/primitives/usetriangle' },
         ]
       }
     ],
