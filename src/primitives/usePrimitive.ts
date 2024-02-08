@@ -17,8 +17,9 @@ export interface Primitive {
  * Common configuration options for primitives.
  */
 export interface PrimitiveConfig {
-    center?: MaybeRefOrGetter<{ x: number; y: number, z?: number }>
+    position?: MaybeRefOrGetter<{ x: number; y: number, z?: number }>
     rotation?: MaybeRefOrGetter<number>,
+    scale?: MaybeRefOrGetter<number>,
     vertices: ComputedRef<Vertex[]>,
     edges: ComputedRef<Edge[]>,
     faces: ComputedRef<Face[]>,
@@ -35,81 +36,81 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
     const inputVertices: Ref<Vertex[]> = ref(config.vertices || []);
     const inputEdges: Ref<Edge[]> = ref(config.edges || []);
     const inputFaces: Ref<Face[]> = ref(config.faces || []);
-    const center = config?.center ?? {
+    const position = config?.position ?? {
         x: 0,
         y: 0,
         z: 0
     }
     const rotation = config?.rotation ?? 0
+    const scale = config?.scale ?? 1
     const isClosed = config?.isClosed ?? true
 
     /**
-     * The vertices of the primitive, offset from the center.
+     * Takes an input vertex and applies the base position offset, rotation, and scale to it.
+     */
+    function transformVertex(vertex: Vertex): Vertex {
+        let newVertex: Vertex = {
+            x: vertex.x + toValue(position).x,
+            y: vertex.y + toValue(position).y,
+            z: vertex.z + toValue(position).z
+        };
+        const radians = toValue(rotation) * (Math.PI / 180);
+        newVertex = {
+            x: Math.cos(radians) * (newVertex.x - toValue(position).x) - Math.sin(radians) * (newVertex.y - toValue(position).y) + toValue(position).x,
+            y: Math.sin(radians) * (newVertex.x - toValue(position).x) + Math.cos(radians) * (newVertex.y - toValue(position).y) + toValue(position).y,
+        };
+        newVertex = {
+            x: toValue(position).x + (newVertex.x - toValue(position).x) * toValue(scale),
+            y: toValue(position).y + (newVertex.y - toValue(position).y) * toValue(scale),
+        };
+        return newVertex;
+    }
+
+    /**
+     * The transformed vertices.
      */
     const vertices: ComputedRef<Vertex[]> = computed(() => {
-        return inputVertices.value.map((vertex) => {
-            return {
-                ...vertex,
-                x: vertex.x + toValue(center).x,
-                y: vertex.y + toValue(center).y,
-                z: vertex.z + toValue(center).z
-            }
-        })
+        return inputVertices.value.map(vertex => transformVertex(vertex));
     })
 
     /**
-     * The edges of the primitive, offset from the center.
+     * The transformed edges.
      */
     const edges: ComputedRef<Edge[]> = computed(() => {
-        return inputEdges.value.map((edge) => {
-            return edge.map((segment) => {
-                if (segment.type === 'line') {
-                    return {
-                        type: 'line',
-                        start: {
-                            x: segment.start.x + toValue(center).x,
-                            y: segment.start.y + toValue(center).y,
-                            z: segment.start.z + toValue(center).z
-                        },
-                        end: {
-                            x: segment.end.x + toValue(center).x,
-                            y: segment.end.y + toValue(center).y,
-                            z: segment.end.z + toValue(center).z
-                        }
-                    }
-                } else {
-                    return {
-                        type: 'curve',
-                        start: {
-                            x: segment.start.x + toValue(center).x,
-                            y: segment.start.y + toValue(center).y,
-                            z: segment.start.z + toValue(center).z
-                        },
-                        c1: {
-                            x: segment.c1.x + toValue(center).x,
-                            y: segment.c1.y + toValue(center).y,
-                            z: segment.c1.z + toValue(center).z
-                        },
-                        c2: {
-                            x: segment.c2.x + toValue(center).x,
-                            y: segment.c2.y + toValue(center).y,
-                            z: segment.c2.z + toValue(center).z
-                        },
-                        end: {
-                            x: segment.end.x + toValue(center).x,
-                            y: segment.end.y + toValue(center).y,
-                            z: segment.end.z + toValue(center).z
-                        }
-                    }
-                }
-            })
-        })
-    })
+        return inputEdges.value.map(edge => edge.map(segment => ({
+            ...segment,
+            start: transformVertex(segment.start),
+            end: transformVertex(segment.end),
+            ...(segment.type === 'curve' && {
+                c1: transformVertex(segment.c1),
+                c2: transformVertex(segment.c2),
+            }),
+        })));
+    });
 
-    // TODO: Apply offset and rotation to all faces
+    /**
+     * The transformed faces.
+     */
     const faces: ComputedRef<Face[]> = computed(() => {
-        return inputFaces.value
-    })
+        return inputFaces.value.map(face => face.map(edge => edge.map(segment => {
+            if (segment.type === 'line') {
+                return {
+                    type: 'line',
+                    start: transformVertex(segment.start),
+                    end: transformVertex(segment.end),
+                };
+            } else { // Curve
+                return {
+                    type: 'curve',
+                    start: transformVertex(segment.start),
+                    c1: transformVertex(segment.c1),
+                    c2: transformVertex(segment.c2),
+                    end: transformVertex(segment.end),
+                };
+            }
+        })));
+    });
+
 
     /**
      * Returns the SVG path for the primitive.
@@ -141,7 +142,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         return vertices.value.reduce((acc, v) => ({
             x: acc.x + v.x / vertices.value.length,
             y: acc.y + v.y / vertices.value.length,
-        }), { x: 0, y: 0 });
+        }), {x: 0, y: 0});
     })
 
     return {
