@@ -31,7 +31,7 @@ import { useTriangle } from 'vuexyz'
 const base = ref(50)
 const height = ref(100)
 const position = ref({ x: 0, y: 0 })
-const { vertices, edges, getPosition } = useTriangle({ base, height, position })
+const { vertices, edges, faces } = useTriangle({ base, height, position })
 ```
 
 <!--@include: ./shared/return.md-->

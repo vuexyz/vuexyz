@@ -29,7 +29,7 @@ import { useLine } from 'vuexyz'
 
 const start: Ref<Vertex> = ref({ x: -100, y: -100 })
 const end: Ref<Vertex> = ref({ x: 100, y: 100 })
-const { vertices, edges, getPosition } = useLine({ vertices: [start, end]})
+const { vertices, edges, faces } = useLine({ vertices: [start, end]})
 ```
 
 <!--@include: ./shared/return.md-->

@@ -29,7 +29,7 @@ if not provided.
 import {useCircle} from 'vuexyz'
 
 const radius: Ref<number> = ref(50)
-const {vertices, edges, faces} = useCircle({radius})
+const { vertices, edges, faces } = useCircle({radius})
 ```
 
 <!--@include: ./shared/return.md-->
