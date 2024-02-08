@@ -4,7 +4,7 @@ import type {ComputedRef} from 'vue'
 import type {Edge, LineSegment, Vertex} from '../types'
 import {usePrimitive, Primitive, PrimitiveConfig} from '../usePrimitive'
 
-interface PolygonConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
+export interface PolygonConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
     sides: MaybeRefOrGetter<number>
     sideLength: MaybeRefOrGetter<number>
 }

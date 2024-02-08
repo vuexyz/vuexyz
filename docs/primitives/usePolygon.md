@@ -19,7 +19,7 @@ The `usePolygon` function accepts a single configuration object as an argument, 
 | Property     | Default | Description                             |
 |:-------------|:--------|:----------------------------------------|
 | `sides`      | `4`     | The number of sides.                    |
-| `sideLength` | `100`   | The length of each side of the polygon. |
+<!--@include: ./shared/polygonprops.md-->
 
 <!--@include: ./shared/config.md-->
 
