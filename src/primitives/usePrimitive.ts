@@ -10,6 +10,7 @@ export interface Primitive {
     edges: ComputedRef<Edge[]>
     faces: ComputedRef<Face[]>
     svgPath: ComputedRef<string>
+    centroid: ComputedRef<Vertex>
 }
 
 /**
@@ -133,10 +134,21 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         return path.trim();
     });
 
+    /**
+     * The centroid (geometric center) of the primitive.
+     */
+    const centroid = computed(() => {
+        return vertices.value.reduce((acc, v) => ({
+            x: acc.x + v.x / vertices.value.length,
+            y: acc.y + v.y / vertices.value.length,
+        }), { x: 0, y: 0 });
+    })
+
     return {
         vertices,
         edges,
         faces,
-        svgPath
+        svgPath,
+        centroid
     }
 }

@@ -14,7 +14,7 @@ const triangleRotation = computed(() => pointRotation.value  * -360)
 const {svgPath: circleSvgPath} = useCircle({radius: 60, center})
 
 // We're also creating a triangle using the useTriangle() composable
-const { svgPath: triangleSvgPath } = useTriangle({base: 40, height: 30, rotation: triangleRotation, center})
+const { svgPath: triangleSvgPath, centroid } = useTriangle({base: 60, height: 70, rotation: triangleRotation, center})
 
 
 // Animate the center of the circle left and right
@@ -63,8 +63,8 @@ gsap.to(pointRotation, {
       <!-- Point on Circle Edge -->
 <!--      <circle :cx="pointOnCircleEdge.x" :cy="pointOnCircleEdge.y" r="6" fill="white"/>-->
 
-      <!-- Point on Triangle Edge -->
-<!--      <circle :cx="pointOnTriangleEdge.x" :cy="pointOnTriangleEdge.y" r="6" fill="white"/>-->
+      <!-- Centroid of Triangle -->
+      <circle :cx="centroid.x" :cy="centroid.y" r="2" fill="white"/>
 
     </svg>
   </div>
