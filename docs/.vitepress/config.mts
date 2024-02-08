@@ -83,6 +83,7 @@ export default defineConfig({
         items: [
           { text: 'useCircle', link: '/primitives/usecircle' },
           { text: 'useTriangle', link: '/primitives/usetriangle' },
+          { text: 'useLine', link: '/primitives/useline' },
         ]
       }
     ],

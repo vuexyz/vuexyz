@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useCircle, useTriangle} from '../../../src'
+import {useCircle, useLine, useTriangle} from '../../../src'
 import {computed, ref, Ref} from "vue";
 import gsap from "gsap";
 
@@ -14,7 +14,11 @@ const triangleScale = ref(1)
 const {svgPath: circleSvgPath} = useCircle({radius: 60, position})
 
 // We're also creating a triangle using the useTriangle() composable
-const { svgPath: triangleSvgPath, centroid } = useTriangle({base: 60, height: 70, rotation: triangleRotation, position, scale: triangleScale})
+const { svgPath: triangleSvgPath, centroid, vertices: triangleVertices } = useTriangle({base: 60, height: 70, rotation: triangleRotation, position, scale: triangleScale})
+
+const lineVertices = computed(() => [centroid, ...triangleVertices.value, centroid])
+
+const {svgPath: lineSvgPath} = useLine({vertices: lineVertices, scale: 0.8})
 
 
 // Animate the position of the circle left and right
@@ -63,13 +67,13 @@ gsap.to(triangleScale, {
       </text>
 
       <!-- Circle -->
-      <path :d="circleSvgPath" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="3"/>
+      <path :d="circleSvgPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="3"/>
 
       <!-- Triangle -->
-      <path :d="triangleSvgPath" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="3"/>
+      <path :d="triangleSvgPath" fill="none" stroke="rgba(255, 255, 255, 0.2)" stroke-width="3"/>
 
-      <!-- Centroid of Triangle -->
-      <circle :cx="centroid.x" :cy="centroid.y" r="2" fill="white"/>
+      <!-- Connecting Lines -->
+      <path :d="lineSvgPath" fill="none" stroke="rgba(255, 255, 255, 1)" stroke-width="3"/>
 
     </svg>
   </div>
