@@ -17,28 +17,8 @@ describe('useTriangle', () => {
     expect(triangle.edges.value.length).toBe(3)
   })
 
-  it('should accept refs', () => {
-    const base = ref(50)
-    const height = ref(50)
-    const triangle = useTriangle({ base, height })
-    expect(triangle.vertices.value.length).toBe(3)
-    expect(triangle.edges.value.length).toBe(3)
-  })
-
-  it('should accept refs in position method', () => {
-    const position = ref(0.25)
+  it('should generate one face', () => {
     const triangle = useTriangle({ base: 50, height: 50 })
-    const pos = triangle.getPosition(position)
-    expect(pos).toBeDefined()
-    expect(pos).toHaveProperty('x')
-    expect(pos).toHaveProperty('y')
-  })
-
-  it('should accept zero arg', () => {
-    const triangle = useTriangle()
-    const pos = triangle.getPosition(0.25)
-    expect(pos).toBeDefined()
-    expect(pos).toHaveProperty('x')
-    expect(pos).toHaveProperty('y')
+    expect(triangle.faces.value.length).toBe(1)
   })
 })

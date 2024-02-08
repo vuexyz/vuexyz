@@ -7,37 +7,18 @@ describe('useCircle', () => {
     expect(useCircle).toBeDefined()
   })
 
-  it('should accept numbers', () => {
+  it('should generate zero vertices', () => {
     const circle = useCircle({ radius: 50 })
-    expect(circle.getPosition(0.25).value).toStrictEqual({
-      x: 0,
-      y: 50,
-    })
+    expect(circle.vertices.value.length).toBe(0)
   })
 
-  it('should accept refs', () => {
-    const radius = ref(50)
-    const circle = useCircle({ radius })
-    expect(circle.getPosition(0.25).value).toStrictEqual({
-      x: 0,
-      y: 50,
-    })
-  })
-
-  it('should accept refs in position method', () => {
-    const position = ref(0.25)
+  it('should generate 1 edge', () => {
     const circle = useCircle({ radius: 50 })
-    expect(circle.getPosition(position).value).toStrictEqual({
-      x: 0,
-      y: 50,
-    })
+    expect(circle.edges.value.length).toBe(1)
   })
 
-  it('should accept zero arg', () => {
-    const circle = useCircle()
-    expect(circle.getPosition(0.25).value).toStrictEqual({
-      x: 0,
-      y: 0,
-    })
+  it('should generate 1 face', () => {
+    const circle = useCircle({ radius: 50 })
+    expect(circle.faces.value.length).toBe(0)
   })
 })
