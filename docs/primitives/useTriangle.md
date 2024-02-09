@@ -15,7 +15,7 @@ Composable for working with triangles.
 ## Configuration
 
 > [!NOTE]
-> `useTriangle` is for supporting isosceles triangles. If you want an equilateral triangle, try `usePolygon({sides: 3})` instead.
+> `useTriangle` is for supporting irregular triangles. If you want a regular (_equilateral_) triangle, use `usePolygon({sides: 3})` instead.
 
 The `useTriangle` function accepts a single configuration object as an argument, where each property has a default value if not provided.
 
