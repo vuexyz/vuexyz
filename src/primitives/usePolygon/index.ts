@@ -10,7 +10,7 @@ interface VerticesConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'f
 
 interface SidesAndSideLengthConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
     sides: MaybeRefOrGetter<number>
-    sideLength: MaybeRefOrGetter<number>
+    sideLength?: MaybeRefOrGetter<number>
 }
 
 export type PolygonConfig = VerticesConfig | SidesAndSideLengthConfig
