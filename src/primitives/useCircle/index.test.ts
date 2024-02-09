@@ -20,4 +20,9 @@ describe('useCircle', () => {
     const circle = useCircle({ radius: 50 })
     expect(circle.faces.value.length).toBe(0)
   })
+
+  it('should have a 100 units wide bounding box', () => {
+    const circle = useCircle({ radius: 50 })
+    expect(circle.boundingBox.value.width).toBe(100)
+  })
 })

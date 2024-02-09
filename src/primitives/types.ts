@@ -41,3 +41,15 @@ export type Edge = EdgeSegment[];
  * Multiple edges combine to form a face.
  */
 export type Face = Edge[];
+
+/**
+ * A bounding box in 2D space, with the top-left corner as the origin.
+ */
+export interface BoundingBox {
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+    maxX: number,
+    maxY: number
+}

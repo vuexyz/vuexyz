@@ -1,6 +1,6 @@
 import {MaybeRefOrGetter, toValue} from '@vueuse/shared'
 import {computed, ComputedRef, ref, Ref} from 'vue'
-import type {Edge, Face, Vertex} from './types'
+import type {BoundingBox, Edge, Face, Vertex} from './types'
 
 /**
  * All those automagically reactive details about the shape you're working with.
@@ -11,6 +11,7 @@ export interface Primitive {
     faces: ComputedRef<Face[]>
     svgPath: ComputedRef<string>
     centroid: ComputedRef<Vertex>
+    boundingBox: ComputedRef<BoundingBox>
 }
 
 /**
@@ -145,11 +146,54 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         }), {x: 0, y: 0});
     })
 
+    /**
+     * The bounding box of the primitive.
+     */
+    const boundingBox: ComputedRef<BoundingBox> = computed(() => {
+        if(edges.value.length === 0) return {
+            x: 0,
+            y: 0,
+            width: 0,
+            height: 0,
+            maxX: 0,
+            maxY: 0
+        };
+        let minX = edges.value[0][0].start.x;
+        let minY = edges.value[0][0].start.y;
+        let maxX = edges.value[0][0].start.x;
+        let maxY = edges.value[0][0].start.y;
+        edges.value.forEach(edge => {
+            edge.forEach(segment => {
+                const points = [segment.start, segment.end];
+                if (segment.type === 'curve') {
+                    points.push(segment.c1, segment.c2);
+                }
+                points.forEach(point => {
+                    if (point.x < minX) minX = point.x;
+                    if (point.x > maxX) maxX = point.x;
+                    if (point.y < minY) minY = point.y;
+                    if (point.y > maxY) maxY = point.y;
+                });
+            });
+        });
+        const width = maxX - minX;
+        const height = maxY - minY;
+        return {
+            x: +minX.toFixed(5),
+            y: +minY.toFixed(5),
+            width: +width.toFixed(5),
+            height: +height.toFixed(5),
+            maxX: +maxX.toFixed(5),
+            maxY: +maxY.toFixed(5)
+        };
+    });
+
     return {
         vertices,
         edges,
         faces,
         svgPath,
-        centroid
+        centroid,
+        boundingBox
     }
 }
