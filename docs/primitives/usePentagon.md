@@ -3,19 +3,19 @@ category: '@Primitives'
 ---
 
 <script setup>
-    import UseSquareDemo from '../demo/components/useSquareDemo.vue';
+    import UsePentagonDemo from '../demo/components/usePentagonDemo.vue';
 </script>
 
-# useSquare
+# usePentagon
 
-Composable for working with squares.
+Composable for working with pentagons.
 
-<UseSquareDemo />
+<UsePentagonDemo />
 
 ## Configuration
 
 > [!TIP]
-> `useSquare` is an alias for `usePolygon({sides: 4})`. It accepts all the props that `usePolygon` supports, except `sides`.
+> `usePentagon` is an alias for `usePolygon({sides: 5})`. It accepts all the props that `usePolygon` supports, except `sides`.
 
 | Property   | Default          | Description                              |
 |:-----------|:-----------------|:-----------------------------------------|
@@ -26,11 +26,11 @@ Composable for working with squares.
 ## Usage
 
 ```ts
-import { useSquare } from 'vuexyz'
+import { usePentagon } from 'vuexyz'
 
 const sideLength = ref(50)
 const position = ref({ x: 0, y: 0 })
-const { vertices, edges, faces } = useSquare({ sideLength, position })
+const { vertices, edges, faces } = usePentagon({ sideLength, position })
 ```
 
 <!--@include: ./shared/return.md-->

@@ -82,7 +82,9 @@ export default defineConfig({
         text: 'Primitives',
         items: [
           { text: 'useCircle', link: '/primitives/usecircle' },
+          { text: 'useHexagon', link: '/primitives/usehexagon' },
           { text: 'useLine', link: '/primitives/useline' },
+          { text: 'usePentagon', link: '/primitives/usepentagon' },
           { text: 'usePolygon', link: '/primitives/usepolygon' },
           { text: 'useSquare', link: '/primitives/usesquare' },
           { text: 'useTriangle', link: '/primitives/usetriangle' },

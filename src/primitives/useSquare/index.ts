@@ -1,4 +1,4 @@
-import {usePrimitive, Primitive} from '../usePrimitive'
+import {Primitive} from '../usePrimitive'
 import {PolygonConfig, usePolygon} from "../usePolygon";
 
 /**

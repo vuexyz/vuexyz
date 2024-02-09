@@ -8,7 +8,7 @@ category: '@Primitives'
 
 # usePolygon
 
-Composable for working with polygons.
+Composable for working with polygons. `usePolygon` is also the aliased composable for all other polygon composables, such as `usePentagon`, `useHexagon`, etc. The polygon generated is a regular polygon, meaning all sides are of equal length and all angles are equal.
 
 <UsePolygonDemo />
 
