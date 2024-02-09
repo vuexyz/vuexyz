@@ -70,6 +70,7 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Getting Started', link: '/getting-started' },
+          { text: 'Contributing', link: '/contributing'}
         ]
       },
       {
