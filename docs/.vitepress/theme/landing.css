@@ -17,7 +17,7 @@
         }
     }
 
-    h1 {
+    h1, .h1 {
         color: white;
         font-family: "JetBrains Mono", monospace;
         font-size: 16px;
@@ -28,7 +28,7 @@
         cursor: default;
     }
 
-    h2 {
+    h2, .h2 {
         color: white;
         font-size: 24px;
         line-height: 1;

@@ -12,5 +12,5 @@ const primitive = useLine({vertices: [start, end], position: {x: 688 / 2, y: 400
 </script>
 
 <template>
-  <PrimitiveSVGRenderer :primitives="[primitive]" />
+  <PrimitiveSVGRenderer :primitives="[primitive]" label="useLine({vertices: [{ x: -100, y: -100 }, { x: 100, y: 100 }]})" />
 </template>

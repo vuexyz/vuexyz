@@ -8,5 +8,5 @@ const primitive = useHexagon({sideLength: 100, position: {x: 688 / 2, y: 400 / 2
 </script>
 
 <template>
-  <PrimitiveSVGRenderer :primitives="[primitive]" />
+  <PrimitiveSVGRenderer :primitives="[primitive]" label="useHexagon({sideLength: 100})" />
 </template>

@@ -8,5 +8,5 @@ const primitive = usePentagon({sideLength: 100, position: {x: 688 / 2, y: 400 / 
 </script>
 
 <template>
-  <PrimitiveSVGRenderer :primitives="[primitive]" />
+  <PrimitiveSVGRenderer :primitives="[primitive]" label="usePentagon({sideLength: 100})" />
 </template>
