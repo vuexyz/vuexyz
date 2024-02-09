@@ -89,7 +89,8 @@ export default defineConfig({
           { text: 'useSquare', link: '/primitives/usesquare' },
           { text: 'useTriangle', link: '/primitives/usetriangle' },
         ]
-      }
+      },
+      { text: 'Type Definitions', link: '/type-definitions' }
     ],
 
     socialLinks: [
