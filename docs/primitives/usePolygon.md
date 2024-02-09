@@ -8,30 +8,39 @@ category: '@Primitives'
 
 # usePolygon
 
-Composable for working with regular polygons (_all sides are of equal length and all angles are equal_). `usePolygon` is also the aliased composable for all other regular polygon composables, such as `usePentagon`, `useHexagon`, etc.
+Composable for working with regular and irregular polygons. It is also aliased with preset parameters for all other
+regular polygon composables such as `useSquare`, `usePentagon`, `useHexagon`, etc.
 
 <UsePolygonDemo />
 
 ## Configuration
 
-The `usePolygon` function accepts a single configuration object as an argument, where each property has a default value if not provided.
+The `usePolygon` function accepts a single configuration object as an argument. There are two types of polygon configurations:
 
-| Property     | Default | Description                             |
-|:-------------|:--------|:----------------------------------------|
-| `sides`      | `4`     | The number of sides.                    |
+#### 1. Regular polygon
+
+| Property | Default | Description          |
+|:---------|:--------|:---------------------|
+| `sides`  | `4`     | The number of sides. |
 <!--@include: ./shared/polygonprops.md-->
+
+#### 2. Irregular polygon
+
+| Property   | Default | Description                                  |
+|:-----------|:--------|:---------------------------------------------|
+| `vertices` | `[]`    | An array of vertices to draw the shape with. |
 
 <!--@include: ./shared/config.md-->
 
 ## Usage
 
 ```ts
-import { usePolygon } from 'vuexyz'
+import {usePolygon} from 'vuexyz'
 
 const sides = ref(5)
 const sideLength = ref(100)
-const position = ref({ x: 0, y: 0 })
-const { vertices, edges, faces } = usePolygon({ sides, sideLength, position })
+const position = ref({x: 0, y: 0})
+const {vertices, edges, faces} = usePolygon({sides, sideLength, position})
 ```
 
 <!--@include: ./shared/return.md-->

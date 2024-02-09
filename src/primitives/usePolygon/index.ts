@@ -4,10 +4,16 @@ import type {ComputedRef} from 'vue'
 import type {Edge, LineSegment, Vertex} from '../types'
 import {usePrimitive, Primitive, PrimitiveConfig} from '../usePrimitive'
 
-export interface PolygonConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
+interface VerticesConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
+    vertices: MaybeRefOrGetter<MaybeRefOrGetter<Vertex>[]>
+}
+
+interface SidesAndSideLengthConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
     sides: MaybeRefOrGetter<number>
     sideLength: MaybeRefOrGetter<number>
 }
+
+export type PolygonConfig = VerticesConfig | SidesAndSideLengthConfig
 
 /**
  * Composable for working with a polygon.
@@ -16,31 +22,48 @@ export interface PolygonConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges
  */
 export function usePolygon(config?: PolygonConfig): Primitive {
 
-    // Set default values
-    const sides = config?.sides ?? 4
-    const sideLength = config?.sideLength ?? 100
-
-    // Calculate the angle step for each side
-    const angleStep = computed(() => (Math.PI * 2) / toValue(sides))
-
-    // Define vertices
-    const vertices: ComputedRef<Vertex[]> = computed(() => {
-        const vertices: Vertex[] = []
-        const isEven = toValue(sides) % 2 === 0
-        let initialRotation: number
-        if (isEven) {
-            initialRotation = -Math.PI / 2 + angleStep.value / 2
-        } else {
-            initialRotation = -Math.PI / 2
-        }
-        for (let i = 0; i < toValue(sides); i++) {
-            vertices.push({
-                x: toValue(sideLength) * Math.cos(initialRotation + angleStep.value * i),
-                y: toValue(sideLength) * Math.sin(initialRotation + angleStep.value * i),
-            } as Vertex)
-        }
-        return vertices
+    /**
+     * Standardize user-provided vertices to ensure they are passed correctly to usePrimitive.
+     */
+    const standardizeUserVertices = computed(() => {
+        return toValue("vertices" in config && config?.vertices).map(vertex => toValue(vertex)) ?? []
     })
+
+    /**
+     * Calculate vertices from sides and sideLength.
+     */
+    const calculateVerticesFromSidesAndSideLength = () => {
+        // Set default values
+        const sides = "sides" in config ? config.sides : 4
+        const sideLength = "sideLength" in config ? config.sideLength : 100
+
+        // Calculate the angle step for each side
+        const angleStep = computed(() => (Math.PI * 2) / toValue(sides))
+
+        // Define vertices
+        return computed(() => {
+            const vertices: Vertex[] = []
+            const isEven = toValue(sides) % 2 === 0
+            let initialRotation: number
+            if (isEven) {
+                initialRotation = -Math.PI / 2 + angleStep.value / 2
+            } else {
+                initialRotation = -Math.PI / 2
+            }
+            for (let i = 0; i < toValue(sides); i++) {
+                vertices.push({
+                    x: toValue(sideLength) * Math.cos(initialRotation + angleStep.value * i),
+                    y: toValue(sideLength) * Math.sin(initialRotation + angleStep.value * i),
+                } as Vertex)
+            }
+            return vertices
+        })
+    }
+
+    // Define vertices (with various possible configurations)
+    const vertices: ComputedRef<Vertex[]> = "vertices" in config
+        ? standardizeUserVertices
+        : calculateVerticesFromSidesAndSideLength()
 
     // Define edges
     const edges: ComputedRef<Edge[]> = computed(() => {
