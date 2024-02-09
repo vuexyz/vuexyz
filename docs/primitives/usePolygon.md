@@ -26,9 +26,9 @@ The `usePolygon` function accepts a single configuration object as an argument. 
 
 #### 2. Irregular polygon
 
-| Property   | Default | Description                                  |
-|:-----------|:--------|:---------------------------------------------|
-| `vertices` | `[]`    | An array of vertices to draw the shape with. |
+| Property   | Default | Description                                                                                |
+|:-----------|:--------|:-------------------------------------------------------------------------------------------|
+| `vertices` | `[]`    | An array of three or more vertices. Will self-close (_no need to repeat the first vertex_) |
 
 <!--@include: ./shared/config.md-->
 

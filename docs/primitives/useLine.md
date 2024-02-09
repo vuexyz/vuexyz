@@ -18,7 +18,7 @@ The `useLine` function accepts a single configuration object as an argument, whe
 
 | Property   | Default | Description                       |
 |:-----------|:--------|:----------------------------------|
-| `vertices` | `[]]`   | An array of one or more vertices. |
+| `vertices` | `[]]`   | An array of two or more vertices. |
 
 <!--@include: ./shared/config.md-->
 
