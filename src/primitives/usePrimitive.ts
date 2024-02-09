@@ -61,8 +61,8 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
             y: Math.sin(radians) * (newVertex.x - toValue(position).x) + Math.cos(radians) * (newVertex.y - toValue(position).y) + toValue(position).y,
         };
         newVertex = {
-            x: toValue(position).x + (newVertex.x - toValue(position).x) * toValue(scale),
-            y: toValue(position).y + (newVertex.y - toValue(position).y) * toValue(scale),
+            x: +(toValue(position).x + (newVertex.x - toValue(position).x) * toValue(scale)).toFixed(3),
+            y: +(toValue(position).y + (newVertex.y - toValue(position).y) * toValue(scale)).toFixed(3),
         };
         return newVertex;
     }
