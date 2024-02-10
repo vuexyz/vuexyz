@@ -31,3 +31,4 @@ coverage
 *.sw?
 docs/.vitepress/dist/
 docs/.vitepress/cache/
+qodana.yaml

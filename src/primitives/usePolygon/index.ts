@@ -4,15 +4,24 @@ import type {ComputedRef} from 'vue'
 import type {Edge, LineSegment, Vertex} from '../types'
 import {usePrimitive, Primitive, PrimitiveConfig} from '../usePrimitive'
 
+/**
+ * Configuration for an irregular polygon by means of passing an array of vertices.
+ */
 interface VerticesConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
     vertices: MaybeRefOrGetter<MaybeRefOrGetter<Vertex>[]>
 }
 
+/**
+ * Configuration for a regular polygon by means of passing the number of sides and the length of each side.
+ */
 interface SidesAndSideLengthConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
-    sides: MaybeRefOrGetter<number>
+    sides?: MaybeRefOrGetter<number>
     sideLength?: MaybeRefOrGetter<number>
 }
 
+/**
+ * Configuration for a polygon, union of multiple possible configuration options.
+ */
 export type PolygonConfig = VerticesConfig | SidesAndSideLengthConfig
 
 /**

@@ -120,8 +120,8 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         let path = '';
         if (edges.value.length > 0) {
             path += `M ${edges.value[0][0].start.x},${edges.value[0][0].start.y} `;
-            edges.value.forEach((edge, index) => {
-                edge.forEach((segment, segmentIndex) => {
+            edges.value.forEach((edge) => {
+                edge.forEach((segment) => {
                     if (segment.type === 'line') {
                         path += `L ${segment.end.x},${segment.end.y} `;
                     } else if (segment.type === 'curve') {

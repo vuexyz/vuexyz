@@ -6,6 +6,6 @@ import {PolygonConfig, usePolygon} from "../usePolygon";
  *
  * @see https://vuexyz.org/primitives/usesquare
  */
-export function useSquare(config?: Omit<PolygonConfig, 'sides'>): Primitive {
+export function useSquare(config?: PolygonConfig): Primitive {
     return usePolygon({...config, sides: 4})
 }

@@ -6,6 +6,6 @@ import {PolygonConfig, usePolygon} from "../usePolygon";
  *
  * @see https://vuexyz.org/primitives/usehexagon
  */
-export function useHexagon(config?: Omit<PolygonConfig, 'sides'>): Primitive {
+export function useHexagon(config?: PolygonConfig): Primitive {
     return usePolygon({...config, sides: 6})
 }
