@@ -1,6 +1,8 @@
 <script setup>
 
 import BasicDemo from "../../demo/components/basicDemo.vue";
+import { UseClipboard } from '@vueuse/components'
+
 </script>
 
 <template>
@@ -21,10 +23,12 @@ import BasicDemo from "../../demo/components/basicDemo.vue";
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
     <h1>Creative Coding Composables for Vue 3</h1>
-    <div class="install-box">
-      <h1>npm install vuexyz</h1>
-      <i class="copy-icon fa-sharp fa-solid fa-copy"></i>
-    </div>
+    <UseClipboard :legacy="true" v-slot="{ copy, copied }" source="npm install vuexyz">
+      <div class="install-box" @click.prevent="copy()">
+        <h1>{{ copied ? 'Copied to Clipboard' : 'npm install vuexyz ' }}</h1>
+        <i class="copy-icon fa-sharp fa-solid fa-copy"></i>
+      </div>
+    </UseClipboard>
   </div>
 
   <!-- Shape Icons -->
@@ -135,10 +139,12 @@ import BasicDemo from "../../demo/components/basicDemo.vue";
   margin-right: -30px;
   margin-top: 30px;
   padding: 20px 40px;
+  cursor: pointer;
 
   h1 {
     color: #0067DC;
     display: inline-block;
+    cursor: pointer;
   }
 
   .copy-icon {
