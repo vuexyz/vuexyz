@@ -8,6 +8,8 @@
   "sideEffects": false,
   "main": "src/index.ts",
   "devDependencies": {
+    "@vueuse/components": "^10.7.2",
+    "@vueuse/core": "^10.7.2",
     "vitepress": "1.0.0-rc.41"
   },
   "scripts": {
