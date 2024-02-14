@@ -5,7 +5,7 @@ import type {Edge, LineSegment, Vertex} from '../types'
 import {usePrimitive, Primitive, PrimitiveConfig} from '../usePrimitive'
 
 interface LineConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
-    vertices: MaybeRefOrGetter<MaybeRefOrGetter<Vertex>[]>
+    vertices: MaybeRefOrGetter<Vertex>[] | MaybeRefOrGetter<MaybeRefOrGetter<Vertex>[]>
 }
 
 /**
@@ -23,7 +23,7 @@ export function useLine(config?: LineConfig): Primitive {
     // Define edges
     const edges: ComputedRef<Edge[]> = computed(() => {
         const edges: Edge[] = []
-        for(let i = 0; i < vertices.value.length - 1; i++) {
+        for (let i = 0; i < vertices.value.length - 1; i++) {
             edges.push([
                 {
                     type: 'line',
