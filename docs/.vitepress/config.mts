@@ -57,7 +57,7 @@ export default defineConfig({
     logo: '/icon.svg',
 
     nav: [
-      { text: 'Demos', link: '/' },
+      { text: 'Demos', link: '/demo/mouse-position' },
       { text: 'Getting Started', link: '/getting-started' },
     ],
 
@@ -76,7 +76,7 @@ export default defineConfig({
       {
         text: 'Demos',
         items: [
-          { text: 'Basic Primitives', link: '/demo/basic-primitives' },
+          { text: 'Mouse Position', link: '/demo/mouse-position' },
         ]
       },
       {
