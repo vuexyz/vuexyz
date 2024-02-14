@@ -1,7 +1,12 @@
+body:has(.landing){
+    min-height: 100svh !important;
+}
+
 .landing {
     background: radial-gradient(circle at 30% 30%, #197EF2, #0067DC);
-    width: 100svw;
-    height: 100svh;
+    width: 100svw !important;
+    height: 100svh !important;
+    min-height: 100svh !important;
     overflow: hidden;
     position: relative;
 
@@ -9,12 +14,16 @@
         background: url('/background.jpg') center;
         background-size: cover;
         padding: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
+        width: 100svw !important;
+        height: 100svh !important;
 
         > div{
             position: unset !important;
         }
+    }
+
+    .VPFooter{
+        display: none;
     }
 
     h1, .h1 {

@@ -65,7 +65,7 @@ import { UseClipboard } from '@vueuse/components'
   transform: translate3d(-50%, -50%, 0);
   z-index: 1;
   width: 1000px;
-  max-width: 100%;
+  max-width: 100svw;
   height: auto;
   user-select: none;
 
@@ -84,8 +84,8 @@ import { UseClipboard } from '@vueuse/components'
   right: 40px;
   bottom: 40px;
   background: transparent;
-  width: calc(100vw - 80px);
-  height: calc(100vh - 80px);
+  width: calc(100svw - 80px);
+  height: calc(100svh - 80px);
   border: 4px solid white;
   pointer-events: none;
   user-select: none;
@@ -95,8 +95,8 @@ import { UseClipboard } from '@vueuse/components'
     left: 20px;
     right: 20px;
     bottom: 20px;
-    width: calc(100vw - 40px);
-    height: calc(100vh - 40px);
+    width: calc(100svw - 40px);
+    height: calc(100svh - 40px);
   }
 }
 
@@ -106,7 +106,7 @@ import { UseClipboard } from '@vueuse/components'
   top: 0;
   left: 50%;
   transform: translate3d(-50%, 0, 0);
-  height: 100vh;
+  height: 100svh;
   z-index: 0;
   user-select: none;
 }
@@ -128,7 +128,7 @@ import { UseClipboard } from '@vueuse/components'
     top: 20px;
     left: 20px;
     right: 20px;
-    width: calc(100vw - 40px);
+    width: calc(100svw - 40px);
     padding: 20px 20px 0;
   }
 }
