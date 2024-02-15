@@ -1,7 +1,7 @@
 <script setup>
 
-import BasicDemo from "../../demo/components/basicDemo.vue";
-import { UseClipboard } from '@vueuse/components'
+import {UseClipboard} from '@vueuse/components'
+import HomeHero from './homeHero.vue'
 
 </script>
 
@@ -16,9 +16,13 @@ import { UseClipboard } from '@vueuse/components'
   <!-- White Page Border -->
   <div class="page-border"/>
 
-  <!-- Example Handwriting -->
-  <h2 style="position: absolute; top: 30vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw; line-height: 1.5">
-    useCircle ( {radius: 50 })</h2>
+  <!-- useCircle Handwriting -->
+  <h2 style="position: absolute; top: 26vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw;">
+    useCircle ({ radius: 120 })</h2>
+
+  <!-- forLoop Handwriting -->
+  <h2 style="position: absolute; bottom: 24vh; right: 25vw; transform: rotate(2deg); max-width: 70vw;">
+    for ( primitive in primitives ){<br>&nbsp;&nbsp;&nbsp;primitive.position.x += 10<br>}</h2>
 
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
@@ -51,7 +55,7 @@ import { UseClipboard } from '@vueuse/components'
   </ul>
 
   <div class="landing-demo">
-    <BasicDemo/>
+    <HomeHero/>
   </div>
 
 </template>
@@ -64,7 +68,7 @@ import { UseClipboard } from '@vueuse/components'
   left: 50%;
   transform: translate3d(-50%, -50%, 0);
   z-index: 1;
-  width: 1000px;
+  width: 1200px;
   max-width: 100svw;
   height: auto;
   user-select: none;

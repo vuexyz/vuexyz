@@ -1,13 +1,7 @@
-<script setup>
-    import BasicDemo from './demo/components/basicDemo.vue';
-</script>
-
 # Getting Started
 
 > [!IMPORTANT]
 > **VueXYZ is under development.** Things are changing quickly. The first stable release should happen within a few weeks _(by early March)_, but until then expect bugs, breaking changes and incomplete documentation.
-
-<BasicDemo />
 
 ### What is VueXYZ?
 
