@@ -52,7 +52,7 @@ onMounted(() => {
     <svg width="100%" viewBox="0 0 1200 600">
 
       <!-- Circles -->
-      <path v-for="circle in circles" :d="circle.svgPath.value" fill="none" stroke="rgba(255, 255, 255, 0.5)"
+      <path v-for="circle in circles" :d="circle.svgPath.value" fill="none" stroke="rgba(255, 255, 255, 0.3)"
             stroke-width="1"/>
 
       <!-- Hexagon -->
@@ -104,15 +104,15 @@ svg {
 }
 
 .gradient-glow {
-  width: 900px;
-  height: 30px;
+  width: 1000px;
+  height: 50px;
   display: block;
   position: absolute;
   top: calc(50% + 100px);
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, #812eff, #f100ff, #ff5252, #ff613d, yellow, limegreen, cyan);
-  filter: blur(30px);
+  background: linear-gradient(90deg, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00);
+  filter: blur(45px);
   z-index: -1;
 }
 
