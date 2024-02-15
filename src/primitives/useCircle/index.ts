@@ -5,7 +5,6 @@ import {CurveSegment, Edge, Face, Vertex} from "../types";
 
 interface CircleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
     radius?: MaybeRefOrGetter<number>
-    position?: MaybeRefOrGetter<{ x: number; y: number }>
 }
 
 /**
