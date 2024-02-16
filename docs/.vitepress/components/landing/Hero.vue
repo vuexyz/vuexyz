@@ -9,9 +9,10 @@ const center: Ref<{ x: number, y: number }> = ref({x: 600, y: 300})
 
 // Define animatable params
 const numCircles = ref(40);
-const circleGap = ref(0);
+const circleGap = ref(-10);
 const circleGapAmbient = ref(0)
-const circleRadius = ref(120);
+const circleRadius = ref(0);
+const glowActive = ref(false);
 
 // Create all of our circles
 const circles = computed(() => {
@@ -43,46 +44,86 @@ onMounted(() => {
   // Start timeline
   const timeline = gsap.timeline();
   timeline.to(circleGap, {value: 20, duration: 2, ease: "power3.out"}, 0)
+  timeline.to(circleRadius, {value: 110, duration: 3, ease: "power3.inOut"}, 0)
+  timeline.set(glowActive, {value: true}, 1)
 
   // Ambient (non-timeline) motion
   gsap.to(circleGapAmbient, {value: 2, duration: 3, ease: "power1.inOut", repeat: -1, yoyo: true})
 
-  // Create a new primitive every 3 seconds
-  primitiveInterval = setInterval(() => {
+  // Create a new primitive
+  function createAndPushPrimitive() {
     primitives.value.push({
       id: Math.floor(Math.random() * 1000000000),
       sides: Math.floor(Math.random() * 4) + 3,
-    })
-  }, 3000)
+    });
+  }
+
+  // Create a new primitive every 1.5-4 seconds
+  function scheduleNextPrimitive() {
+    primitiveInterval = setTimeout(() => {
+      if(primitives.value.length < 6){
+        createAndPushPrimitive();
+      }
+      scheduleNextPrimitive(); // Schedule the next call
+    }, Math.random() * 2500 + 1500); // Random delay between 1.5 and 4 seconds
+  }
+
+  // Immediately create the first primitive
+  setTimeout(() => {
+    createAndPushPrimitive();
+    scheduleNextPrimitive();
+  }, 1000)
+
 })
 
 // Clean up when unmounting
 onUnmounted(() => {
-  clearInterval(primitiveInterval)
+  clearTimeout(primitiveInterval)
 })
 
 </script>
 
 <template>
-  <section>
+  <section style="position: relative">
+
+    <!-- Handwriting 1 -->
+    <h2 style="position: absolute; top: 80px; left: -140px; transform: rotate(-4deg); max-width: 70vw; font-size: 24px">
+      usePolygon( {sides : n })
+    </h2>
+
+    <!-- Fig 01. -->
+    <h1 class="fig1">FIG. 01</h1>
 
     <!-- Tunnel of Circles -->
     <svg class="tunnel" width="100%" viewBox="0 0 1200 600">
-      <path v-for="circle in circles" :d="circle.svgPath.value" fill="none" stroke="rgba(255, 255, 255, 0.3)"
-            stroke-width="1"/>
+      <path class="circle" v-for="(circle, index) in circles" :d="circle.svgPath.value" fill="none" stroke="white"
+            :style="`animation-delay: ${index * 20}ms`"/>
+      stroke-width="1"/>
     </svg>
 
     <!-- Gradient Glow -->
-    <div class="gradient-glow"/>
+    <div class="gradient-glow" :class="{'active': glowActive}"/>
 
     <!-- Primitives -->
     <HeroPrimitive v-for="primitive in primitives" :center="center" :sides="primitive.sides" :id="primitive.id"
                    @delete="handlePrimitiveDelete" :key="primitive.id"/>
 
+    <!-- Handwriting 2 -->
+    <h2 style="position: absolute; bottom: 0; right: 0; transform: rotate(2deg); max-width: 70vw;">
+      for ( polygon in primitives ) {<br>&nbsp;&nbsp;&nbsp;&lt; path :d= " polygon.svgPath " &gt;<br>}
+    </h2>
+
   </section>
 </template>
 
 <style scoped>
+
+.fig1{
+  position: absolute;
+  top: 130px;
+  right: 205px;
+  font-size: 14px
+}
 
 svg {
   overflow: visible;
@@ -101,10 +142,44 @@ svg {
   top: calc(50% + 100px);
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00);
-  filter: blur(45px);
+  background: linear-gradient(90deg, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00);
+  filter: blur(50px);
   z-index: -1;
   pointer-events: none;
+  background-size: 200% 200%;
+  animation: gradientAnimation 30s ease infinite;
+  opacity: 0;
+
+  &.active{
+    transition: opacity 3s ease;
+    opacity: 1;
+  }
+}
+
+.circle {
+  opacity: 0.3;
+  animation: circleMovement 3s infinite;
+  transform-origin: 50% 50%;
+}
+
+@keyframes circleMovement {
+  0%, 80% {
+    opacity: 0.2;
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  20% {
+    opacity: 0.7;
+    transform: scale(0.98) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gradientAnimation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 </style>

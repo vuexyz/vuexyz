@@ -64,7 +64,9 @@ onMounted(() => {
   gsap.to(scale, {value: 1, duration: 1, ease: "power3.inOut"})
   gsap.to(movementSpeed, {value: 0.3, duration: 1, ease: "power3.inOut"})
   gsap.to(rotationSpeed, {value: 0.1 * rotationDirection.value, duration: 5, ease: "power3.inOut"})
-  gsap.to(verticalOffset, {value: verticalOffset.value / 4, duration: 7, ease: "power2.inOut"})
+  gsap.to(verticalOffset, {value: verticalOffset.value / 10, duration: 7, ease: "power1.inOut"}).then(() => {
+    gsap.to(verticalOffset, {value: verticalOffset.value * 10, duration: 5, ease: "power1.inOut"})
+  })
 
   // Watch to see when we enter the tunnel
   tunnelEntranceWatch = watch(polygonPosition, (newVal) => {

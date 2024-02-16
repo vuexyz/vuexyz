@@ -16,18 +16,6 @@ import HomeHero from './landing/Hero.vue'
   <!-- White Page Border -->
   <div class="page-border"/>
 
-  <!-- Fig 01. -->
-  <h1 style="position: absolute; top: 34vh; right: 30vw; max-width: 70vw; font-size: 14px">
-    FIG. 01</h1>
-
-  <!-- useCircle Handwriting -->
-  <h2 style="position: absolute; top: 26vh; left: 20vw; transform: rotate(-4deg); max-width: 70vw;">
-    useCircle ({ radius: 120 })</h2>
-
-  <!-- forLoop Handwriting -->
-  <h2 style="position: absolute; bottom: 24vh; right: 25vw; transform: rotate(2deg); max-width: 70vw;">
-    for ( primitive in primitives ){<br>&nbsp;&nbsp;&nbsp;primitive.position.x += 10<br>}</h2>
-
   <!-- Metadata Box (Description + Install Command) -->
   <div class="metadata-box">
     <h1>Creative Coding Composables for Vue 3</h1>
