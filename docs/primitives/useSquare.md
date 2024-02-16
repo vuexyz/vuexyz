@@ -14,9 +14,6 @@ Composable for working with squares.
 
 ## Configuration
 
-> [!TIP]
-> `useSquare` is an alias for `usePolygon({sides: 4})`. It accepts all the props that `usePolygon` supports, except `sides`.
-
 | Property   | Default          | Description                              |
 |:-----------|:-----------------|:-----------------------------------------|
 <!--@include: ./shared/polygonprops.md-->

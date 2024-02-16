@@ -82,13 +82,7 @@ export function usePolygon(config?: PolygonConfig): Primitive {
         const size = "size" in config ? config.size : 100
 
         // Calculate the radius of the polygon (inscribed in a circle)
-        let radius: number
-        if(toValue(sides) % 2 === 0) {
-            radius = toValue(size) / 2;
-        } else {
-            const angle = Math.PI * 2 / toValue(sides);
-            radius = toValue(size) / 2 / Math.sin(angle / 2);
-        }
+        let radius: number = toValue(size) / 2;
 
         // Calculate the angle step for each side
         const angleStep = computed(() => (Math.PI * 2) / toValue(sides))

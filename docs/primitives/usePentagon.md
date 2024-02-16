@@ -14,9 +14,6 @@ Composable for working with pentagons.
 
 ## Configuration
 
-> [!TIP]
-> `usePentagon` is an alias for `usePolygon({sides: 5})`. It accepts all the props that `usePolygon` supports, except `sides`.
-
 | Property   | Default          | Description                              |
 |:-----------|:-----------------|:-----------------------------------------|
 <!--@include: ./shared/polygonprops.md-->

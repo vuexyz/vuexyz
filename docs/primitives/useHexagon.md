@@ -14,9 +14,6 @@ Composable for working with hexagons.
 
 ## Configuration
 
-> [!TIP]
-> `useHexagon` is an alias for `usePolygon({sides: 6})`. It accepts all the props that `usePolygon` supports, except `sides`.
-
 | Property   | Default          | Description                              |
 |:-----------|:-----------------|:-----------------------------------------|
 <!--@include: ./shared/polygonprops.md-->

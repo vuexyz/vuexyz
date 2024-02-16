@@ -1,7 +1,7 @@
 <script setup>
 
 import {UseClipboard} from '@vueuse/components'
-import HomeHero from './homeHero.vue'
+import HomeHero from './landing/Hero.vue'
 
 </script>
 
