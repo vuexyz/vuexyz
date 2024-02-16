@@ -82,13 +82,14 @@ export default defineConfig({
       {
         text: 'Primitives',
         items: [
-          { text: 'useCircle', link: '/primitives/usecircle' },
-          { text: 'useHexagon', link: '/primitives/usehexagon' },
-          { text: 'useLine', link: '/primitives/useline' },
-          { text: 'usePentagon', link: '/primitives/usepentagon' },
-          { text: 'usePolygon', link: '/primitives/usepolygon' },
-          { text: 'useSquare', link: '/primitives/usesquare' },
-          { text: 'useTriangle', link: '/primitives/usetriangle' },
+          { text: 'useCircle', link: '/primitives/useCircle' },
+          { text: 'useEllipse', link: '/primitives/useEllipse' },
+          { text: 'useHexagon', link: '/primitives/useHexagon' },
+          { text: 'useLine', link: '/primitives/useLine' },
+          { text: 'usePentagon', link: '/primitives/usePentagon' },
+          { text: 'usePolygon', link: '/primitives/usePolygon' },
+          { text: 'useSquare', link: '/primitives/useSquare' },
+          { text: 'useTriangle', link: '/primitives/useTriangle' },
         ]
       },
       { text: 'Type Definitions', link: '/type-definitions' }

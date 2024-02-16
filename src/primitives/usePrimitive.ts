@@ -20,7 +20,7 @@ export interface Primitive {
 export interface PrimitiveConfig {
     position?: MaybeRefOrGetter<{ x: number; y: number, z?: number }>
     rotation?: MaybeRefOrGetter<number>,
-    scale?: MaybeRefOrGetter<number>,
+    scale?: MaybeRefOrGetter<number> | MaybeRefOrGetter<Vertex>
     vertices: ComputedRef<Vertex[]>,
     edges: ComputedRef<Edge[]>,
     faces: ComputedRef<Face[]>,
@@ -60,10 +60,18 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
             x: Math.cos(radians) * (newVertex.x - toValue(position).x) - Math.sin(radians) * (newVertex.y - toValue(position).y) + toValue(position).x,
             y: Math.sin(radians) * (newVertex.x - toValue(position).x) + Math.cos(radians) * (newVertex.y - toValue(position).y) + toValue(position).y,
         };
-        newVertex = {
-            x: +(toValue(position).x + (newVertex.x - toValue(position).x) * toValue(scale)).toFixed(3),
-            y: +(toValue(position).y + (newVertex.y - toValue(position).y) * toValue(scale)).toFixed(3),
-        };
+        const scaleValue = toValue(scale);
+        if (typeof scaleValue === 'object' && scaleValue.x !== undefined && scaleValue.y !== undefined) {
+            newVertex = {
+                x: +(toValue(position).x + (newVertex.x - toValue(position).x) * scaleValue.x).toFixed(3),
+                y: +(toValue(position).y + (newVertex.y - toValue(position).y) * scaleValue.y).toFixed(3),
+            };
+        } else if (typeof scaleValue === 'number') {
+            newVertex = {
+                x: +(toValue(position).x + (newVertex.x - toValue(position).x) * scaleValue).toFixed(3),
+                y: +(toValue(position).y + (newVertex.y - toValue(position).y) * scaleValue).toFixed(3),
+            };
+        }
         return newVertex;
     }
 
@@ -150,7 +158,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
      * The bounding box of the primitive.
      */
     const boundingBox: ComputedRef<BoundingBox> = computed(() => {
-        if(edges.value.length === 0) return {
+        if (edges.value.length === 0) return {
             x: 0,
             y: 0,
             width: 0,
