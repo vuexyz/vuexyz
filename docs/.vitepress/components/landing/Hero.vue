@@ -98,7 +98,6 @@ onUnmounted(() => {
     <svg class="tunnel" width="100%" viewBox="0 0 1200 600">
       <path class="circle" v-for="(circle, index) in circles" :d="circle.svgPath.value" fill="none" stroke="white"
             :style="`animation-delay: ${index * 20}ms`"/>
-      stroke-width="1"/>
     </svg>
 
     <!-- Gradient Glow -->
