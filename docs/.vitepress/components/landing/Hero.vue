@@ -61,7 +61,7 @@ onMounted(() => {
   // Create a new primitive every 1.5-4 seconds
   function scheduleNextPrimitive() {
     primitiveInterval = setTimeout(() => {
-      if(primitives.value.length < 6){
+      if (primitives.value.length < 6) {
         createAndPushPrimitive();
       }
       scheduleNextPrimitive(); // Schedule the next call
@@ -87,7 +87,7 @@ onUnmounted(() => {
   <section style="position: relative">
 
     <!-- Handwriting 1 -->
-    <h2 style="position: absolute; top: 80px; left: -140px; transform: rotate(-4deg); max-width: 70vw; font-size: 24px">
+    <h2 class="handwriting-1">
       usePolygon( {sides : n })
     </h2>
 
@@ -109,7 +109,7 @@ onUnmounted(() => {
                    @delete="handlePrimitiveDelete" :key="primitive.id"/>
 
     <!-- Handwriting 2 -->
-    <h2 style="position: absolute; bottom: 0; right: 0; transform: rotate(2deg); max-width: 70vw;">
+    <h2 class="handwriting-2">
       for ( polygon in primitives ) {<br>&nbsp;&nbsp;&nbsp;&lt; path :d= " polygon.svgPath " &gt;<br>}
     </h2>
 
@@ -118,16 +118,68 @@ onUnmounted(() => {
 
 <style scoped>
 
-.fig1{
+.handwriting-1 {
+  position: absolute;
+  top: 80px;
+  left: 80px;
+  transform: rotate(-4deg);
+  max-width: 70vw;
+  font-size: 20px;
+  pointer-events: none;
+  display: none;
+
+  @media (min-width: 900px) {
+    display: block;
+  }
+
+  @media (min-width: 1570px) {
+    left: 0;
+  }
+
+  @media (min-width: 1570px) {
+    left: -100px;
+  }
+}
+
+.handwriting-2 {
+  position: absolute;
+  bottom: 0;
+  right: 80px;
+  transform: rotate(2deg);
+  max-width: 70vw;
+  display: none;
+  pointer-events: none;
+
+  @media (min-width: 900px) {
+    display: block;
+  }
+
+  @media (min-width: 1380px) {
+    right: 0;
+  }
+}
+
+.fig1 {
   position: absolute;
   top: 130px;
   right: 205px;
-  font-size: 14px
+  font-size: 14px;
+  display: none;
+  pointer-events: none;
+
+  @media (min-width: 1050px) {
+    display: block;
+  }
 }
 
 svg {
   overflow: visible;
   pointer-events: none;
+  transform: scale(0.9) rotate(90deg);
+
+  @media (min-width: 768px) {
+    transform: none;
+  }
 }
 
 .tunnel {
@@ -136,21 +188,27 @@ svg {
 
 .gradient-glow {
   width: 1000px;
-  height: 50px;
+  height: 200px;
   display: block;
   position: absolute;
-  top: calc(50% + 100px);
+  top: 50%;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(90deg, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00);
-  filter: blur(50px);
+  filter: blur(120px);
   z-index: -1;
   pointer-events: none;
   background-size: 200% 200%;
   animation: gradientAnimation 30s ease infinite;
   opacity: 0;
 
-  &.active{
+  @media (min-width: 768px) {
+    top: calc(50% + 100px);
+    height: 50px;
+    filter: blur(50px);
+  }
+
+  &.active {
     transition: opacity 3s ease;
     opacity: 1;
   }
