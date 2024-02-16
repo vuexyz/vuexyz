@@ -19,10 +19,15 @@ interface SidesAndSideLengthConfig extends Omit<PrimitiveConfig, 'vertices' | 'e
     sideLength?: MaybeRefOrGetter<number>
 }
 
+interface SidesAndSizeConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
+    sides?: MaybeRefOrGetter<number>
+    size?: MaybeRefOrGetter<number>
+}
+
 /**
  * Configuration for a polygon, union of multiple possible configuration options.
  */
-export type PolygonConfig = VerticesConfig | SidesAndSideLengthConfig
+export type PolygonConfig = VerticesConfig | SidesAndSideLengthConfig | SidesAndSizeConfig
 
 /**
  * Composable for working with a polygon.
@@ -52,27 +57,70 @@ export function usePolygon(config?: PolygonConfig): Primitive {
         // Define vertices
         return computed(() => {
             const vertices: Vertex[] = []
-            const isEven = toValue(sides) % 2 === 0
             let initialRotation: number
-            if (isEven) {
-                initialRotation = -Math.PI / 2 + angleStep.value / 2
+            if (toValue(sides) % 2 === 0) {
+                initialRotation = -Math.PI / 2 + (angleStep.value / 2)
             } else {
                 initialRotation = -Math.PI / 2
             }
             for (let i = 0; i < toValue(sides); i++) {
                 vertices.push({
-                    x: toValue(sideLength) * Math.cos(initialRotation + angleStep.value * i),
-                    y: toValue(sideLength) * Math.sin(initialRotation + angleStep.value * i),
+                    x: toValue(sideLength) * Math.cos(initialRotation + (angleStep.value * i)),
+                    y: toValue(sideLength) * Math.sin(initialRotation + (angleStep.value * i)),
                 } as Vertex)
             }
             return vertices
         })
     }
 
+    /**
+     * Calculate vertices from sides and width.
+     */
+    const calculateVerticesFromSidesAndSize = () => {
+        // Set default values
+        const sides = "sides" in config ? config.sides : 4
+        const size = "size" in config ? config.size : 100
+
+        // Calculate the radius of the polygon (inscribed in a circle)
+        let radius: number
+        if(toValue(sides) % 2 === 0) {
+            radius = toValue(size) / 2;
+        } else {
+            const angle = Math.PI * 2 / toValue(sides);
+            radius = toValue(size) / 2 / Math.sin(angle / 2);
+        }
+
+        // Calculate the angle step for each side
+        const angleStep = computed(() => (Math.PI * 2) / toValue(sides))
+
+        // Define vertices
+        return computed(() => {
+            const vertices: Vertex[] = [];
+            let initialRotation: number
+            if (toValue(sides) % 2 === 0) {
+                initialRotation = -Math.PI / 2 + (angleStep.value / 2)
+            } else {
+                initialRotation = -Math.PI / 2
+            }
+            for (let i = 0; i < toValue(sides); i++) {
+                vertices.push({
+                    x: radius * Math.cos(initialRotation + (angleStep.value * i)),
+                    y: radius * Math.sin(initialRotation + (angleStep.value * i)),
+                });
+            }
+            return vertices;
+        })
+    }
+
     // Define vertices (with various possible configurations)
-    const vertices: ComputedRef<Vertex[]> = "vertices" in config
-        ? standardizeUserVertices
-        : calculateVerticesFromSidesAndSideLength()
+    let vertices: ComputedRef<Vertex[]>;
+    if ("vertices" in config) {
+        vertices = standardizeUserVertices;
+    } else if ("size" in config) {
+        vertices = calculateVerticesFromSidesAndSize();
+    } else {
+        vertices = calculateVerticesFromSidesAndSideLength();
+    }
 
     // Define edges
     const edges: ComputedRef<Edge[]> = computed(() => {
