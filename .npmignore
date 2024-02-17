@@ -16,3 +16,4 @@ docs/
 sonarlint/
 cover.gif
 netlify.toml
+qodana.yaml
