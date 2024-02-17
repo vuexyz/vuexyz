@@ -77,6 +77,7 @@ export default defineConfig({
         text: 'Demos',
         items: [
           { text: 'Mouse Position', link: '/demo/mouse-position' },
+          { text: 'Intersection', link: '/demo/intersection' },
         ]
       },
       {
