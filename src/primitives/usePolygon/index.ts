@@ -51,6 +51,9 @@ export function usePolygon(config?: PolygonConfig): Primitive {
         const sides = "sides" in config ? config.sides : 4
         const sideLength = "sideLength" in config ? config.sideLength : 100
 
+        // Calculate the circumscribed radius of the circle
+        const radius: ComputedRef<number> = computed(() => toValue(sideLength) / (2 * Math.sin(Math.PI / toValue(sides))));
+
         // Calculate the angle step for each side
         const angleStep = computed(() => (Math.PI * 2) / toValue(sides))
 
@@ -65,8 +68,8 @@ export function usePolygon(config?: PolygonConfig): Primitive {
             }
             for (let i = 0; i < toValue(sides); i++) {
                 vertices.push({
-                    x: toValue(sideLength) * Math.cos(initialRotation + (angleStep.value * i)),
-                    y: toValue(sideLength) * Math.sin(initialRotation + (angleStep.value * i)),
+                    x: radius.value * Math.cos(initialRotation + (angleStep.value * i)),
+                    y: radius.value * Math.sin(initialRotation + (angleStep.value * i)),
                 } as Vertex)
             }
             return vertices
