@@ -33,7 +33,7 @@ import HomeHero from './landing/Hero.vue'
   <!-- Nav Links -->
   <ul class="nav-links">
     <li>
-      <a href="/demo/mouse-position"><i class="fa-sharp fa-solid fa-shapes"></i> Demos</a>
+      <a href="/demo/basic-primitives"><i class="fa-sharp fa-solid fa-shapes"></i> Demos</a>
     </li>
     <li>
       <a href="/getting-started"><i class="fa-sharp fa-solid fa-books"></i> Documentation</a>
