@@ -17,5 +17,5 @@ const hexagon: Primitive = useHexagon({size: 100, position: {x: 550, y: 400 / 2}
 <template>
   <!-- This renderer is just for demo purposes -->
   <!-- All it does is take each primitive's svgPath property and render it in an SVG context -->
-  <PrimitiveSVGRenderer :primitives="[circle, square, hexagon]" label="Three 2D primitives" />
+  <PrimitiveSVGRenderer :primitives="[circle, square, hexagon]" label="A few 2D primitives drawn using their svgPath data" />
 </template>
