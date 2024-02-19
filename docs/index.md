@@ -7,6 +7,7 @@ layout: home
 navbar: false
 aside: false
 editLink: false
+markdownStyles: false
 ---
 
 <script setup>
