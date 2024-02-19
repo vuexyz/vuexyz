@@ -1,27 +1,32 @@
 <script setup lang="ts">
+import {ref, computed, Ref} from 'vue'
 import {usePolygon} from '../../../src'
+import {useStyleTransform} from '../../../src/utilities/useStyleTransform'
 import {Primitive} from "../../../src/primitives/usePrimitive";
-import {computed, ref, Ref} from "vue";
-import {useStyleTransform} from "../../../src/utilities/useStyleTransform";
 
-// Choose how many logos we want to show
-const numLogos:Ref = ref(10)
+// Total number of logos
+const totalLogos = 16
 
-// Create a polygon with n sides
-const rotation: Ref = ref(0)
-const polygon: Primitive = usePolygon({sides: numLogos, size: 300, position: {x: 344, y: 200}, rotation})
+// Calculate the distribution of logos between two rings
+const middleRingLogoCount = Math.floor(totalLogos / 3)
+const outerRingLogoCount = totalLogos - middleRingLogoCount
 
-// Constantly rotate the polygon
+// Set up a rotation ref
+const rotation: Ref<number> = ref(0)
+
+// Define the polygons
+const middleRing: Primitive = usePolygon({sides: middleRingLogoCount, size: 140, position: {x: 344, y: 200}, rotation: computed(() => rotation.value * -1)})
+const outerRing: Primitive = usePolygon({sides: outerRingLogoCount, size: 300, position: {x: 344, y: 200}, rotation})
+
+// Constantly rotate the polygons
 setInterval(() => {
   rotation.value += 0.2
 }, 1000 / 60)
 
-// Create a computed function for accessing the correct vertex style tag for each index
-const vertexStyles = computed(() => {
-  return (index: number) => {
-    return useStyleTransform(polygon.vertices.value[index]).value
-  }
-})
+// Compute style bindings for DOM elements on each ring, by ring primitive and index
+const computeStyle = (polygon: Primitive, index: number) => { return useStyleTransform(polygon.vertices.value[index]).value }
+const middleRingStyles = computed(() => index => computeStyle(middleRing, index))
+const outerRingStyles = computed(() => index => computeStyle(outerRing, index))
 
 </script>
 
@@ -29,11 +34,15 @@ const vertexStyles = computed(() => {
   <div class="demo-container">
     <ul class="logo-rings">
 
-      <!-- Generate 10 logo elements in the DOM -->
-      <li v-for="i in 10" :key="i" :style="vertexStyles(i - 1)">
-        <img src="/icon.png" alt="Placeholder logo">
+      <!-- Middle Ring Logos -->
+      <li v-for="i in middleRingLogoCount" :key="`middle-${i}`" :style="middleRingStyles(i - 1)">
+        <img src="/icon.png" alt="Middle ring logo">
       </li>
 
+      <!-- Outer Ring Logos -->
+      <li v-for="i in outerRingLogoCount" :key="`outer-${i}`" :style="outerRingStyles(i - 1)">
+        <img src="/icon.png" alt="Outer ring logo">
+      </li>
     </ul>
   </div>
 </template>
@@ -50,7 +59,7 @@ ul.logo-rings {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 70px;
     aspect-ratio: 1;
     border-radius: 8px;
     transform-origin: center center;
@@ -59,8 +68,8 @@ ul.logo-rings {
       max-width: 100%;
       display: block;
       transform: translate(-50%, -50%);
-      border: 2px solid white;
-      border-radius: 8px;
+      border: 3px solid white;
+      border-radius: 50%;
     }
   }
 }

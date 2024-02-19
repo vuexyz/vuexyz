@@ -4,7 +4,7 @@
 
 # Demo: Logo Rings
 
-This demo shows how to position DOM elements into concentric rings, primarily focusing on the `useStyleTransform()` utility composable.
+This demo shows how to position DOM elements into concentric rings, getting creative with the `useStyleTransform()` utility composable.
 
 <LogoRingsDemo />
 
