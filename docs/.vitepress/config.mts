@@ -94,6 +94,12 @@ export default defineConfig({
           { text: 'useTriangle', link: '/primitives/useTriangle' },
         ]
       },
+      {
+        text: 'Utilities',
+        items: [
+          { text: 'useStyleTransform', link: '/utilities/useStyleTransform' },
+        ]
+      },
       { text: 'Type Definitions', link: '/type-definitions' },
       { text: 'Contributing', link: '/contributing'}
     ],
