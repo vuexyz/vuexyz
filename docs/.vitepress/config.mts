@@ -79,6 +79,7 @@ export default defineConfig({
           { text: 'Basic Primitives', link: '/demo/basic-primitives' },
           { text: 'Mouse Position', link: '/demo/mouse-position' },
           { text: 'Canvas Rendering', link: '/demo/canvas-rendering' },
+          { text: 'Interpolate Vertex', link: '/demo/lerp-vertex' },
         ]
       },
       {
