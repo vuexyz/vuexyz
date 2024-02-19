@@ -8,13 +8,8 @@ import { gsap } from "gsap";
 import {Vertex} from "../../../src/primitives/types";
 
 // Create a triangle
-const rotation = ref(0)
+const rotation: number = ref(0)
 const triangle: Primitive = usePolygon({sides: 3, position: {x: 500, y: 200}, size: 200, rotation})
-
-// Constantly rotate the triangle
-setInterval(() => {
-  rotation.value += 1
-}, 1000 / 60)
 
 // Create a static vertex (starting point)
 const staticPoint: Vertex = {x: 200, y: 200, z: 0}
@@ -27,14 +22,23 @@ const interpolatedPoint: ComputedRef<Vertex> = useLerpVertex(staticPoint, comput
 const radius: Ref<number> = ref(80)
 const circle: Primitive = useCircle({radius, position: interpolatedPoint})
 
-// Using GSAP, animate back and forth between the static point and the triangle's first vertex
+
 onMounted(() => {
+
+  // Constantly rotate the triangle
+  const rotationInterval = setInterval(() => {
+    rotation.value += 1
+  }, 1000 / 60)
+
+  // Using GSAP, animate back and forth between the static point and the triangle's first vertex
   const lerpAnimation = gsap.to(percentage, { value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
   const scaleAnimation = gsap.to(radius, { value: 10, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
 
+  // Clean up
   onUnmounted(() => {
     lerpAnimation.kill();
     scaleAnimation.kill();
+    clearInterval(rotationInterval)
   });
 });
 

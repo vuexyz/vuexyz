@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, computed, Ref} from 'vue'
+import {ref, computed, Ref, onMounted, onUnmounted} from 'vue'
 import {usePolygon} from '../../../src'
 import {useStyleTransform} from '../../../src/utilities/useStyleTransform'
 import {Primitive} from "../../../src/primitives/usePrimitive";
@@ -18,15 +18,23 @@ const rotation: Ref<number> = ref(0)
 const middleRing: Primitive = usePolygon({sides: middleRingLogoCount, size: 140, position: {x: 344, y: 200}, rotation: computed(() => rotation.value * -1)})
 const outerRing: Primitive = usePolygon({sides: outerRingLogoCount, size: 300, position: {x: 344, y: 200}, rotation})
 
-// Constantly rotate the polygons
-setInterval(() => {
-  rotation.value += 0.2
-}, 1000 / 60)
-
 // Compute style bindings for DOM elements on each ring, by ring primitive and index
 const computeStyle = (polygon: Primitive, index: number) => { return useStyleTransform(polygon.vertices.value[index]).value }
 const middleRingStyles = computed(() => index => computeStyle(middleRing, index))
 const outerRingStyles = computed(() => index => computeStyle(outerRing, index))
+
+onMounted(() => {
+
+  // Constantly rotate the polygons
+  const rotationInterval = setInterval(() => {
+    rotation.value += 0.2
+  }, 1000 / 60)
+
+  // Clean up
+  onUnmounted(() => {
+    clearInterval(rotationInterval)
+  });
+});
 
 </script>
 
