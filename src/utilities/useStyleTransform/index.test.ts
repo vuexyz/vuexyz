@@ -6,7 +6,7 @@ describe('useStyleTransform', () => {
     expect(useStyleTransform).toBeDefined()
   })
 
-  it('should generate five vertices', () => {
+  it('should generate a correct style string', () => {
     const style = useStyleTransform({ x: 100, y: 200, z: 0 })
     expect(style.value).toBe('position: absolute; top: 0; left: 0; translate3d(100px, 200px, 0px)')
   })
