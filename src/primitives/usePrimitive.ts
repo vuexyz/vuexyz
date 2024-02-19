@@ -153,7 +153,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         if (edges.value.length > 0) {
             // Begin the path
             ctx.beginPath();
-            ctx.moveTo(edges[0][0].start.x, edges[0][0].start.y);
+            ctx.moveTo(edges.value[0][0].start.x, edges.value[0][0].start.y);
             edges.value.forEach((edge) => {
                 edge.forEach((segment) => {
                     if (segment.type === 'line') {

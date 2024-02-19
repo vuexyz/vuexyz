@@ -50,4 +50,4 @@ ctx.stroke(); // or ctx.fill();
 ```
 
 > [!IMPORTANT]
-> It's important to note that VueXYZ doesn't handle the canvas lifecycle for you. In the example above, it will render the primitive once and stop. If you want it to animate, you'll need to call `drawOnCanvas(ctx)` on every frame within your draw loop.
+> It's important to note that VueXYZ doesn't handle the canvas lifecycle for you. In the example above, it will render the primitive once and stop. If you want it to animate, you'll need to call `drawOnCanvas(ctx)` on every frame within your draw loop, as shown in the [Canvas Rendering demo](/demo/canvas-rendering).
