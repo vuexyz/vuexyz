@@ -2,7 +2,7 @@
 import {useCircle, usePolygon} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
 import {Primitive} from "../../../src/primitives/usePrimitive";
-import {computed, ComputedRef, ref, Ref} from "vue";
+import {computed, ComputedRef, onMounted, onUnmounted, ref, Ref} from "vue";
 import {useLerpVertex} from "../../../src/utilities/useLerpVertex";
 import { gsap } from "gsap";
 import {Vertex} from "../../../src/primitives/types";
@@ -28,8 +28,15 @@ const radius: Ref<number> = ref(80)
 const circle: Primitive = useCircle({radius, position: interpolatedPoint})
 
 // Using GSAP, animate back and forth between the static point and the triangle's first vertex
-gsap.to(percentage, {value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut"})
-gsap.to(radius, {value: 10, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut"})
+onMounted(() => {
+  const lerpAnimation = gsap.to(percentage, { value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
+  const scaleAnimation = gsap.to(radius, { value: 10, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
+
+  onUnmounted(() => {
+    lerpAnimation.kill();
+    scaleAnimation.kill();
+  });
+});
 
 </script>
 
