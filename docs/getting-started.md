@@ -9,7 +9,7 @@ You may decide to take the data and render it to canvas or SVG, or you might use
 #### For example:
 
 ```js
-const { vertices, edges, faces } = useTriangle({ sideLength: 100});
+const { vertices, edges, faces } = useTriangle({ sideLength: 100})
 ```
 
 ## Installation
