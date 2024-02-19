@@ -80,6 +80,7 @@ export default defineConfig({
           { text: 'Mouse Position', link: '/demo/mouse-position' },
           { text: 'Canvas Rendering', link: '/demo/canvas-rendering' },
           { text: 'Interpolate Vertex', link: '/demo/lerp-vertex' },
+          { text: 'Logo Rings', link: '/demo/logo-rings' },
         ]
       },
       {

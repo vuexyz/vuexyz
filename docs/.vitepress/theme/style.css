@@ -115,6 +115,7 @@
     background-size: cover;
     box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
     padding: 0;
+    min-height: 400px;
 }
 
 .demo-label{
