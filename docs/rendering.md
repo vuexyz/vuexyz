@@ -8,7 +8,7 @@ That said, sometimes it's useful to visualize the data in a way that's not just 
 
 ## svgPath
 
-All 2D primitives within VueXYZ return an `svgPath` member. This string represents an SVG path. For example:
+All primitives within VueXYZ return an `svgPath` member. This string represents an SVG path. For example:
 
 ```js
 { svgPath } = useHexagon({size: 100})
@@ -23,3 +23,31 @@ All 2D primitives within VueXYZ return an `svgPath` member. This string represen
   </svg>
 </template>
 ```
+
+## drawOnCanvas
+
+If you want to draw to a HTML5 canvas element instead, you can use the `drawOnCanvas` method. This method takes a canvas context and draws the primitive to it. You can access the method in a similar way:
+
+```js
+{ drawOnCanvas } = useHexagon({size: 100})
+```
+
+You can then call it _(passing in the ctx as a parameter)_:
+
+```js
+const canvas = document.getElementById('myCanvas');
+const ctx = canvas.getContext('2d');
+
+// Customize however you want
+ctx.strokeStyle = '#FF0000'; // Red line
+ctx.lineWidth = 2;
+
+// Draw the primitive
+drawOnCanvas(ctx);
+
+// Add a stroke or fill operation as desired
+ctx.stroke(); // or ctx.fill();
+```
+
+> [!IMPORTANT]
+> It's important to note that VueXYZ doesn't handle the canvas lifecycle for you. In the example above, it will render the primitive once and stop. If you want it to animate, you'll need to call `drawOnCanvas(ctx)` on every frame within your draw loop.
