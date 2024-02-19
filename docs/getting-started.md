@@ -1,8 +1,5 @@
 # Getting Started
 
-> [!IMPORTANT]
-> **VueXYZ is under development.** Things are changing quickly. The first stable release should happen within a few weeks _(by early March)_, but until then expect bugs, breaking changes and incomplete documentation.
-
 ### What is VueXYZ?
 
 **VueXYZ is a collection of Vue composables for creative coding.** Unlike other creative coding libraries that simplify rendering to a canvas, VueXYZ doesn't render anything for you. Instead, the composables return reactive data that you can use as you see fit.
