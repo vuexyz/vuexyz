@@ -4,7 +4,7 @@ category: '@Utilities'
 
 # useLerpVertex
 
-Takes two input vertices and interpolates between them a given percentage.
+Takes two input vertices and interpolates between them a given percentage. You can see a full example of this in the [Interpolate Vertex](/demo/lerp-vertex) demo.
 
 ## Configuration
 
