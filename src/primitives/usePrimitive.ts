@@ -10,6 +10,7 @@ export interface Primitive {
     edges: ComputedRef<Edge[]>
     faces: ComputedRef<Face[]>
     svgPath: ComputedRef<string>
+    drawOnCanvas: (ctx: CanvasRenderingContext2D) => void
     centroid: ComputedRef<Vertex>
     boundingBox: ComputedRef<BoundingBox>
 }
@@ -145,6 +146,30 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
     });
 
     /**
+     * Draws the primitive on a canvas context.
+     * @param ctx - The canvas context to draw on.
+     */
+    const drawOnCanvas = (ctx: CanvasRenderingContext2D) => {
+        if (edges.value.length > 0) {
+            // Begin the path
+            ctx.beginPath();
+            ctx.moveTo(edges[0][0].start.x, edges[0][0].start.y);
+            edges.value.forEach((edge) => {
+                edge.forEach((segment) => {
+                    if (segment.type === 'line') {
+                        ctx.lineTo(segment.end.x, segment.end.y);
+                    } else if (segment.type === 'curve') {
+                        ctx.bezierCurveTo(segment.c1.x, segment.c1.y, segment.c2.x, segment.c2.y, segment.end.x, segment.end.y);
+                    }
+                });
+            });
+            if (isClosed) {
+                ctx.closePath();
+            }
+        }
+    }
+
+    /**
      * The centroid (geometric center) of the primitive.
      */
     const centroid = computed(() => {
@@ -201,6 +226,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         edges,
         faces,
         svgPath,
+        drawOnCanvas,
         centroid,
         boundingBox
     }
