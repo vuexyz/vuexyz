@@ -2,9 +2,10 @@
 import {useCircle, usePolygon} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
 import {Primitive} from "../../../src/primitives/usePrimitive";
-import {computed, ref} from "vue";
+import {computed, ComputedRef, ref, Ref} from "vue";
 import {useLerpVertex} from "../../../src/utilities/useLerpVertex";
 import { gsap } from "gsap";
+import {Vertex} from "../../../src/primitives/types";
 
 // Create a triangle
 const rotation = ref(0)
@@ -16,14 +17,14 @@ setInterval(() => {
 }, 1000 / 60)
 
 // Create a static vertex (starting point)
-const staticPoint = {x: 200, y: 200, z: 0}
+const staticPoint: Vertex = {x: 200, y: 200, z: 0}
 
 // Create a new interpolated point between the static point and the triangle's first vertex
-const percentage = ref(0)
-const interpolatedPoint = useLerpVertex(staticPoint, computed(() => triangle.vertices.value[0]), percentage)
+const percentage: Ref<number> = ref(0)
+const interpolatedPoint: ComputedRef<Vertex> = useLerpVertex(staticPoint, computed(() => triangle.vertices.value[0]), percentage)
 
 // Create a small circle
-const radius = ref(80)
+const radius: Ref<number> = ref(80)
 const circle: Primitive = useCircle({radius, position: interpolatedPoint})
 
 // Using GSAP, animate back and forth between the static point and the triangle's first vertex
