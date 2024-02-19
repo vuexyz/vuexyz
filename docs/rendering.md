@@ -26,13 +26,13 @@ All primitives within VueXYZ return an `svgPath` member. This string represents 
 
 ## drawOnCanvas
 
-If you want to draw to a HTML5 canvas element instead, you can use the `drawOnCanvas` method. This method takes a canvas context and draws the primitive to it. You can access the method in a similar way:
+If you want to draw to a HTML5 canvas element instead, you can use the `drawOnCanvas` method. This method takes a canvas context and draws the primitive to it.
 
 ```js
 { drawOnCanvas } = useHexagon({size: 100})
 ```
 
-You can then call it _(passing in the ctx as a parameter)_:
+You can then call it when setting up your canvas:
 
 ```js
 const canvas = document.getElementById('myCanvas');
