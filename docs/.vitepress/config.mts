@@ -70,7 +70,7 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Getting Started', link: '/getting-started' },
-          { text: 'Contributing', link: '/contributing'}
+          { text: 'Rendering', link: '/rendering' }
         ]
       },
       {
@@ -93,7 +93,8 @@ export default defineConfig({
           { text: 'useTriangle', link: '/primitives/useTriangle' },
         ]
       },
-      { text: 'Type Definitions', link: '/type-definitions' }
+      { text: 'Type Definitions', link: '/type-definitions' },
+      { text: 'Contributing', link: '/contributing'}
     ],
 
     socialLinks: [
