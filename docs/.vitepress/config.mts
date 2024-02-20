@@ -91,6 +91,7 @@ export default defineConfig({
           { text: 'useHeptagon', link: '/primitives/useHeptagon' },
           { text: 'useHexagon', link: '/primitives/useHexagon' },
           { text: 'useLine', link: '/primitives/useLine' },
+          { text: 'useOctagon', link: '/primitives/useOctagon' },
           { text: 'usePentagon', link: '/primitives/usePentagon' },
           { text: 'usePolygon', link: '/primitives/usePolygon' },
           { text: 'useSquare', link: '/primitives/useSquare' },
