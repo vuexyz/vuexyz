@@ -53,3 +53,10 @@ export interface BoundingBox {
     maxX: number,
     maxY: number
 }
+
+/**
+ * Provides for TS omit over union types.
+ */
+export type DistributiveOmit<T, K extends keyof any> = T extends any
+    ? Omit<T, K>
+    : never;

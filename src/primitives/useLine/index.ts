@@ -1,7 +1,7 @@
 import type {MaybeRefOrGetter} from '@vueuse/shared'
 import {computed, toValue} from 'vue'
 import type {ComputedRef} from 'vue'
-import type {Edge, LineSegment, Vertex} from '../types'
+import type {Edge, LineSegment, Vertex} from '../../types'
 import {usePrimitive, Primitive, PrimitiveConfig} from '../usePrimitive'
 
 interface LineConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {

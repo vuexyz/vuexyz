@@ -5,10 +5,10 @@ import {Primitive} from "../../../src/primitives/usePrimitive";
 import {computed, ComputedRef, onMounted, onUnmounted, ref, Ref} from "vue";
 import {useLerpVertex} from "../../../src/utilities/useLerpVertex";
 import { gsap } from "gsap";
-import {Vertex} from "../../../src/primitives/types";
+import {Vertex} from "../../../src/types";
 
 // Create a triangle
-const rotation: number = ref(0)
+const rotation: Ref<number> = ref(0)
 const triangle: Primitive = usePolygon({sides: 3, position: {x: 500, y: 200}, size: 200, rotation})
 
 // Create a static vertex (starting point)

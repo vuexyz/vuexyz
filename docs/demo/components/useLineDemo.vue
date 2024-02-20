@@ -2,7 +2,7 @@
 import {useLine} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
 import {ref, Ref } from 'vue'
-import {Vertex} from "../../../src/primitives/types";
+import {Vertex} from "../../../src/types";
 
 // Create a line using the useLine() composable
 const start: Ref<Vertex> = ref({ x: -100, y: -100 })

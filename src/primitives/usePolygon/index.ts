@@ -1,7 +1,7 @@
 import type {MaybeRefOrGetter} from '@vueuse/shared'
 import {computed, toValue} from 'vue'
 import type {ComputedRef} from 'vue'
-import type {Edge, LineSegment, Vertex} from '../types'
+import type {Edge, LineSegment, Vertex} from '../../types'
 import {usePrimitive, Primitive, PrimitiveConfig} from '../usePrimitive'
 
 /**
@@ -15,12 +15,12 @@ interface VerticesConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'f
  * Configuration for a regular polygon by means of passing the number of sides and the length of each side.
  */
 interface SidesAndSideLengthConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
-    sides?: MaybeRefOrGetter<number>
+    sides: MaybeRefOrGetter<number>
     sideLength?: MaybeRefOrGetter<number>
 }
 
 interface SidesAndSizeConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
-    sides?: MaybeRefOrGetter<number>
+    sides: MaybeRefOrGetter<number>
     size?: MaybeRefOrGetter<number>
 }
 

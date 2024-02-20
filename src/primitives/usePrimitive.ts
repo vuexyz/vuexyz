@@ -1,6 +1,6 @@
 import {MaybeRefOrGetter, toValue} from '@vueuse/shared'
 import {computed, ComputedRef, ref, Ref} from 'vue'
-import type {BoundingBox, Edge, Face, Vertex} from './types'
+import type {BoundingBox, Edge, Face, Vertex} from '../types'
 
 /**
  * All those automagically reactive details about the shape you're working with.

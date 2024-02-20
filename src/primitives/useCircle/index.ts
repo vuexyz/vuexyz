@@ -1,7 +1,7 @@
 import type {MaybeRefOrGetter} from '@vueuse/shared'
 import {computed, ComputedRef, toValue} from 'vue'
 import {Primitive, PrimitiveConfig, usePrimitive} from "../usePrimitive";
-import {CurveSegment, Edge, Face, Vertex} from "../types";
+import {CurveSegment, Edge, Face, Vertex} from "../../types";
 
 interface CircleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces' | 'isClosed'> {
     radius?: MaybeRefOrGetter<number>

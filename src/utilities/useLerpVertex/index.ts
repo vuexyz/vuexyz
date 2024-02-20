@@ -1,4 +1,4 @@
-import {Vertex} from "../../primitives/types";
+import {Vertex} from "../../types";
 import {computed, ComputedRef, toValue} from "vue";
 import {MaybeRefOrGetter} from "@vueuse/shared";
 
