@@ -2,4 +2,4 @@
 
 ## Primitives
 
-<<< @/../src/primitives/types.ts
+<<< @/../src/types.ts
