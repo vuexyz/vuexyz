@@ -2,6 +2,8 @@
 
 ### What is VueXYZ?
 
+![cover.png](/cover.png)
+
 **VueXYZ is a collection of Vue composables for creative coding.** Unlike other creative coding libraries that simplify rendering to a canvas, VueXYZ doesn't render anything for you. Instead, the composables return reactive data that you can use as you see fit.
 
 You may decide to take the data and render it to canvas or SVG, or you might use it to drive animations, or anything else. You could chain multiple composables together to create complex shapes or compounded effects. The choice is yours.
