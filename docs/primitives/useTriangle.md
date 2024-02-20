@@ -15,14 +15,11 @@ Composable for working with triangles.
 ## Configuration
 
 > [!NOTE]
-> `useTriangle` is for supporting irregular triangles. If you want a regular (_equilateral_) triangle, use `usePolygon({sides: 3})` instead.
-
-The `useTriangle` function accepts a single configuration object as an argument, where each property has a default value if not provided.
+> `useTriangle` provides a regular triangle calling `usePolygon({sides: 3})`. If you want to define a more complex triangle, try `usePolygon({vertices})` to pass vertices directly.
 
 | Property   | Default          | Description                              |
 |:-----------|:-----------------|:-----------------------------------------|
-| `base`     | `0`              | The base of the triangle.                |
-| `height`   | `0`              | The height of the triangle.              |
+<!--@include: ./shared/polygonprops.md-->
 
 <!--@include: ./shared/config.md-->
 
@@ -31,10 +28,9 @@ The `useTriangle` function accepts a single configuration object as an argument,
 ```ts
 import { useTriangle } from 'vuexyz'
 
-const base = ref(50)
-const height = ref(100)
+const size = ref(200)
 const position = ref({ x: 0, y: 0 })
-const { vertices, edges, faces } = useTriangle({ base, height, position })
+const { vertices, edges, faces } = useTriangle({ size, position })
 ```
 
 <!--@include: ./shared/return.md-->

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {useCircle, usePolygon} from '../../../src'
+import {useCircle, useTriangle} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
 import {Primitive} from "../../../src/primitives/usePrimitive";
 import {computed, ComputedRef, onMounted, onUnmounted, ref, Ref} from "vue";
@@ -9,7 +9,7 @@ import {Vertex} from "../../../src/types";
 
 // Create a triangle
 const rotation: Ref<number> = ref(0)
-const triangle: Primitive = usePolygon({sides: 3, position: {x: 500, y: 200}, size: 200, rotation})
+const triangle: Primitive = useTriangle({position: {x: 500, y: 200}, size: 200, rotation})
 
 // Create a static vertex (starting point)
 const staticPoint: Vertex = {x: 200, y: 200, z: 0}
@@ -27,7 +27,7 @@ onMounted(() => {
 
   // Constantly rotate the triangle
   const rotationInterval = setInterval(() => {
-    rotation.value += 1
+    rotation.value += 2
   }, 1000 / 60)
 
   // Using GSAP, animate back and forth between the static point and the triangle's first vertex
