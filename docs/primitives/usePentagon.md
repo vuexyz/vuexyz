@@ -8,7 +8,7 @@ category: '@Primitives'
 
 # usePentagon
 
-Composable for working with pentagons.
+Composable for working with pentagons _(5-sided polygon)_.
 
 <UsePentagonDemo />
 

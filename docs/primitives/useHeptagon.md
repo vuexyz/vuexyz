@@ -3,14 +3,14 @@ category: '@Primitives'
 ---
 
 <script setup>
-    import UseHexagonDemo from '../demo/components/useHexagonDemo.vue';
+    import UseHeptagonDemo from '../demo/components/useHeptagonDemo.vue';
 </script>
 
-# useHexagon
+# useHeptagon
 
-Composable for working with hexagons _(6-sided polygon)_.
+Composable for working with heptagons _(7-sided polygon)_.
 
-<UseHexagonDemo />
+<UseHeptagonDemo />
 
 ## Configuration
 
@@ -23,11 +23,11 @@ Composable for working with hexagons _(6-sided polygon)_.
 ## Usage
 
 ```ts
-import { useHexagon } from 'vuexyz'
+import { useHeptagon } from 'vuexyz'
 
 const sideLength = ref(50)
 const position = ref({ x: 0, y: 0 })
-const { vertices, edges, faces } = useHexagon({ sideLength, position })
+const { vertices, edges, faces } = useHeptagon({ sideLength, position })
 ```
 
 <!--@include: ./shared/return.md-->
