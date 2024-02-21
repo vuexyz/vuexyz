@@ -12,6 +12,8 @@ You may decide to take the data and render it to canvas or SVG, or you might use
 
 ```js
 const { vertices, edges, faces } = useTriangle({ sideLength: 100})
+
+// vertices: [ { x, y, z }, { x, y, z }, { x, y, z } ... ]
 ```
 
 ## Installation
