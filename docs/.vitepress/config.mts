@@ -96,6 +96,7 @@ export default defineConfig({
                     {text: 'useOctagon', link: '/primitives/useOctagon'},
                     {text: 'usePentagon', link: '/primitives/usePentagon'},
                     {text: 'usePolygon', link: '/primitives/usePolygon'},
+                    {text: 'useRectangle', link: '/primitives/useRectangle'},
                     {text: 'useSquare', link: '/primitives/useSquare'},
                     {text: 'useTriangle', link: '/primitives/useTriangle'},
                 ]
