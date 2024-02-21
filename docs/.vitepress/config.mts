@@ -118,7 +118,6 @@ export default defineConfig({
                     {text: 'useStyleTransform', link: '/utilities/useStyleTransform'},
                 ]
             },
-            {text: 'Type Definitions', link: '/type-definitions'},
             {text: 'Contributing', link: '/contributing'}
         ],
 
