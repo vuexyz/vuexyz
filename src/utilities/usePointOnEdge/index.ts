@@ -3,6 +3,7 @@ import { Edge, Vertex } from '../../types';
 import { MaybeRefOrGetter } from '@vueuse/shared';
 import { toValue } from '@vueuse/core';
 import {Bezier} from 'bezier-js';
+import {useEdgeLength} from "../useEdgeLength";
 
 /**
  * Takes an edge and returns a point along it at a given percentage.
@@ -13,28 +14,12 @@ export function usePointOnEdge(edge: MaybeRefOrGetter<Edge>, percentage: MaybeRe
     return computed(() => {
         const edgeVal = toValue(edge);
         const percentageVal = toValue(percentage);
-        let totalLength = 0;
-        const lengths = edgeVal.map(segment => {
-            if (segment.type === 'line') {
-                const dx = segment.end.x - segment.start.x;
-                const dy = segment.end.y - segment.start.y;
-                const dz = (segment.end.z || 0) - (segment.start.z || 0);
-                const length = Math.sqrt(dx * dx + dy * dy + dz * dz);
-                totalLength += length;
-                return length;
-            } else { // curve
-                const points = [segment.start, segment.c1, segment.c2, segment.end];
-                const bezier = new Bezier(points.map(p => ({x: p.x, y: p.y})));
-                const length = bezier.length();
-                totalLength += length;
-                return length;
-            }
-        });
+        const { length, segmentLengths } = useEdgeLength(edgeVal);
         let accumulatedLength = 0;
-        const targetLength = percentageVal * totalLength;
+        const targetLength = percentageVal * length.value;
         for (let i = 0; i < edgeVal.length; i++) {
             const segment = edgeVal[i];
-            const segmentLength = lengths[i];
+            const segmentLength = segmentLengths.value[i];
             if ((accumulatedLength + segmentLength) >= targetLength) {
                 const segmentPercentage = (targetLength - accumulatedLength) / segmentLength;
                 if (segment.type === 'line') {
