@@ -187,24 +187,22 @@ svg {
 
 .gradient-glow {
   width: 1000px;
-  height: 200px;
-  display: block;
+  display: none;
   position: absolute;
-  top: 50%;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(90deg, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00, #A913FF, #F03AD7, #FF7448, #FFC325, #66FF00);
-  filter: blur(120px);
   z-index: -1;
   pointer-events: none;
   background-size: 200% 200%;
   animation: gradientAnimation 30s ease infinite;
   opacity: 0;
+  top: calc(50% + 100px);
+  height: 50px;
+  filter: blur(50px);
 
   @media (min-width: 768px) {
-    top: calc(50% + 100px);
-    height: 50px;
-    filter: blur(50px);
+    display: block;
   }
 
   &.active {
