@@ -116,6 +116,7 @@ export default defineConfig({
                     {text: 'usePointOnEdge', link: '/utilities/usePointOnEdge'},
                     {text: 'usePointOnPrimitive', link: '/utilities/usePointOnPrimitive'},
                     {text: 'useStyleTransform', link: '/utilities/useStyleTransform'},
+                    {text: 'useVertexAngle', link: '/utilities/useVertexAngle'},
                 ]
             },
             {text: 'Contributing', link: '/contributing'}
