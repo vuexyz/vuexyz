@@ -112,6 +112,7 @@ export default defineConfig({
                     {text: 'useEdgeLength', link: '/utilities/useEdgeLength'},
                     {text: 'useLerpVertex', link: '/utilities/useLerpVertex'},
                     {text: 'usePointOnEdge', link: '/utilities/usePointOnEdge'},
+                    {text: 'usePointOnPrimitive', link: '/utilities/usePointOnPrimitive'},
                     {text: 'useStyleTransform', link: '/utilities/useStyleTransform'},
                 ]
             },

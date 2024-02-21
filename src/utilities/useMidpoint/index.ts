@@ -1,5 +1,5 @@
 import {Edge, Vertex} from "../../types";
-import {computed, ComputedRef, toValue} from "vue";
+import {computed, ComputedRef} from "vue";
 import {MaybeRefOrGetter} from "@vueuse/shared";
 
 /**
