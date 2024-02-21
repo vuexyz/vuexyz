@@ -22,7 +22,7 @@ if not provided.
 
 | Property     | Default | Description                                          |
 |:-------------|:--------|:-----------------------------------------------------|
-| `radius`     | `0`     | The radius of the arc.                               |
+| `radius`     | `100`   | The radius of the arc.                               |
 | `startAngle` | `0`     | The start angle of the arc, in degrees _(0 to 360)_. |
 | `endAngle`   | `360`   | The end angle of the arc, in degrees _(0 to 360)_.   |
 
