@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref, computed, Ref, onMounted, onUnmounted} from 'vue'
 import {usePolygon} from '../../../src'
-import {useStyleTransform} from '../../../src/utilities/useStyleTransform'
+import {useStyleTransform} from '../../../src'
 import {Primitive} from "../../../src/primitives/usePrimitive";
 
 // Total number of logos

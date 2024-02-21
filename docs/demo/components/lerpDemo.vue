@@ -3,7 +3,7 @@ import {useCircle, useTriangle} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
 import {Primitive} from "../../../src/primitives/usePrimitive";
 import {computed, ComputedRef, onMounted, onUnmounted, ref, Ref} from "vue";
-import {useLerpVertex} from "../../../src/utilities/useLerpVertex";
+import {useLerpVertex} from "../../../src";
 import { gsap } from "gsap";
 import {Vertex} from "../../../src/types";
 
