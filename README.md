@@ -13,12 +13,12 @@
 ## Features
 
 - 🎨 A collection of Vue 3 composables for creative coding.
-- 💎 Various 2D primitive composables with `usePolygon` for custom shapes.
-- ✨ Standalone composables for non-polygonal primitives like circles, lines, etc.
-- 📐 Composables return computed refs for vertices, edges, faces, etc.
+- 💎 12+ built-in primitives, plus support for custom irregular polygons.
+- ✨ Includes non-polygonal primitives like arcs, bézier curves, etc.
+- 📐 Composables return reactive data for vertices, edges, faces, etc.
 - 🎛️ Utility methods for rendering, positioning, and transforming primitives.
-- 🔥 Built with **Vue** Composition API.
-- 📒 Written in **TypeScript**.
+- 🔥 Built for the **Vue 3 Composition API**.
+- 📒 Fully typed API with **TypeScript**.
 
 ## Links
 
