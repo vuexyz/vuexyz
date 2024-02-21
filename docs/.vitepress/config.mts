@@ -42,6 +42,8 @@ export default defineConfig({
         ],
         ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
         ['meta', {name: 'twitter:creator', content: '@marchantweb'}],
+        ['meta', {name: 'og:image', content: 'https://vuexyz.org/cover.png'}],
+        ['meta', {name: 'twitter:image', content: 'https://vuexyz.org/cover.png'}],
         ['meta', {name: 'viewport', content: 'width=device-width, initial-scale=1.0, viewport-fit=cover'}],
         ['meta', {name: "theme-color", content: "#0866D2"}],
         ['link', {rel: "apple-touch-icon", sizes: "180x180", href: "/icon.svg"}]
