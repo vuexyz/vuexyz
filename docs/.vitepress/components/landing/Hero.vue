@@ -174,7 +174,7 @@ onUnmounted(() => {
 svg {
   overflow: visible;
   pointer-events: none;
-  transform: scale(0.9) rotate(90deg);
+  transform: scale(0.9) rotate(45deg);
 
   @media (min-width: 768px) {
     transform: none;
