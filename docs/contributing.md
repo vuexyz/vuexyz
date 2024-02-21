@@ -28,7 +28,13 @@ VueXYZ uses VitePress for documentation, and it's easy to develop and debug with
 pnpm docs:dev
 ```
 
-The library itself is located under `/src`, with the docs under `/docs`. Each composable has its own directory containing the source code and tests. You can run `pnpm test` to run the tests and make sure they pass.
+### Project Structure
+
+All the composables are within the `/src` directory. Primitives are found under `src/primitives` and utilities under `src/utilities`. Each composable has its own directory within those respective paths, with the source code and tests.
+
+If you add/edit a composable, you can run `pnpm test` to run the tests.
+
+Documentation and demos are found under `docs`, which is a VitePress installation. See the [VitePress documentation](https://vitepress.dev/) for more information.
 
 ## Thanks!
 

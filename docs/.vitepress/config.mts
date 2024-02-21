@@ -75,7 +75,8 @@ export default defineConfig({
                     {text: 'Creating Primitives', link: '/creating-primitives'},
                     {text: 'Using Primitive Data', link: '/using-primitive-data'},
                     {text: 'Utility Composables', link: '/utility-composables'},
-                    {text: 'Rendering', link: '/rendering'}
+                    {text: 'Rendering', link: '/rendering'},
+                    {text: 'Contributing', link: '/contributing'}
                 ]
             },
             {
@@ -118,8 +119,7 @@ export default defineConfig({
                     {text: 'useStyleTransform', link: '/utilities/useStyleTransform'},
                     {text: 'useVertexAngle', link: '/utilities/useVertexAngle'},
                 ]
-            },
-            {text: 'Contributing', link: '/contributing'}
+            }
         ],
 
         socialLinks: [
