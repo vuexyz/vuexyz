@@ -19,7 +19,7 @@ export function useEllipse(config?: EllipseConfig): Primitive {
     // Create a circle (and scale it to the ratio of the ellipse)
     const {vertices, edges, faces} = useCircle({radius: xRadius, scale: {x: 1, y: ratio.value}})
 
-    // Return destructed primitive (plus any additional properties, if applicable)
+    // Return destructured primitive (plus any additional properties, if applicable)
     return {
         ...usePrimitive({...config, vertices, edges, faces})
     }

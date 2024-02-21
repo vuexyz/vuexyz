@@ -139,7 +139,7 @@ export function usePolygon(config?: PolygonConfig): Primitive {
         return [edges.value] // Single face comprised of all edges
     })
 
-    // Return destructed primitive (plus any additional properties, if applicable)
+    // Return destructured primitive (plus any additional properties, if applicable)
     return {
         ...usePrimitive({...config, vertices, edges, faces})
     }

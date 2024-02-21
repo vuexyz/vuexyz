@@ -38,7 +38,7 @@ export function useLine(config?: LineConfig): Primitive {
     // Define faces (a line is not a closed shape)
     const faces: ComputedRef<any[]> = computed(() => [])
 
-    // Return destructed primitive (plus any additional properties, if applicable)
+    // Return destructured primitive (plus any additional properties, if applicable)
     return {
         ...usePrimitive({...config, vertices, edges, faces, isClosed: false})
     }

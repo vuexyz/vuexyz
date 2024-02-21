@@ -62,7 +62,7 @@ export function useCircle(config?: CircleConfig): Primitive {
     // Define faces
     const faces: ComputedRef<Face[]> = computed(() => [])
 
-    // Return destructed primitive (plus any additional properties, if applicable)
+    // Return destructured primitive (plus any additional properties, if applicable)
     return {
         ...usePrimitive({...config, vertices, edges, faces})
     }
