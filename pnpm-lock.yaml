@@ -8,6 +8,9 @@ dependencies:
   '@vueuse/shared':
     specifier: ^10.7.2
     version: 10.7.2(vue@3.4.19)
+  bezier-js:
+    specifier: ^6.1.4
+    version: 6.1.4
   gsap:
     specifier: ^3.12.5
     version: 3.12.5
@@ -19,6 +22,9 @@ dependencies:
     version: 3.4.19
 
 devDependencies:
+  '@types/bezier-js':
+    specifier: ^4.1.3
+    version: 4.1.3
   '@vueuse/components':
     specifier: ^10.7.2
     version: 10.7.2(vue@3.4.19)
@@ -530,6 +536,10 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: false
 
+  /@types/bezier-js@4.1.3:
+    resolution: {integrity: sha512-FNVVCu5mx/rJCWBxLTcL7oOajmGtWtBTDjq6DSUWUI12GeePivrZZXz+UgE0D6VYsLEjvExRO03z4hVtu3pTEQ==}
+    dev: true
+
   /@types/estree@1.0.5:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
@@ -815,6 +825,10 @@ packages:
 
   /assertion-error@1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
+    dev: false
+
+  /bezier-js@6.1.4:
+    resolution: {integrity: sha512-PA0FW9ZpcHbojUCMu28z9Vg/fNkwTj5YhusSAjHHDfHDGLxJ6YUKrAN2vk1fP2MMOxVw4Oko16FMlRGVBGqLKg==}
     dev: false
 
   /cac@6.7.14:
