@@ -112,7 +112,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
                     start: transformVertex(segment.start),
                     end: transformVertex(segment.end),
                 };
-            } else { // Curve
+            } else {
                 return {
                     type: 'curve',
                     start: transformVertex(segment.start),
