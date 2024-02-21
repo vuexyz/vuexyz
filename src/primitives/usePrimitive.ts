@@ -179,6 +179,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         return vertices.value.reduce((acc, v) => ({
             x: acc.x + v.x / vertices.value.length,
             y: acc.y + v.y / vertices.value.length,
+            z: acc.z + v.z / vertices.value.length
         }), {x: 0, y: 0});
     })
 
