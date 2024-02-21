@@ -2,7 +2,7 @@
 
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/version/marchantweb/vuexyz?label=current%20version)
 
-![cover.png](docs%2Fpublic%2Fcover.png)
+![cover.png](https://github.com/marchantweb/vuexyz/raw/main/docs%2Fpublic%2Fcover.png)
 
 ### VueXYZ is a collection of Vue 3 composables for creative coding.
 
