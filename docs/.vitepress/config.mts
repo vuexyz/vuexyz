@@ -72,6 +72,9 @@ export default defineConfig({
                 text: 'Guide',
                 items: [
                     {text: 'Getting Started', link: '/getting-started'},
+                    {text: 'Creating Primitives', link: '/creating-primitives'},
+                    {text: 'Using Primitive Data', link: '/using-primitive-data'},
+                    {text: 'Utility Composables', link: '/utility-composables'},
                     {text: 'Rendering', link: '/rendering'}
                 ]
             },

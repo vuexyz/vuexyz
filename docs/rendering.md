@@ -2,9 +2,9 @@
 
 Most frontend creative coding libraries _(like p5.js or pixi.js)_ handle rendering for you. Typically, they provide a `draw` function that gets called every frame and any code you write gets drawn to a canvas element.
 
-VueXYZ is different in that regard. It doesn't draw anything by default. Instead, each composable returns data. It's up to you to decide how to render that data.
+VueXYZ is different in that regard, as it doesn't draw anything or modify the DOM in any way. Instead, each composable returns data. It's up to you to decide how to render that it.
 
-But even with this approach, sometimes it's useful to visualize the data _(during prototyping, or even just for visualizing your scene)_. For that purpose, all primitives return additional members and methods that make it easy to render them in different ways.
+But even with this approach, sometimes it's useful to visualize primitives. For that purpose, all primitives return reactive properties to make it painless to render them to SVG or canvas.
 
 ## svgPath
 
