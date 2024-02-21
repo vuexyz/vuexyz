@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import {withDefaults} from 'vue'
 import {Primitive} from "../../../../src/primitives/usePrimitive";
+import {Vertex} from "../../../../src/types";
 
 interface Props {
   primitives: Primitive[]
+  vertices: Vertex[]
   label?: string
 }
 
@@ -22,6 +24,9 @@ const props = withDefaults(defineProps<Props>(), {
 
       <!-- Render each primitive's SVG path -->
       <path v-for="primitive in primitives" :d="primitive.svgPath.value" fill="none" stroke="rgba(255, 255, 255, 1)" stroke-width="4" filter="url(#handwrittenFilter)"/>
+
+      <!-- Render each vertex -->
+      <circle v-for="vertex in vertices" :cx="vertex.x" :cy="vertex.y" r="6" fill="rgba(255, 0, 0, 1)" filter="url(#handwrittenFilter)"/>
 
       <defs>
         <filter x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" id="handwrittenFilter">

@@ -86,6 +86,7 @@ export default defineConfig({
                     {text: 'Canvas Rendering', link: '/demo/canvas-rendering'},
                     {text: 'Interpolate Vertex', link: '/demo/lerp-vertex'},
                     {text: 'Logo Rings', link: '/demo/logo-rings'},
+                    {text: 'Point On Primitive', link: '/demo/point-on-primitive'},
                 ]
             },
             {

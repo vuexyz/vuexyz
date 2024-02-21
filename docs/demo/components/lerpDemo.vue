@@ -14,12 +14,12 @@ const triangle: Primitive = useTriangle({position: {x: 500, y: 200}, size: 200, 
 // Create a static vertex (starting point)
 const staticPoint: Vertex = {x: 200, y: 200, z: 0}
 
-// Create a new interpolated point between the static point and the triangle's first vertex
+// Create a new interpolated point
 const percentage: Ref<number> = ref(0)
 const interpolatedPoint: ComputedRef<Vertex> = useLerpVertex(staticPoint, computed(() => triangle.vertices.value[0]), percentage)
 
 // Create a small circle
-const radius: Ref<number> = ref(80)
+const radius: Ref<number> = ref(30)
 const circle: Primitive = useCircle({radius, position: interpolatedPoint})
 
 
@@ -32,12 +32,10 @@ onMounted(() => {
 
   // Using GSAP, animate back and forth between the static point and the triangle's first vertex
   const lerpAnimation = gsap.to(percentage, { value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
-  const scaleAnimation = gsap.to(radius, { value: 10, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
 
   // Clean up
   onUnmounted(() => {
     lerpAnimation.kill();
-    scaleAnimation.kill();
     clearInterval(rotationInterval)
   });
 });
@@ -47,5 +45,5 @@ onMounted(() => {
 <template>
   <!-- This renderer is just for demo purposes -->
   <!-- All it does is take each primitive's svgPath property and render it in an SVG context -->
-  <PrimitiveSVGRenderer :primitives="[circle, triangle]" label="useLerpVertex"/>
+  <PrimitiveSVGRenderer :primitives="[circle, triangle]" :vertices="[staticPoint, triangle.vertices.value[0]]" label="useLerpVertex"/>
 </template>
