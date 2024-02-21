@@ -147,9 +147,23 @@
     background-color: #e8e8ee;
 }
 
+html.dark .VPSidebar::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: #28282d;
+}
+
 html::-webkit-scrollbar-thumb {
     border-radius: 8px;
     border: 2px solid transparent;
     background-clip: content-box;
     background-color: #dedee3;
+}
+
+html.dark::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: #4c4c57;
 }
