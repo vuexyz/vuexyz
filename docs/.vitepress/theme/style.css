@@ -129,3 +129,27 @@
     text-align: center;
     cursor: default;
 }
+
+.VPSidebar::-webkit-scrollbar, html::-webkit-scrollbar {
+    width: 10px;
+}
+
+.VPSidebar::-webkit-scrollbar-track, html::-webkit-scrollbar-track {
+    border-radius: 0;
+    background: none;
+    border: none;
+}
+
+.VPSidebar::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: #e8e8ee;
+}
+
+html::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+    background-color: #dedee3;
+}
