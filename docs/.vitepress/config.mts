@@ -86,6 +86,7 @@ export default defineConfig({
             {
                 text: 'Primitives',
                 items: [
+                    {text: 'useArc', link: '/primitives/useArc'},
                     {text: 'useBezierCurve', link: '/primitives/useBezierCurve'},
                     {text: 'useCircle', link: '/primitives/useCircle'},
                     {text: 'useEllipse', link: '/primitives/useEllipse'},
