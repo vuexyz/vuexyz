@@ -17,7 +17,7 @@ Takes an input vertex and generates a string that can be bound to `:style` to ap
 ```vue
 <script setup lang="ts">
   const vertex = ref({ x: 100, y: 200, z: 0 });
-  const transformation = useStyleTransform({ vertex });
+  const transformation = useStyleTransform( vertex );
 </script>
 
 <template>

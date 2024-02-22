@@ -19,7 +19,7 @@ Takes two input vertices and interpolates between them a given percentage. You c
 ```js
     const start = ref({x: 100, y: 100, z: 0})
     const end = ref({x: 300, y: 300, z: 100})
-    const midpoint = useLerpVertex({ start, end, percentage: 0.5 })
+    const midpoint = useLerpVertex(start, end, 0.5)
     // midpoint = {x: 200, y: 200, z: 25}
 ```
 
