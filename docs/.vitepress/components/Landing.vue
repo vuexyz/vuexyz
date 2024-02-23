@@ -172,6 +172,7 @@ ul.nav-links {
   display: flex;
   flex-direction: column;
   gap: 25px;
+  z-index: 5;
 
   @media (max-width: 768px) {
     bottom: 40px;
@@ -188,11 +189,15 @@ ul.nav-links {
     text-transform: uppercase;
     text-wrap: pretty;
     cursor: default;
+    z-index: 5;
+    position: relative;
 
     a {
       display: flex;
       gap: 15px;
       align-items: center;
+      z-index: 5;
+      position: relative;
     }
 
     i {
