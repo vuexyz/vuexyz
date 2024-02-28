@@ -123,7 +123,7 @@ export default defineConfig({
         ],
 
         socialLinks: [
-            {icon: 'github', link: 'https://github.com/marchantweb/vuexyz'},
+            {icon: 'github', link: 'https://github.com/vuexyz/vuexyz'},
             {icon: 'discord', link: 'https://discord.gg/hKyfDAddsK'},
             {icon: 'twitter', link: 'https://twitter.com/marchantweb'},
         ],

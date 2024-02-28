@@ -1,8 +1,8 @@
 # VueXYZ
 
-![GitHub package.json dynamic](https://img.shields.io/github/package-json/version/marchantweb/vuexyz?label=current%20version)
+![GitHub package.json dynamic](https://img.shields.io/github/package-json/version/vuexyz/vuexyz?label=current%20version)
 
-![cover.png](https://github.com/marchantweb/vuexyz/raw/main/docs%2Fpublic%2Fcover.png)
+![cover.png](https://github.com/vuexyz/vuexyz/raw/main/docs%2Fpublic%2Fcover.png)
 
 ### VueXYZ is a collection of Vue 3 composables for creative coding.
 
@@ -51,4 +51,4 @@ npm install vuexyz
 
 Copyright (c) 2024 Simon Le Marchant _(Marchant Web, LLC.)_
 
-VueXYZ is licensed under the [MIT License](https://github.com/marchantweb/vuexyz/blob/main/LICENSE). Licensed works, modifications, and larger works may be distributed under different terms and without source code.
+VueXYZ is licensed under the [MIT License](https://github.com/vuexyz/vuexyz/blob/main/LICENSE). Licensed works, modifications, and larger works may be distributed under different terms and without source code.

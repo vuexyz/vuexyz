@@ -4,7 +4,7 @@ Thanks for your interest in contributing to VueXYZ. Here's how to jump in:
 
 ## Find Issues
 
-You can find issues on the [GitHub](https://github.com/marchantweb/vuexyz/issues) repo. If you find a bug or have a feature request, please open an issue. If you're interested in working on an issue, please comment on it to let others know you're working on it.
+You can find issues on the [GitHub](https://github.com/vuexyz/vuexyz/issues) repo. If you find a bug or have a feature request, please open an issue. If you're interested in working on an issue, please comment on it to let others know you're working on it.
 
 ## What about wrapping other creative coding libraries?
 

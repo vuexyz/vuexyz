@@ -42,7 +42,7 @@ import HomeHero from './landing/Hero.vue'
       <a href="https://discord.gg/hKyfDAddsK" target="_blank"><i class="fa-brands fa-discord"></i> Discord</a>
     </li>
     <li>
-      <a href="https://github.com/marchantweb/vuexyz" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://github.com/vuexyz/vuexyz" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
     </li>
   </ul>
 
