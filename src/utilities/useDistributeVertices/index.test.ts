@@ -8,8 +8,9 @@ describe('useDistributeVertices', () => {
     })
 
     it('it should return 4 vertices if prompted to layout 4 along a square', () => {
-      const square = useSquare({sideLength: 100})
-      const output = useDistributeVertices(square, 4)
-      expect(output.value.length).toStrictEqual(4)
+        const square = useSquare({sideLength: 100})
+        const {vertices, percentages} = useDistributeVertices(square, 4)
+        expect(vertices.value.length).toStrictEqual(4)
+        expect(percentages.value.length).toStrictEqual(4)
     })
 })

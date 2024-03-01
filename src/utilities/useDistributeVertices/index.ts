@@ -13,8 +13,8 @@ import {usePointOnPrimitive} from "../usePointOnPrimitive";
 export function useDistributeVertices(primitive: MaybeRefOrGetter<Primitive>, count: MaybeRefOrGetter<number> = 0, options: MaybeRefOrGetter<{
     method: MaybeRefOrGetter<'around' | 'between'>,
     align: MaybeRefOrGetter<'start' | 'center' | 'end'>
-}> = {method: 'around', align: 'center'}): ComputedRef<Vertex[]> {
-    return computed((): Vertex[] => {
+}> = {method: 'around', align: 'center'}): { vertices: ComputedRef<Vertex[]>, percentages: ComputedRef<number[]> } {
+    const percentages = computed(() => {
         const numberOfVertices: number = toValue(count)
         const method = toValue(toValue(options).method)
         const align = toValue(toValue(options).align)
@@ -39,7 +39,11 @@ export function useDistributeVertices(primitive: MaybeRefOrGetter<Primitive>, co
                 }
             }
         }
-        return distributionPercentages.map(percentage => usePointOnPrimitive(toValue(primitive), percentage).value);
+        return distributionPercentages
+    })
+    const vertices = computed((): Vertex[] => {
+        return percentages.value.map(percentage => usePointOnPrimitive(toValue(primitive), percentage).value);
     });
+    return {vertices, percentages}
 }
 
