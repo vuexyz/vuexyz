@@ -88,6 +88,7 @@ export default defineConfig({
                     {text: 'Interpolate Vertex', link: '/demo/lerp-vertex'},
                     {text: 'Logo Rings', link: '/demo/logo-rings'},
                     {text: 'Point On Primitive', link: '/demo/point-on-primitive'},
+                    {text: 'Equally Distribute Points', link: '/demo/distribute-points'},
                 ]
             },
             {
