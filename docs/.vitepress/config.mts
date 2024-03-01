@@ -112,6 +112,7 @@ export default defineConfig({
             {
                 text: 'Utilities',
                 items: [
+                    {text: 'useDistributePoints', link: '/utilities/useDistributePoints'},
                     {text: 'useEdgeLength', link: '/utilities/useEdgeLength'},
                     {text: 'useEdgeMidpoint', link: '/utilities/useEdgeMidpoint'},
                     {text: 'useLerpVertex', link: '/utilities/useLerpVertex'},
