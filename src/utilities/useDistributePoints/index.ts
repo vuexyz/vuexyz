@@ -8,9 +8,9 @@ import {usePointOnPrimitive} from "../usePointOnPrimitive";
 /**
  * Takes a primitive and a number of vertices, returning an array of vertices that are evenly distributed along the primitive's edges.
  *
- * @see https://vuexyz.org/utilities/useDistributeVertices
+ * @see https://vuexyz.org/utilities/useDistributePoints
  */
-export function useDistributeVertices(primitive: MaybeRefOrGetter<Primitive>, count: MaybeRefOrGetter<number> = 0, options: MaybeRefOrGetter<{
+export function useDistributePoints(primitive: MaybeRefOrGetter<Primitive>, count: MaybeRefOrGetter<number> = 0, options: MaybeRefOrGetter<{
     method: MaybeRefOrGetter<'around' | 'between'>,
     align: MaybeRefOrGetter<'start' | 'center' | 'end'>
 }> = {method: 'around', align: 'center'}): { vertices: ComputedRef<Vertex[]>, percentages: ComputedRef<number[]> } {
