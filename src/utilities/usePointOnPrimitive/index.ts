@@ -1,7 +1,7 @@
-import { computed, ComputedRef } from 'vue';
+import {computed, ComputedRef, ref} from 'vue';
 import {Edge, Vertex} from '../../types';
-import { MaybeRefOrGetter } from '@vueuse/shared';
-import { toValue } from '@vueuse/core';
+import {MaybeRefOrGetter} from '@vueuse/shared';
+import {toValue} from '@vueuse/core';
 import {useEdgeLength} from "../useEdgeLength";
 import {usePointOnEdge} from "../usePointOnEdge";
 import {Primitive} from "../../primitives/usePrimitive";
@@ -11,25 +11,30 @@ import {Primitive} from "../../primitives/usePrimitive";
  *
  * @see https://vuexyz.org/utilities/usePointOnPrimitive
  */
-export function usePointOnPrimitive(primitive: MaybeRefOrGetter<Primitive> | MaybeRefOrGetter<Edge[]>, percentage: MaybeRefOrGetter<number> = 0): ComputedRef<Vertex> {
+export function usePointOnPrimitive(primitive: MaybeRefOrGetter<Primitive> | MaybeRefOrGetter<Edge[]>, percentage: MaybeRefOrGetter<number> = 0): {
+    point: ComputedRef<Vertex>
+} {
     const edges: ComputedRef<Edge[]> = computed(() => {
-        const primitiveVal = toValue(primitive);
-        return Array.isArray(primitiveVal) ? primitiveVal : primitiveVal.edges.value;
-    });
-    const totalLength = computed(() => {
-        return edges.value.reduce((acc, edge) => acc + useEdgeLength(edge).length.value, 0);
-    });
-    const targetLength = computed(() => totalLength.value * toValue(percentage));
-    return computed((): Vertex => {
-        let accumulatedLength = 0;
-        for (const edge of edges.value) {
-            const { length } = useEdgeLength(edge);
-            if (accumulatedLength + length.value >= targetLength.value) {
-                const edgePercentage = (targetLength.value - accumulatedLength) / length.value;
-                return usePointOnEdge(edge, edgePercentage).value;
-            }
-            accumulatedLength += length.value;
+        const primitiveVal = toValue(primitive)
+        if (Array.isArray(primitiveVal)) {
+            return primitiveVal
         }
-        return { x: 0, y: 0, z: 0 };
-    });
+        return 'edges' in primitiveVal ? primitiveVal.edges.value : []
+    })
+    const point = computed((): Vertex => {
+        const totalLength = edges.value.reduce((acc, edge) => acc + useEdgeLength(edge).length.value, 0)
+        const targetLength = totalLength * toValue(percentage)
+        let accumulatedLength = 0
+        for (const edge of edges.value) {
+            const { length} = useEdgeLength(edge);
+            if (accumulatedLength + length.value >= targetLength) {
+                const edgePercentage = (targetLength - accumulatedLength) / length.value
+                const { point } = usePointOnEdge(edge, edgePercentage)
+                return point.value;
+            }
+            accumulatedLength += length.value
+        }
+        return {x: 20, y: 20, z: 0}
+    })
+    return {point}
 }

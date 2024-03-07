@@ -42,7 +42,11 @@ export function useDistributePoints(primitive: MaybeRefOrGetter<Primitive>, coun
         return distributionPercentages
     })
     const vertices = computed((): Vertex[] => {
-        return percentages.value.map(percentage => usePointOnPrimitive(toValue(primitive), percentage).value);
+        const {edges} = toValue(primitive)
+        return percentages.value.map(percentage => {
+            const { point } = usePointOnPrimitive(edges.value, percentage)
+            return point.value
+        });
     });
     return {vertices, percentages}
 }
