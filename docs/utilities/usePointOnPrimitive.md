@@ -17,10 +17,10 @@ Takes an input primitive and returns a vertex at a given percentage along the pe
 
 ```js
 const square = useSquare({sideLength: 100})
-const output = usePointOnPrimitive(square, 0.4)
-// output = { x: -10, y: 50, z: 0 }
+const { point } = usePointOnPrimitive(square, 0.4)
+// point.value = { x: -10, y: 50, z: 0 }
 ```
 
 ## Returns
 
-`usePointOnPrimitive` returns a single `ComputedRef<Vertex>` in the format `{x: number, y: number, z: number}`.
+`usePointOnPrimitive` returns a single `{point: ComputedRef<Vertex>}` in the format `{x: number, y: number, z: number}`.

@@ -16,10 +16,10 @@ Takes an input edge from a primitive and returns a vertex at a the midpoint. Thi
 
 ```js
 const circle = useCircle({radius: 50})
-const output = useEdgeMidpoint(circle.edges.value[0], 0.5)
-// output = { x: -50, y: 0, z: 0 }
+const { midpoint } = useEdgeMidpoint(circle.edges.value[0], 0.5)
+// midpoint.value = { x: -50, y: 0, z: 0 }
 ```
 
 ## Returns
 
-`useEdgeMidpoint` returns a single `ComputedRef<Vertex>` in the format `{x: number, y: number, z: number}`.
+`useEdgeMidpoint` returns a single `{midpoint: ComputedRef<Vertex>}` in the format `{x: number, y: number, z: number}`.

@@ -19,10 +19,10 @@ A circle only has one edge, so we can get a point 25% of the way around a circle
 
 ```js
 const circle = useCircle({radius: 50})
-const output = usePointOnEdge(circle.edges.value[0], 0.25)
-// output = { x: 0, y: 50, z: 0 }
+const { point } = usePointOnEdge(circle.edges.value[0], 0.25)
+// point.value = { x: 0, y: 50, z: 0 }
 ```
 
 ## Returns
 
-`usePointOnEdge` returns a single `ComputedRef<Vertex>` in the format `{x: number, y: number, z: number}`.
+`usePointOnEdge` returns a single `{point: ComputedRef<Vertex>}` in the format `{x: number, y: number, z: number}`.

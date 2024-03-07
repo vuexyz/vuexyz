@@ -14,7 +14,7 @@ const pentagon: Primitive = usePentagon({position: {x: 344, y: 200}, size: 200, 
 const percentage: Ref<number> = ref(0)
 
 // Let's get the point along the edge of the pentagon, at that percentage
-const pointOnPentagon = usePointOnPrimitive(pentagon, percentage)
+const { point } = usePointOnPrimitive(pentagon, percentage)
 
 onMounted(() => {
 
@@ -38,5 +38,5 @@ onMounted(() => {
 <template>
   <!-- This renderer is just for demo purposes -->
   <!-- All it does is take each primitive's svgPath property and render it in an SVG context -->
-  <PrimitiveSVGRenderer :primitives="[pentagon]" :vertices="[pentagon.vertices.value[0], pointOnPentagon]" label="Highlighting a moving point on the edge of a pentagon"/>
+  <PrimitiveSVGRenderer :primitives="[pentagon]" :vertices="[pentagon.vertices.value[0], point]" label="Highlighting a moving point on the edge of a pentagon"/>
 </template>
