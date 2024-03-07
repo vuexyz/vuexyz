@@ -1,8 +1,11 @@
 # VueXYZ
 
-![GitHub package.json dynamic](https://img.shields.io/github/package-json/version/vuexyz/vuexyz?label=current%20version)
-
 ![cover.png](https://github.com/vuexyz/vuexyz/raw/main/docs%2Fpublic%2Fcover.png)
+
+<p>
+  <a href="https://www.npmjs.com/package/vuexyz"><img src="https://img.shields.io/npm/v/vuexyz?color=%23197ef2" alt="npm package"></a>
+  <a href="https://www.npmjs.com/package/vuexyz"><img src="https://img.shields.io/npm/dm/vuexyz?color=%23197ef2" alt="npm downloads"></a>
+</p>
 
 ### VueXYZ is a collection of Vue 3 composables for creative coding.
 
@@ -14,10 +17,10 @@ You may decide to take the data and render it to canvas or SVG, or you might use
 
 ## 🚀 Features
 
-- 💎 All common 2D primitives like circles, triangles, pentagons, etc.
+- 💎 Composables for 2D primitives like circles, triangles, pentagons, etc.
 - ✨ Additional non-polygonal primitives like arcs, bézier curves, etc.
 - 📐 Composables return reactive data for `vertices`, `edges`, `faces`, etc.
-- 🎛️ Utility methods for rendering, positioning, and transforming primitives.
+- 🎛️ Utility methods for rendering, transforming, and distributing primitives.
 - 🔥 Built for the **Vue 3 Composition API**.
 - ⚡ **Fully tree shakeable**: Only use the composables you care about.
 - 📒 Type strong with **TypeScript**.
