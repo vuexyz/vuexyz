@@ -9,7 +9,7 @@ describe('usePointOnPrimitive', () => {
 
   it('should generate correct point on a square\'s total edge at 40%', () => {
     const square = useSquare({sideLength: 100})
-    const output = usePointOnPrimitive(square, 0.4)
-    expect(output.value).toStrictEqual({ x: -10, y: 50, z: 0 })
+    const {point} = usePointOnPrimitive(square, 0.4)
+    expect(point.value).toStrictEqual({ x: -10, y: 50, z: 0 })
   })
 })

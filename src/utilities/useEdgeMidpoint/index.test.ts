@@ -10,7 +10,7 @@ describe('useEdgeMidpoint', () => {
 
   it('should generate correct point for a square\'s first edge midpoint', () => {
     const square = useSquare({sideLength: 100})
-    const output = useEdgeMidpoint(square.edges.value[0])
-    expect(output.value).toStrictEqual({ x: 50, y: 0, z: 0 })
+    const {midpoint} = useEdgeMidpoint(square.edges.value[0])
+    expect(midpoint.value).toStrictEqual({ x: 50, y: 0, z: 0 })
   })
 })

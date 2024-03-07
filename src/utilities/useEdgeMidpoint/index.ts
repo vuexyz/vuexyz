@@ -8,8 +8,10 @@ import {usePointOnEdge} from "../usePointOnEdge";
  *
  * @see https://vuexyz.org/utilities/useMidpoint
  */
-export function useEdgeMidpoint(edge: MaybeRefOrGetter<Edge>): ComputedRef<Vertex> {
-    return computed(() => {
-        return usePointOnEdge(edge, 0.5).value;
+export function useEdgeMidpoint(edge: MaybeRefOrGetter<Edge>): { midpoint: ComputedRef<Vertex> } {
+    const midpoint = computed(() => {
+        const {point} = usePointOnEdge(edge, 0.5)
+        return point.value;
     })
+    return {midpoint}
 }

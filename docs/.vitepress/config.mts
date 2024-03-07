@@ -88,6 +88,7 @@ export default defineConfig({
                     {text: 'Interpolate Vertex', link: '/demo/lerp-vertex'},
                     {text: 'Logo Rings', link: '/demo/logo-rings'},
                     {text: 'Point On Primitive', link: '/demo/point-on-primitive'},
+                    {text: 'Equally Distribute Points', link: '/demo/distribute-points'},
                 ]
             },
             {
@@ -111,6 +112,7 @@ export default defineConfig({
             {
                 text: 'Utilities',
                 items: [
+                    {text: 'useDistributePoints', link: '/utilities/useDistributePoints'},
                     {text: 'useEdgeLength', link: '/utilities/useEdgeLength'},
                     {text: 'useEdgeMidpoint', link: '/utilities/useEdgeMidpoint'},
                     {text: 'useLerpVertex', link: '/utilities/useLerpVertex'},
