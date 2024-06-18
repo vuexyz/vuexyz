@@ -22,13 +22,17 @@ const interpolatedPoint: ComputedRef<Vertex> = useLerpVertex(staticPoint, comput
 const radius: Ref<number> = ref(30)
 const circle: Primitive = useCircle({radius, position: interpolatedPoint})
 
+let RAF = null;
 
 onMounted(() => {
 
   // Constantly rotate the triangle
-  const rotationInterval = setInterval(() => {
+  const rotationInterval = () => {
     rotation.value += 2
-  }, 1000 / 60)
+    RAF = requestAnimationFrame(rotationInterval)
+  }
+  rotationInterval()
+
 
   // Using GSAP, animate back and forth between the static point and the triangle's first vertex
   const lerpAnimation = gsap.to(percentage, { value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power3.inOut" });
@@ -36,7 +40,7 @@ onMounted(() => {
   // Clean up
   onUnmounted(() => {
     lerpAnimation.kill();
-    clearInterval(rotationInterval)
+    cancelAnimationFrame(RAF)
   });
 });
 
