@@ -24,16 +24,12 @@ const middleRingStyles = computed(() => index => computeStyle(middleRing, index)
 const outerRingStyles = computed(() => index => computeStyle(outerRing, index))
 
 onMounted(() => {
-
   // Constantly rotate the polygons
-  const rotationInterval = setInterval(() => {
+  const rotationInterval = () => {
     rotation.value += 0.2
-  }, 1000 / 60)
-
-  // Clean up
-  onUnmounted(() => {
-    clearInterval(rotationInterval)
-  });
+    requestAnimationFrame(rotationInterval)
+  }
+  rotationInterval()
 });
 
 </script>

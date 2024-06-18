@@ -13,16 +13,12 @@ const octagon: Primitive = useOctagon({position: {x: 344, y: 200}, size: 200, ro
 const {vertices} = useDistributePoints(octagon, 16)
 
 onMounted(() => {
-
   // Constantly rotate the octagon
-  const rotationInterval = setInterval(() => {
+  const rotationInterval = () => {
     rotation.value += 0.5
-  }, 1000 / 60)
-
-  // Clean up
-  onUnmounted(() => {
-    clearInterval(rotationInterval)
-  });
+    requestAnimationFrame(rotationInterval)
+  }
+  rotationInterval()
 });
 
 </script>

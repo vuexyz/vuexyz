@@ -22,14 +22,15 @@ onMounted(() => {
   const percentageAnimation = gsap.to(percentage, { value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power1.inOut" });
 
   // Constantly rotate the pentagon
-  const rotationInterval = setInterval(() => {
+  const rotationInterval = () => {
     rotation.value += 2
-  }, 1000 / 60)
+    requestAnimationFrame(rotationInterval)
+  }
+  rotationInterval()
 
   // Clean up
   onUnmounted(() => {
     percentageAnimation.kill()
-    clearInterval(rotationInterval)
   });
 });
 
