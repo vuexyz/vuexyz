@@ -89,15 +89,13 @@ onMounted(() => {
   )
 
   // Draw loop
-  movementInterval = setInterval(() => {
+  const movementInterval = () => {
     horizontalOffset.value += movementSpeed.value
     polygonRotation.value += rotationSpeed.value
-  }, 1)
+    requestAnimationFrame(movementInterval)
+  }
+  movementInterval()
 
-})
-
-onUnmounted(() => {
-  clearInterval(movementInterval)
 })
 
 </script>
