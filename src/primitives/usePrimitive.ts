@@ -176,7 +176,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
     /**
      * Returns a THREE.js shape object for the primitive.
      */
-    const threeShape = () => {
+    const threeShape = computed(() => {
         const shape: THREE.Shape = new THREE.Shape()
         if (edges.value.length > 0) {
             shape.moveTo(edges.value[0][0].start.x, edges.value[0][0].start.y)
@@ -194,7 +194,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
             }
         }
         return shape
-    }
+    })
 
     /**
      * The centroid (geometric center) of the primitive.
