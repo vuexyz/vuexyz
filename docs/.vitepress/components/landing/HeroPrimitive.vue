@@ -42,7 +42,7 @@ const colorPalettes = [
 const colorIndex = ref(Math.floor(Math.random() * colorPalettes.length));
 const rotationDirection = ref(Math.random() > 0.5 ? 1 : -1)
 
-let movementInterval = null
+let movementRAF = null
 let tunnelEntranceWatch = null
 
 const movementSpeed = ref(0)
@@ -71,8 +71,8 @@ onMounted(() => {
   // Watch to see when we enter the tunnel
   tunnelEntranceWatch = watch(polygonPosition, (newVal) => {
         if (newVal.x > props.center.x - 500) {
-          gsap.to(rotationSpeed, {value: 4 * rotationSpeed.value, duration: 1, ease: "power3.inOut"})
-          gsap.to(movementSpeed, {value: 3.8, duration: 1.1, ease: "power1.inOut"}).then(() => {
+          gsap.to(rotationSpeed, {value: 4 * rotationSpeed.value, duration: 2, ease: "power3.inOut"})
+          gsap.to(movementSpeed, {value: 3.8, duration: 2.5, ease: "power1.inOut"}).then(() => {
             gsap.to(rotationSpeed, {value: 0, duration: 6, ease: "power1.in"})
             gsap.to(movementSpeed, {value: 0.3, duration: 1.1, ease: "power1.inOut"}).then(() => {
               gsap.to(scale, {value: 0, duration: 5, ease: "power3.in"}).then(() => {
@@ -92,10 +92,15 @@ onMounted(() => {
   const movementInterval = () => {
     horizontalOffset.value += movementSpeed.value
     polygonRotation.value += rotationSpeed.value
-    requestAnimationFrame(movementInterval)
+    movementRAF = requestAnimationFrame(movementInterval)
   }
   movementInterval()
 
+})
+
+onUnmounted(() => {
+  cancelAnimationFrame(movementRAF)
+  tunnelEntranceWatch()
 })
 
 </script>

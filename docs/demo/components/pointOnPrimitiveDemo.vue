@@ -21,16 +21,19 @@ onMounted(() => {
   // Animate the percentage around the edge of the pentagon to highlight
   const percentageAnimation = gsap.to(percentage, { value: 1, duration: 3, yoyo: true, repeat: -1, ease: "power1.inOut" });
 
+  let RAF = null;
+
   // Constantly rotate the pentagon
   const rotationInterval = () => {
     rotation.value += 2
-    requestAnimationFrame(rotationInterval)
+    RAF = requestAnimationFrame(rotationInterval)
   }
   rotationInterval()
 
   // Clean up
   onUnmounted(() => {
     percentageAnimation.kill()
+    cancelAnimationFrame(RAF)
   });
 });
 

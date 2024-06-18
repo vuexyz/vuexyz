@@ -22,13 +22,14 @@ const interpolatedPoint: ComputedRef<Vertex> = useLerpVertex(staticPoint, comput
 const radius: Ref<number> = ref(30)
 const circle: Primitive = useCircle({radius, position: interpolatedPoint})
 
+let RAF = null;
 
 onMounted(() => {
 
   // Constantly rotate the triangle
   const rotationInterval = () => {
     rotation.value += 2
-    requestAnimationFrame(rotationInterval)
+    RAF = requestAnimationFrame(rotationInterval)
   }
   rotationInterval()
 
@@ -39,6 +40,7 @@ onMounted(() => {
   // Clean up
   onUnmounted(() => {
     lerpAnimation.kill();
+    cancelAnimationFrame(RAF)
   });
 });
 

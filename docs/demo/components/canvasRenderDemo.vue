@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import {useHexagon} from '../../../src'
-import {onMounted, ref, Ref} from "vue";
+import {onMounted, onUnmounted, ref, Ref} from "vue";
 
 // useHexagon
 const rotation: Ref<number> = ref(0)
-const { drawOnCanvas } = useHexagon({size: 200, position: {x: 344, y: 200}, rotation})
+const {drawOnCanvas} = useHexagon({size: 200, position: {x: 344, y: 200}, rotation})
+
+let RAF = null;
 
 // Set things up when mounted
 onMounted(() => {
@@ -31,7 +33,7 @@ onMounted(() => {
     rotation.value += 0.5
 
     // Let's loop!
-    requestAnimationFrame(draw)
+    RAF = requestAnimationFrame(draw)
   }
 
   // Start drawing
@@ -39,10 +41,14 @@ onMounted(() => {
 
 })
 
+onUnmounted(() => {
+  cancelAnimationFrame(RAF)
+})
+
 </script>
 
 <template>
   <div>
-    <canvas id="myCanvas" width="688px" height="400" style="width: 100%" />
+    <canvas id="myCanvas" width="688px" height="400" style="width: 100%"/>
   </div>
 </template>
