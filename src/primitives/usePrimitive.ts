@@ -52,11 +52,11 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
      */
     function transformVertex(vertex: Vertex): Vertex {
         let newVertex: Vertex = {
-            x: vertex.x + toValue(position).x,
-            y: vertex.y + toValue(position).y,
-            z: vertex.z + toValue(position).z
+            x: (vertex.x ?? 0) + toValue(position).x,
+            y: (vertex.y ?? 0) + toValue(position).y,
+            z: (vertex.z ?? 0) + toValue(position).z
         };
-        const radians = toValue(rotation) * (Math.PI / 180);
+        const radians = toValue(rotation) * (Math.PI / 180)
         newVertex = {
             x: Math.cos(radians) * (newVertex.x - toValue(position).x) - Math.sin(radians) * (newVertex.y - toValue(position).y) + toValue(position).x,
             y: Math.sin(radians) * (newVertex.x - toValue(position).x) + Math.cos(radians) * (newVertex.y - toValue(position).y) + toValue(position).y,

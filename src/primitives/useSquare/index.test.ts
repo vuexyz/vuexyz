@@ -26,4 +26,10 @@ describe('useSquare', () => {
     const square = useSquare({ sideLength: 50 })
     expect(square.boundingBox.value.width).toBe(50)
   })
+
+  it('all z values should be 0, not NaN', () => {
+    const square = useSquare({ sideLength: 50 })
+    expect(square.vertices.value[0].z).toBe(0)
+    expect(square.faces.value[0][0][0].start.z).toBe(0)
+  })
 })
