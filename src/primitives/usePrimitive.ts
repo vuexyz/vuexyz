@@ -1,6 +1,7 @@
 import {MaybeRefOrGetter, toValue} from '@vueuse/shared'
 import {computed, ComputedRef, ref, Ref} from 'vue'
 import type {BoundingBox, Edge, Face, Vertex} from '../types'
+import * as THREE from 'three'
 
 /**
  * All those automagically reactive details about the shape you're working with.
@@ -170,6 +171,29 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
                 ctx.closePath();
             }
         }
+    }
+
+    /**
+     * Returns a THREE.js shape object for the primitive.
+     */
+    const threeShape = () => {
+        const shape: THREE.Shape = new THREE.Shape()
+        if (edges.value.length > 0) {
+            shape.moveTo(edges.value[0][0].start.x, edges.value[0][0].start.y)
+            edges.value.forEach(edge => {
+                edge.forEach(segment => {
+                    if (segment.type === 'line') {
+                        shape.lineTo(segment.end.x, segment.end.y)
+                    } else if (segment.type === 'curve') {
+                        shape.bezierCurveTo(segment.c1.x, segment.c1.y, segment.c2.x, segment.c2.y, segment.end.x, segment.end.y)
+                    }
+                })
+            })
+            if (isClosed) {
+                shape.closePath()
+            }
+        }
+        return shape
     }
 
     /**
