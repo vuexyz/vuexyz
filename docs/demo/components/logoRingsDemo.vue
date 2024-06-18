@@ -23,14 +23,20 @@ const computeStyle = (polygon: Primitive, index: number) => { return useStyleTra
 const middleRingStyles = computed(() => index => computeStyle(middleRing, index))
 const outerRingStyles = computed(() => index => computeStyle(outerRing, index))
 
+let RAF = null;
+
 onMounted(() => {
   // Constantly rotate the polygons
   const rotationInterval = () => {
     rotation.value += 0.2
-    requestAnimationFrame(rotationInterval)
+    RAF = requestAnimationFrame(rotationInterval)
   }
   rotationInterval()
 });
+
+onUnmounted(() => {
+  cancelAnimationFrame(RAF)
+})
 
 </script>
 
