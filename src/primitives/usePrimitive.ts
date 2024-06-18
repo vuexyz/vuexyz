@@ -1,7 +1,7 @@
 import {MaybeRefOrGetter, toValue} from '@vueuse/shared'
 import {computed, ComputedRef, ref, Ref} from 'vue'
 import type {BoundingBox, Edge, Face, Vertex} from '../types'
-import * as THREE from 'three'
+import {Shape, CurvePath, Vector3, LineCurve3, CubicBezierCurve3} from 'three'
 
 /**
  * All those automagically reactive details about the shape you're working with.
@@ -12,8 +12,8 @@ export interface Primitive {
     faces: ComputedRef<Face[]>
     svgPath: ComputedRef<string>
     drawOnCanvas: (ctx: CanvasRenderingContext2D) => void
-    threeShape: ComputedRef<THREE.Shape>
-    threeCurvePath: ComputedRef<THREE.CurvePath<any>>
+    threeShape: ComputedRef<Shape>
+    threeCurvePath: ComputedRef<CurvePath<any>>
     centroid: ComputedRef<Vertex>
     boundingBox: ComputedRef<BoundingBox>
 }
@@ -179,7 +179,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
      * Returns a THREE.js shape object for the primitive.
      */
     const threeShape = computed(() => {
-        const shape: THREE.Shape = new THREE.Shape()
+        const shape: Shape = new Shape()
         if (edges.value.length > 0) {
             shape.moveTo(edges.value[0][0].start.x, edges.value[0][0].start.y)
             edges.value.forEach(edge => {
@@ -202,25 +202,25 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
      * Returns a THREE.js curve path object for the primitive.
      */
     const threeCurvePath = computed(() => {
-        const curvePath = new THREE.CurvePath();
+        const curvePath = new CurvePath();
         if (edges.value.length > 0) {
-            let firstPoint = new THREE.Vector3(edges.value[0][0].start.x, edges.value[0][0].start.y, 0);
+            let firstPoint = new Vector3(edges.value[0][0].start.x, edges.value[0][0].start.y, 0);
             let currentPoint = firstPoint.clone();
             edges.value.forEach(edge => {
                 edge.forEach(segment => {
                     if (segment.type === 'line') {
-                        const line = new THREE.LineCurve3(
+                        const line = new LineCurve3(
                             currentPoint,
-                            new THREE.Vector3(segment.end.x, segment.end.y, 0)
+                            new Vector3(segment.end.x, segment.end.y, 0)
                         )
                         curvePath.add(line)
                         currentPoint = line.v2.clone()
                     } else if (segment.type === 'curve') {
-                        const curve = new THREE.CubicBezierCurve3(
+                        const curve = new CubicBezierCurve3(
                             currentPoint,
-                            new THREE.Vector3(segment.c1.x, segment.c1.y, 0),
-                            new THREE.Vector3(segment.c2.x, segment.c2.y, 0),
-                            new THREE.Vector3(segment.end.x, segment.end.y, 0)
+                            new Vector3(segment.c1.x, segment.c1.y, 0),
+                            new Vector3(segment.c2.x, segment.c2.y, 0),
+                            new Vector3(segment.end.x, segment.end.y, 0)
                         );
                         curvePath.add(curve)
                         currentPoint = curve.v3.clone()
@@ -228,7 +228,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
                 })
             })
             if (isClosed) {
-                const closingLine = new THREE.LineCurve3(currentPoint, firstPoint)
+                const closingLine = new LineCurve3(currentPoint, firstPoint)
                 curvePath.add(closingLine)
             }
         }
