@@ -12,6 +12,8 @@ export interface Primitive {
     faces: ComputedRef<Face[]>
     svgPath: ComputedRef<string>
     drawOnCanvas: (ctx: CanvasRenderingContext2D) => void
+    threeShape: ComputedRef<THREE.Shape>
+    threeCurvePath: ComputedRef<THREE.CurvePath<any>>
     centroid: ComputedRef<Vertex>
     boundingBox: ComputedRef<BoundingBox>
 }
@@ -197,6 +199,43 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
     })
 
     /**
+     * Returns a THREE.js curve path object for the primitive.
+     */
+    const threeCurvePath = computed(() => {
+        const curvePath = new THREE.CurvePath();
+        if (edges.value.length > 0) {
+            let firstPoint = new THREE.Vector3(edges.value[0][0].start.x, edges.value[0][0].start.y, 0);
+            let currentPoint = firstPoint.clone();
+            edges.value.forEach(edge => {
+                edge.forEach(segment => {
+                    if (segment.type === 'line') {
+                        const line = new THREE.LineCurve3(
+                            currentPoint,
+                            new THREE.Vector3(segment.end.x, segment.end.y, 0)
+                        )
+                        curvePath.add(line)
+                        currentPoint = line.v2.clone()
+                    } else if (segment.type === 'curve') {
+                        const curve = new THREE.CubicBezierCurve3(
+                            currentPoint,
+                            new THREE.Vector3(segment.c1.x, segment.c1.y, 0),
+                            new THREE.Vector3(segment.c2.x, segment.c2.y, 0),
+                            new THREE.Vector3(segment.end.x, segment.end.y, 0)
+                        );
+                        curvePath.add(curve)
+                        currentPoint = curve.v3.clone()
+                    }
+                })
+            })
+            if (isClosed) {
+                const closingLine = new THREE.LineCurve3(currentPoint, firstPoint)
+                curvePath.add(closingLine)
+            }
+        }
+        return curvePath
+    })
+
+    /**
      * The centroid (geometric center) of the primitive.
      */
     const centroid = computed(() => {
@@ -255,6 +294,8 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         faces,
         svgPath,
         drawOnCanvas,
+        threeShape,
+        threeCurvePath,
         centroid,
         boundingBox
     }
