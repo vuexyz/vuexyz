@@ -21,6 +21,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@tresjs/cientos": "^3.9.0",
+    "@tresjs/core": "^4.0.2",
     "@vueuse/shared": "^10.7.2",
     "bezier-js": "^6.1.4",
     "gsap": "^3.12.5",

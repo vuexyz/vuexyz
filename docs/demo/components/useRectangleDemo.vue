@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {useRectangle} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
+import PrimitiveTresRenderer from "./renderer/PrimitiveTresRenderer.vue";
 
 // Create a rectangle using the useRectangle() composable
 const primitive = useRectangle({width: 200, height: 100, position: {x: 344, y: 200}})
@@ -9,4 +10,5 @@ const primitive = useRectangle({width: 200, height: 100, position: {x: 344, y: 2
 
 <template>
   <PrimitiveSVGRenderer :primitives="[primitive]" label="useRectangle({width: 200, height: 100})" />
+  <PrimitiveTresRenderer :primitives="[primitive]" label="useCircle({radius: 100})"/>
 </template>

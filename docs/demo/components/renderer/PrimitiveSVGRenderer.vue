@@ -5,7 +5,7 @@ import {Vertex} from "../../../../src/types";
 
 interface Props {
   primitives: Primitive[]
-  vertices: Vertex[]
+  vertices?: Vertex[]
   label?: string
 }
 

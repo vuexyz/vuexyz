@@ -1,4 +1,5 @@
 import {defineConfig} from 'vitepress'
+import {templateCompilerOptions} from "@tresjs/core";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -134,5 +135,12 @@ export default defineConfig({
             message: 'Released under the MIT License.',
             copyright: 'Copyright © 2024 Simon Le Marchant and contributors',
         },
+    },
+    vue:{
+        template: {
+            compilerOptions: {
+                ...templateCompilerOptions.template.compilerOptions
+            }
+        }
     }
 })

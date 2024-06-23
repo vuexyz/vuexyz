@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import {usePolygon} from '../../../src'
 import PrimitiveSVGRenderer from "./renderer/PrimitiveSVGRenderer.vue";
+import PrimitiveTresRenderer from "./renderer/PrimitiveTresRenderer.vue";
 
 // Create a polygon using the usePolygon() composable
 const primitive = usePolygon({sides: 7, sideLength: 100, position: {x: 688 / 2, y: 400 / 2}})
@@ -19,4 +20,5 @@ const primitive2 = usePolygon({
 <template>
   <PrimitiveSVGRenderer :primitives="[primitive]" label="usePolygon({sides: 7, sideLength: 100}) -> Regular Polygon"/>
   <PrimitiveSVGRenderer :primitives="[primitive2]" label="usePolygon({vertices: [...]}) -> Irregular Polygon"/>
+  <PrimitiveTresRenderer :primitives="[primitive]" label="useCircle({radius: 100})"/>
 </template>
