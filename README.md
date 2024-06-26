@@ -20,7 +20,8 @@ You may decide to take the data and render it to canvas or SVG, or you might use
 - 💎 Composables for 2D primitives like circles, triangles, pentagons, etc.
 - ✨ Additional non-polygonal primitives like arcs, bézier curves, etc.
 - 📐 Composables return reactive data for `vertices`, `edges`, `faces`, etc.
-- 🎛️ Utility methods for rendering, transforming, and distributing primitives.
+- 🖍  Helpers for rendering primitives to `SVG`, `canvas` and `Three/Tres`
+- 🎛️ Utility methods for performing calculations on primitive data.
 - 🔥 Built for the **Vue 3 Composition API**.
 - ⚡ **Fully tree shakeable**: Only use the composables you care about.
 - 📒 Type strong with **TypeScript**.
