@@ -28,7 +28,7 @@ const hexagon: Primitive = useHexagon({size: 100, position: {x: 200, y: 0}})
       <TresMesh v-for="primitive in [circle, square, hexagon]">
         <TresExtrudeGeometry :args="[primitive.threeShape.value, {
           steps: 2,
-          depth: 16,
+          depth: 30,
           bevelEnabled: true,
           bevelThickness: 1,
           bevelSize: 2,
@@ -37,9 +37,9 @@ const hexagon: Primitive = useHexagon({size: 100, position: {x: 200, y: 0}})
         }]"/>
         <TresMeshStandardMaterial color="#FFFFFF" :side="DoubleSide"/>
       </TresMesh>
-      <TresDirectionalLight :intensity="3" :position="[500, 500, -500]" :look-at="[0,0,0]"/>
-      <TresDirectionalLight :intensity="3" :position="[-500, 500, 500]" :look-at="[0,0,0]"/>
-      <TresAmbientLight :intensity="1"/>
+      <TresDirectionalLight :intensity="2" :position="[500, 500, 500]" :look-at="[0,0,0]"/>
+      <TresDirectionalLight :intensity="2" :position="[-500, 500, 500]" :look-at="[0,0,0]"/>
+      <TresAmbientLight :intensity="0.5"/>
     </TresCanvas>
   </div>
 </template>

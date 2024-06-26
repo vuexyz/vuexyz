@@ -2,11 +2,11 @@
 
 Most frontend creative coding libraries _(like p5.js or pixi.js)_ handle rendering for you. Typically, they provide a `draw` function that gets called every frame and any code you write gets drawn to a canvas element.
 
-VueXYZ is different in that regard, as it doesn't draw anything or modify the DOM in any way. Instead, each composable returns data. It's up to you to decide how to render that it.
+VueXYZ is different in that regard, as it doesn't draw anything or modify the DOM in any way. Instead, each composable returns' data. It's up to you to decide how to render that it.
 
-But even with this approach, sometimes it's useful to visualize primitives. For that purpose, all primitives return reactive properties to make it painless to render them to SVG or canvas.
+But even with this approach, sometimes it's useful to visualize primitives. For that purpose, all primitives return reactive properties to make it painless to render them to SVG, canvas, and even in 3D.
 
-## svgPath
+## `svgPath`
 
 All primitives within VueXYZ return an `svgPath` member. This string represents an SVG path. For example:
 
@@ -24,7 +24,7 @@ All primitives within VueXYZ return an `svgPath` member. This string represents 
 </template>
 ```
 
-## drawOnCanvas
+## `drawOnCanvas`
 
 If you want to draw to a HTML5 canvas element instead, you can use the `drawOnCanvas` method. This method takes a canvas context and draws the primitive to it.
 
@@ -51,3 +51,11 @@ ctx.stroke(); // or ctx.fill();
 
 > [!IMPORTANT]
 > It's important to note that VueXYZ doesn't handle the canvas lifecycle for you. In the example above, it will render the primitive once and stop. If you want it to animate, you'll need to call `drawOnCanvas(ctx)` on every frame within your draw loop, as shown in the [Canvas Rendering demo](/demo/canvas-rendering).
+
+## `threeShape` and `threeCurvePath`
+
+Thanks to [JaimeTorrealba](https://github.com/JaimeTorrealba), VueXYZ primitives now return two properties that can be used with the [three.js](https://threejs.org/) and [tres.js](https://tresjs.org/) libraries.
+
+`threeShape` returns a [THREE.Shape](https://threejs.org/docs/#api/en/extras/core/Shape) object representing the primitive's 2D face. This is only applicable with closed shapes such as squares, circles, etc. but not open-faced shapes like lines or arcs. See the [3D / Tres Demo](/demo/three-demo) for an example of using `threeShape` to create extruded geometry w/ Tres.
+
+`threeCurvePath` returns a [THREE.CurvePath](https://threejs.org/docs/#api/en/extras/core/CurvePath) object representing the primitive's 2D edges. This can be used to draw lines in 3D space representing the primitive's edges, and to get lower-level data about points along the edges.
