@@ -180,7 +180,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
      */
     const threeShape = computed(() => {
         const shape: Shape = new Shape()
-        if (edges.value.length > 0) {
+        if (edges.value.length > 0 && isClosed) {
             shape.moveTo(edges.value[0][0].start.x, edges.value[0][0].start.y)
             edges.value.forEach(edge => {
                 edge.forEach(segment => {
@@ -191,9 +191,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
                     }
                 })
             })
-            if (isClosed) {
-                shape.closePath()
-            }
+            shape.closePath()
         }
         return shape
     })
