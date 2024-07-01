@@ -37,7 +37,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "lib:build": "vite build",
-    "lib:publish": "lib:build && npm publish --access public",
+    "lib:publish": "npm run lib:build && npm publish --access public",
     "test": "vitest"
   },
   "dependencies": {
