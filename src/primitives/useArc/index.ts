@@ -1,7 +1,7 @@
 import type {MaybeRefOrGetter} from '@vueuse/shared'
 import {computed, ComputedRef, toValue} from 'vue'
 import {Primitive, PrimitiveConfig, usePrimitive} from "../usePrimitive";
-import {CurveSegment, Edge, Face, Vertex} from "../../types";
+import {CurveSegment, Edge, EdgeSegment, Face, Vertex} from "../../types";
 import {Bezier} from "bezier-js"
 import {useCircle} from "../useCircle";
 
@@ -9,10 +9,6 @@ interface ArcConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | 'faces'
     radius?: MaybeRefOrGetter<number>,
     startAngle?: MaybeRefOrGetter<number>,
     endAngle?: MaybeRefOrGetter<number>
-}
-
-function normalizeAngle(angle) {
-    return angle < 0 ? angle + Math.PI * 2 : angle;
 }
 
 export function useArc(config?: ArcConfig): Primitive {
@@ -41,18 +37,23 @@ export function useArc(config?: ArcConfig): Primitive {
         }
         const startQuadrant = Math.floor(startAngleRadians / (Math.PI / 2))
         const endQuadrant = Math.floor(endAngleRadians / (Math.PI / 2))
-        circlePrimitive.edges.value[0].forEach((segment: CurveSegment, index) => {
+        circlePrimitive.edges.value[0].forEach((segment: EdgeSegment, index) => {
             if (index >= startQuadrant && index <= endQuadrant) {
                 if (index > startQuadrant && index < endQuadrant) {
-                    includedSegments.push(segment)
+                    includedSegments.push(segment as CurveSegment)
                 } else {
-                    const bezier = new Bezier(segment.start, segment.c1, segment.c2, segment.end)
-                    let t0 = 0, t1 = 1
+                    let bezier: Bezier
+                    if('c1' in segment && 'c2' in segment){
+                        bezier = new Bezier(segment.start, segment.c1, segment.c2, segment.end)
+                    }else{
+                        bezier = new Bezier(segment.start, segment.start, segment.end)
+                    }
+                    let t0: number | undefined = 0, t1: number | undefined = 1
                     if (index === startQuadrant) {
-                        t0 = bezier.project({x: radius * Math.cos(startAngleRadians), y: radius * Math.sin(startAngleRadians)}).t
+                        t0 = bezier.project({x: radius * Math.cos(startAngleRadians), y: radius * Math.sin(startAngleRadians)}).t ?? 0
                     }
                     if (index === endQuadrant) {
-                        t1 = bezier.project({x: radius * Math.cos(endAngleRadians), y: radius * Math.sin(endAngleRadians)}).t
+                        t1 = bezier.project({x: radius * Math.cos(endAngleRadians), y: radius * Math.sin(endAngleRadians)}).t ?? 0
                     }
                     if (startQuadrant === endQuadrant && t0 > t1) {
                         [t0, t1] = [t1, t0]

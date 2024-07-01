@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {useEdgeMidpoint} from "./index";
 import {useSquare} from "../../primitives/useSquare";
-import {usePointOnEdge} from "../usePointOnEdge";
 
 describe('useEdgeMidpoint', () => {
   it('should be defined', () => {

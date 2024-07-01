@@ -40,16 +40,20 @@ export function usePolygon(config?: PolygonConfig): Primitive {
      * Standardize user-provided vertices to ensure they are passed correctly to usePrimitive.
      */
     const standardizeUserVertices = computed(() => {
-        return toValue("vertices" in config && config?.vertices).map(vertex => toValue(vertex)) ?? []
+        if(!!config && "vertices" in config){
+            return toValue(config.vertices).map(vertex => toValue(vertex))
+        }
+        return []
     })
 
     /**
      * Calculate vertices from sides and sideLength.
      */
     const calculateVerticesFromSidesAndSideLength = () => {
+
         // Set default values
-        const sides = "sides" in config ? config.sides : 4
-        const sideLength = "sideLength" in config ? config.sideLength : 100
+        const sides = !!config && "sides" in config ? config.sides ?? 4 : 4
+        const sideLength = !!config && "sideLength" in config ? config.sideLength ?? 100 : 100
 
         // Calculate the circumscribed radius of the circle
         const radius: ComputedRef<number> = computed(() => toValue(sideLength) / (2 * Math.sin(Math.PI / toValue(sides))));
@@ -81,8 +85,8 @@ export function usePolygon(config?: PolygonConfig): Primitive {
      */
     const calculateVerticesFromSidesAndSize = () => {
         // Set default values
-        const sides = "sides" in config ? config.sides : 4
-        const size = "size" in config ? config.size : 100
+        const sides = !!config && "sides" in config ? config.sides ?? 4 : 4
+        const size = !!config && "size" in config ? config.size ?? 100 : 100
 
         // Calculate the radius of the polygon (inscribed in a circle)
         let radius: number = toValue(size) / 2;
@@ -111,9 +115,9 @@ export function usePolygon(config?: PolygonConfig): Primitive {
 
     // Define vertices (with various possible configurations)
     let vertices: ComputedRef<Vertex[]>;
-    if ("vertices" in config) {
+    if (!!config && "vertices" in config) {
         vertices = standardizeUserVertices;
-    } else if ("size" in config) {
+    } else if (!!config && "size" in config) {
         vertices = calculateVerticesFromSidesAndSize();
     } else {
         vertices = calculateVerticesFromSidesAndSideLength();

@@ -1,7 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import {useVertexAngle} from "./index";
-import {useSquare} from "../../primitives/useSquare";
-import {usePointOnEdge} from "../usePointOnEdge";
 import {ref} from "vue";
 
 describe('useVertexAngle', () => {
