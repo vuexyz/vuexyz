@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 import { useSquare } from '.'
-import {useEllipse} from "../useEllipse";
 
 describe('useSquare', () => {
   it('should be defined', () => {

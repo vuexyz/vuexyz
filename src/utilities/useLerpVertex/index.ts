@@ -11,7 +11,7 @@ export function useLerpVertex(start: MaybeRefOrGetter<Vertex> = {x: 0, y: 0, z: 
     return computed(() => {
         const x = toValue(start).x + toValue(percentage) * (toValue(end).x - toValue(start).x);
         const y = toValue(start).y + toValue(percentage) * (toValue(end).y - toValue(start).y);
-        const z = typeof toValue(start).z === 'number' && typeof toValue(end).z === 'number' ? toValue(start).z + toValue(percentage) * (toValue(end).z - toValue(start).z) : 0;
+        const z = typeof toValue(start).z === 'number' && typeof toValue(end).z === 'number' ? (toValue(start).z ?? 0) + toValue(percentage) * ((toValue(end).z ?? 0) - (toValue(start).z ?? 0)) : 0;
         return { x, y, z };
     })
 }

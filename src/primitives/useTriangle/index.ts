@@ -1,4 +1,3 @@
-import type {MaybeRefOrGetter} from '@vueuse/shared'
 import {DistributiveOmit} from '../../types'
 import {Primitive} from '../usePrimitive'
 import {PolygonConfig, usePolygon} from "../usePolygon";

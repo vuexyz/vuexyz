@@ -16,8 +16,8 @@ interface RectangleConfig extends Omit<PrimitiveConfig, 'vertices' | 'edges' | '
  */
 export function useRectangle(config?: RectangleConfig): Primitive {
     // Set default values
-    const width = "width" in config ? toValue(config.width) : 100
-    const height = "height" in config ? toValue(config.height) : 50
+    const width = !!config && "width" in config ? toValue(config.width) : 100
+    const height = !!config && "height" in config ? toValue(config.height) : 50
 
     // Define vertices
     const vertices: ComputedRef<Vertex[]> = computed(() => {
