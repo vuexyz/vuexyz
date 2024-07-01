@@ -17,7 +17,7 @@ export function useLine(config?: LineConfig): Primitive {
 
     // Define vertices (provided by the user in this case)
     const vertices: ComputedRef<Vertex[]> = computed(() => {
-        return toValue(config?.vertices).map(vertex => toValue(vertex)) ?? []
+        return toValue(config?.vertices ?? []).map(vertex => toValue(vertex)) ?? []
     })
 
     // Define edges
