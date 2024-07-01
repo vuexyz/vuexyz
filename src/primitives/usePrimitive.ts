@@ -38,9 +38,9 @@ export interface PrimitiveConfig {
 export function usePrimitive(config?: PrimitiveConfig): Primitive {
 
     // Configuration Defaults
-    const inputVertices: Ref<Vertex[]> = ref(config.vertices || []);
-    const inputEdges: Ref<Edge[]> = ref(config.edges || []);
-    const inputFaces: Ref<Face[]> = ref(config.faces || []);
+    const inputVertices: Ref<Vertex[]> = ref(config?.vertices || []);
+    const inputEdges: Ref<Edge[]> = ref(config?.edges || []);
+    const inputFaces: Ref<Face[]> = ref(config?.faces || []);
     const position = config?.position ?? {
         x: 0,
         y: 0,
@@ -57,7 +57,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         let newVertex: Vertex = {
             x: (vertex.x ?? 0) + toValue(position).x,
             y: (vertex.y ?? 0) + toValue(position).y,
-            z: (vertex.z ?? 0) + toValue(position).z
+            z: (vertex.z ?? 0) + (toValue(position).z ?? 0)
         };
         const radians = toValue(rotation) * (Math.PI / 180)
         newVertex = {
@@ -240,7 +240,7 @@ export function usePrimitive(config?: PrimitiveConfig): Primitive {
         return vertices.value.reduce((acc, v) => ({
             x: acc.x + v.x / vertices.value.length,
             y: acc.y + v.y / vertices.value.length,
-            z: acc.z + v.z / vertices.value.length
+            z: (acc.z ?? 0) + (v.z ?? 0) / vertices.value.length
         }), {x: 0, y: 0});
     })
 
