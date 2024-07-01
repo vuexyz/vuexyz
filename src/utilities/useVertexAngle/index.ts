@@ -18,7 +18,7 @@ export function useVertexAngle(start: MaybeRefOrGetter<Vertex> = {x: 0, y: 0, z:
     const distance = computed(() => {
         const x = toValue(end).x - toValue(start).x
         const y = toValue(end).y - toValue(start).y
-        const z = toValue(end).z - toValue(start).z
+        const z = (toValue(end).z ?? 0) - (toValue(start).z ?? 0)
         return Math.sqrt(x * x + y * y + z * z)
     })
     return {angle, distance};
