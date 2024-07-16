@@ -47,7 +47,7 @@ npm install vuexyz
 
 - [Getting Started](https://vuexyz.org/getting-started)
 - [Interactive Demos](https://vuexyz.org/demo/basic-primitives)
-- [Chat on Discord](https://discord.gg/hKyfDAddsK)
+- [Chat on Discord](https://discordapp.com/users/1165287468568944640)
 
 ---
 

@@ -128,7 +128,7 @@ export default defineConfig({
 
         socialLinks: [
             {icon: 'github', link: 'https://github.com/vuexyz/vuexyz'},
-            {icon: 'discord', link: 'https://discord.gg/hKyfDAddsK'},
+            {icon: 'discord', link: 'https://discordapp.com/users/1165287468568944640'},
             {icon: 'twitter', link: 'https://twitter.com/marchantweb'},
         ],
 
